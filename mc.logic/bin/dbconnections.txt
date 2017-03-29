@@ -1,0 +1,29 @@
+###############################################################################################################
+#
+# Database Connection Parameters
+#
+# One database connection per line
+#
+# Fields:
+# 1. Database Connection unique identifier
+# 2. Database Connection description
+# 3. Database Connection JDBC URL
+# 4. Username
+# 5. Password
+# 6. Database Driver
+#
+#   Line comments: "#", "--", "//"  (must be at the beginning of the line)
+#
+#################################################################################################################
+GDAODEMO,  GDAODEMO Database - Oracle 11g,    jdbc:oracle:thin:@mallocinc.dnsalias.com:56238:zoracle,   GDAODEMO,    GDAODEMO,     oracle.jdbc.driver.OracleDriver
+YOUTESTME, YOUTESTME Database - Oracle 11g,   jdbc:oracle:thin:@mallocinc.dnsalias.com:56238:zoracle,   YOUTESTME,   YOUTESTME,    oracle.jdbc.driver.OracleDriver
+YTM1,      YTM1 Database - Oracle 11g,        jdbc:oracle:thin:@mallocinc.dnsalias.com:56238:zoracle,   ytm1,        ytm1,         oracle.jdbc.driver.OracleDriver
+YTM2,      YTM2 Database - Oracle 11g,        jdbc:oracle:thin:@mallocinc.dnsalias.com:56238:zoracle,   ytm2,        ytm2,         oracle.jdbc.driver.OracleDriver
+YTM3,      YTM3 Database - Oracle 11g,        jdbc:oracle:thin:@mallocinc.dnsalias.com:56238:zoracle,   ytm3,        ytm3,         oracle.jdbc.driver.OracleDriver
+YTM4,      YTM4 Database - Oracle 11g,        jdbc:oracle:thin:@mallocinc.dnsalias.com:56238:zoracle,   ytm4,        ytm4,         oracle.jdbc.driver.OracleDriver
+YTM5,      YTM5 Database - Oracle 11g,        jdbc:oracle:thin:@mallocinc.dnsalias.com:56238:zoracle,   ytm5,        ytm5,         oracle.jdbc.driver.OracleDriver
+YTM6,      YTM6 Database - Oracle 11g,        jdbc:oracle:thin:@mallocinc.dnsalias.com:56238:zoracle,   ytm6,        ytm6,         oracle.jdbc.driver.OracleDriver
+YTM7,      YTM7 Database - Oracle 11g,        jdbc:oracle:thin:@mallocinc.dnsalias.com:56238:zoracle,   ytm7,        ytm7,         oracle.jdbc.driver.OracleDriver
+YTM8,      YTM8 Database - Oracle 11g,        jdbc:oracle:thin:@mallocinc.dnsalias.com:56238:zoracle,   ytm8,        ytm8,         oracle.jdbc.driver.OracleDriver
+YTM9,      YTM9 Database - Oracle 11g,        jdbc:oracle:thin:@mallocinc.dnsalias.com:56238:zoracle,   ytm9,        ytm9,         oracle.jdbc.driver.OracleDriver
+YTM10,     YTM10 Database - Oracle 11g,       jdbc:oracle:thin:@mallocinc.dnsalias.com:56238:zoracle,   ytm10,       ytm10,        oracle.jdbc.driver.OracleDriver

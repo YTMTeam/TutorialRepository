@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="exportUsers" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" isFloatColumnFooter="true" resourceBundle="com/mallocinc/ytm/webview/jasper/local/jaspermsg" uuid="87eb602a-571f-43ee-83f8-e2fa0ae80d05">
+	<property name="ireport.zoom" value="1.0000000000000082"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="284"/>
+	<style name="Crosstab Data Text" hAlign="Center" markup="styled" fontName="Arial" isPdfEmbedded="true"/>
+	<style name="Labels" forecolor="#575756" fill="Solid" markup="styled" fontName="Arial" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="true"/>
+	<style name="ColumnHeader" backcolor="#F2F2F2" markup="styled" fontName="Arial" isPdfEmbedded="true">
+		<pen lineWidth="0.0"/>
+	</style>
+	<style name="TableHeader" forecolor="#B2B2B2" backcolor="#E5E5E5" markup="styled" fontName="Arial" isPdfEmbedded="true">
+		<pen lineWidth="0.0"/>
+		<box>
+			<rightPen lineWidth="1.0" lineColor="#B2B2B2"/>
+		</box>
+	</style>
+	<style name="TableHeadLetter" forecolor="#09475E" markup="styled" fontName="Arial" isPdfEmbedded="true"/>
+	<subDataset name="New Dataset 1" uuid="f2af5593-033f-45ef-837b-a470bf3b63ca"/>
+	<queryString>
+		<![CDATA[select * from certificate]]>
+	</queryString>
+	<field name="certificateName" class="java.lang.String"/>
+	<field name="certificateLogo" class="java.io.InputStream"/>
+	<field name="backgroundTheme" class="java.io.InputStream"/>
+	<field name="companyLogo" class="java.io.InputStream"/>
+	<field name="certificateCompany" class="java.lang.String"/>
+	<field name="certifyDate" class="java.lang.String"/>
+	<field name="certificateDescription" class="java.lang.String"/>
+	<field name="percentScored" class="java.math.BigDecimal"/>
+	<field name="quizName" class="java.lang.String"/>
+	<field name="userFirstName" class="java.lang.String"/>
+	<field name="userLastName" class="java.lang.String"/>
+	<variable name="percentScored_SUM" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{percentScored}]]></variableExpression>
+	</variable>
+	<background>
+		<band/>
+	</background>
+	<pageHeader>
+		<band height="61" splitType="Stretch">
+			<rectangle>
+				<reportElement style="ColumnHeader" mode="Opaque" x="-10" y="-123" width="595" height="20" forecolor="#B2B2B2" uuid="40034227-dbb5-4f37-aac8-e72d57aa44e6"/>
+			</rectangle>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="761" splitType="Stretch">
+			<rectangle>
+				<reportElement style="ColumnHeader" mode="Opaque" x="-20" y="-133" width="595" height="20" forecolor="#B2B2B2" uuid="af6225c8-5cc7-4374-ab63-2340fb18403c"/>
+			</rectangle>
+			<image scaleImage="FillFrame">
+				<reportElement x="-21" y="-82" width="596" height="843" uuid="7e878449-4ea5-4328-bec1-2c30c7004562"/>
+				<imageExpression><![CDATA[$F{backgroundTheme}]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement mode="Transparent" x="190" y="80" width="181" height="164" isRemoveLineWhenBlank="true" uuid="16a0415e-327d-4378-916c-505d326fd97f"/>
+				<imageExpression><![CDATA[$F{certificateLogo}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement positionType="Float" mode="Transparent" x="-21" y="-82" width="595" height="843" uuid="ed7bcfc2-998a-4300-a1d4-a6a1fc222721"/>
+				<imageExpression><![CDATA["4.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement style="TableHeadLetter" x="298" y="370" width="257" height="31" forecolor="#6F8D7F" uuid="7ebe0d0f-1d10-421c-a499-6854341a1714"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="20" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{userLastName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="TableHeadLetter" x="0" y="370" width="263" height="31" forecolor="#6F8D7F" uuid="e89be868-8b35-46aa-be37-1e61cdcb8b40"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="20" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{userFirstName}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="233" y="636" width="80" height="39" uuid="d2e4b216-b7ef-4cf4-906a-b54fd8533c14"/>
+				<imageExpression><![CDATA[$F{companyLogo}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="154" y="272" width="243" height="26" forecolor="#015352" uuid="51aaa0f7-2233-4365-a05c-cfb02a82af33"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{certificateName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="106" y="423" width="327" height="78" uuid="5bbf4cdc-0522-441f-a0b6-658bfb3d190f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{certificateDescription}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="331" y="650" width="182" height="25" uuid="2d7da2a5-a4b6-49bc-aa2e-589b0e9383b4"/>
+				<textElement textAlignment="Center">
+					<font fontName="Open Sans" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{certificateCompany}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="43" y="648" width="100" height="20" uuid="9d14b526-8b89-44ab-8cc1-381128590469"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{certifyDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="72" y="540" width="118" height="32" uuid="a032579a-f9cd-4889-b393-a58931734eb9"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quizName}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto" pattern="#,##0.00%">
+				<reportElement x="197" y="546" width="160" height="20" uuid="bbd2a744-ba5a-4855-8c62-c565bbebe89f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double( $F{percentScored}.doubleValue() / $V{percentScored_SUM}.doubleValue() )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="249" y="333" width="64" height="15" uuid="f3734211-c4d1-41f1-82ad-707fdf60095d"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Is granted to:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+</jasperReport>

@@ -1,0 +1,171 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<p:dataTable id="txList" var="tx" widgetVar="showTxsTable"
+		style="float:left;width:400px"
+		filteredValue="#{txControl.lazyTxBlocksModel.filteredItems}"
+		value="#{txControl.lazyTxBlocksModel}" scrollRows="20"
+		selection="#{txControl.lazyTxBlocksModel.selectedItems}"
+		emptyMessage="#{msg.noData}" scrollable="true" resizableColumns="true"
+		scrollHeight="522" lazy="true" rows="10" paginator="true"
+		pageLinks="5" paginatorPosition="bottom"
+		paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+		rowsPerPageTemplate="10,50,100">
+		<!-- 				<p:column headerText="#{msg.transactionHash}" -->
+		<!-- 					sortBy="#{tx.to.TRANSACTION_HASH}" -->
+		<!-- 					filterBy="#{tx.to.TRANSACTION_HASH}" filterMatchMode="contains"> -->
+
+		<!-- 					<h:outputText value="#{tx.to.TRANSACTION_HASH}" /> -->
+		<!-- 				</p:column> -->
+
+
+		<p:column>
+			<div class="roundCell">
+				<h:outputText style="color:#262626;font-size:16px;font-weight:bold"
+					value="Facebook" />
+				<h:outputText value="shares"
+					style="float:right;color:#727272;font-size:13px" />
+				<h:outputText value="#{tx.to.HEIGHT}"
+					style="float:right;color:#262626;font-size:16px;font-weight:bold" />
+
+			</div>
+			<div class="roundCell">
+				<h:outputText value="$123.89" style="font-size:15px;color:#727272" />
+				<h:outputText value="Sell"
+					style="float:right;margin-left:7px;font-size:16px;color:#262626;font-weight:bold" />
+				<h:outputText style="float:right;font-size:13px;color:#727272"
+					value="#{tx.to.CREATE_TIMESTAMP}" />
+
+			</div>
+
+		</p:column>
+
+		<!-- 				<p:column style="width:200px;text-align:center"   -->
+
+		<!-- 					 > -->
+
+
+		<!-- 				</p:column> -->
+
+		<f:facet name="footer">
+			<span class="rowCount">
+			<h:outputLabel value=" ) " style="float:right" />
+			<h:outputLabel value="B " style="font-weight:600;float:right;color:#727272" />
+			<h:outputLabel value=" 105" style="color:#262626;font-weight:bold;float:right;" />
+			<h:outputLabel value="S + " style="font-weight:600;float:right;color:#727272;margin-right:3px" />
+			<h:outputLabel value=" 400" style="color:#262626;font-weight:bold;float:right;" /> 
+			<h:outputLabel value=" ( " style="float:right" />
+			<h:outputLabel id="itemNum"
+					style="color:#262626;font-weight:bold;float:right;margin-right:1px"
+					value=" #{txControl.lazyTxBlocksModel.rowCount} " /> <h:outputLabel
+					value="Trades:"
+					style="font-weight:600;float:right;color:#727272;margin-right:2px"></h:outputLabel>
+			</span>
+			<p class="clear" />
+		</f:facet>
+	</p:dataTable>
+	<p:panel styleClass="innerPanel paddingToChart ui-paneltitle">
+		<p:panelGrid style="border-bottom:1px solid #E0E0E0"
+			styleClass="roundGrid newprof lexRoundGrid marginToChart">
+			<p:row>
+				<p:column>
+					<p:graphicImage style="width:69px;height:69px;border:1px solid #CCCCCC;float:left;margin-right:24px"
+						value="../../../images/djani.jpg">
+					</p:graphicImage>
+<!-- 				</p:column> -->
+<!-- 				<p:column > -->
+					<div class="roundCell">
+						<h:outputLabel value="John Smith"
+							style="font-size:19px;color:#262626 !important"
+							styleClass="leftPart"></h:outputLabel>
+							<p:outputLabel value="Pro" styleClass="ui-output-rounded" />
+					</div>
+					<div class="roundCell">
+						<h:outputLabel value="Company Position"
+							style="color:#3A89D8 !important;font-size:15px;font-weight: 500;"
+							styleClass="leftPart"></h:outputLabel>
+					</div>
+					<div class="roundCell" >
+						<h:outputLabel value="SIN : 21357801"
+							style="color:#727272 !important;font-size:15px;font-weight: 500;"
+							styleClass="leftPart"></h:outputLabel>
+					</div>
+				</p:column>
+				<p:column >
+<!-- 				<div style="" > -->
+				<div style="display:table;width: 100%;" >
+					<div class="roundCell" style="display: table-cell;height: 69px;vertical-align: middle;" >
+        <p:selectOneMenu style="float:right" id="console" value="#{user.a}">
+            <f:selectItem itemLabel="Add member" itemValue="" />
+            <f:selectItem itemLabel="Remove member" itemValue="Xbox One" />
+        </p:selectOneMenu>
+        </div>
+					</div>
+<!-- 					</div> -->
+				</p:column>
+			</p:row>
+
+		</p:panelGrid>
+	</p:panel>
+	<p:panel id="panel" style="height:507px" styleClass="innerPanel paddingToChart ui-panelhalf">
+		<p:panelGrid style="border-bottom:1px solid #E0E0E0"
+			styleClass="roundGrid newprof lexRoundGrid marginToChart">
+			<p:row>
+				<p:column style="padding-bottom: 20px;padding-top:13px">
+					<div class="roundCell">
+						<h:outputLabel value="Facebook"
+							style="font-size:24px;color:#262626 !important"
+							styleClass="leftPart"></h:outputLabel>
+					</div>
+					<div class="roundCell" style="padding-top: 2px">
+						<h:outputLabel value="$123.89"
+							style="color:#727272 !important;font-size:21px;font-weight: 500;"
+							styleClass="leftPart"></h:outputLabel>
+						<h:outputLabel value="+1.92 (0.24%)"
+							style="color:#409936 !important;font-size:21px;font-weight: 500;margin-left: 5px;"
+							styleClass="leftPart"></h:outputLabel>
+					</div>
+				</p:column>
+				<p:column style="padding-bottom: 20px;">
+					<div class="roundCell">
+						<h:outputText value="shares"
+							style="float:right;color:#727272;font-size:24px;font-weight: 600;"></h:outputText>
+						<h:outputText value="250"
+							style="float:right;font-size:24px;color:#262626;font-weight: 600;"></h:outputText>
+
+					</div>
+					<div class="roundCell" style="padding-top: 7px">
+						<h:outputText value="Sell"
+							style="float:right;color:#262626;font-size:24px;font-weight: 600;"></h:outputText>
+
+					</div>
+				</p:column>
+			</p:row>
+
+		</p:panelGrid>
+		<p:panelGrid styleClass="roundGrid newprof ui-panelGrid-standard">
+			<p:row>
+				<p:column style="padding-top:24px;">
+					<div class="roundCell">
+						<p:outputLabel value="n" />
+					</div>
+					<div class="roundCell">
+						<h:outputText value="Id" />
+					</div>
+				</p:column>
+				<p:column style="text-align:right;padding-top:24px;">
+					<div class="roundCell">
+						<p:outputLabel value="n" />
+					</div>
+					<div class="roundCell">
+						<h:outputText value="Bytes sent" />
+					</div>
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+	</p:panel>
+</ui:composition>

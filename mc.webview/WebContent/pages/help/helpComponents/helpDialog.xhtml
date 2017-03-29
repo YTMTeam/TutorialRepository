@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<h:form id="helpForm">
+
+		<p:dialog id="helpDialog" styleClass="new"  header="#{msg.help}" height="400px" width="900px" 
+			widgetVar="helpDlg" modal="true">
+			<f:facet name="header">
+		<div class="headerBox">
+					<div class="headerIcon helpIconWhite" />
+				</div>
+				</f:facet>
+<ui:include src="#{desc}" />
+
+		</p:dialog>
+
+
+	</h:form>
+
+
+</ui:composition>

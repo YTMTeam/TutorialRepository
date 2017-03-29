@@ -1,0 +1,1166 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/templates/standard_template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<h:head>
+		<title>#{msg.lexExplorer}</title>
+		<!-- 		<link -->
+		<!-- 			href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700,800' -->
+		<!-- 			rel='stylesheet' type='text/css' /> -->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="refresh" content="300" />
+		<!-- 		<meta http-equiv="refresh" content="0; url=login.xhtml" /> -->
+		<link href="styles/css/style.css" type="text/css" rel="stylesheet" />
+		<!-- 		<link href="styles/css/new_styles.css" type="text/css" -->
+		<!-- 			rel="stylesheet" /> -->
+		<!-- 		<link href="styles/css/sprites.css" type="text/css" rel="stylesheet" /> -->
+		<!-- 		<link href="styles/css/flags.css" type="text/css" rel="stylesheet" /> -->
+		<link rel="icon" type="image/png" href="images/favicon.ico?v=2" />
+		<h:outputScript library="primefaces" name="jquery/jquery.js" />
+
+	</h:head>
+	<ui:define name="westContent">
+
+	</ui:define>
+
+	<!-- File upload components first button -->
+	<ui:define name="titleContent">
+		<h:form id="titleForm" />
+
+		<p:panel styleClass="centerPanel titlePanel">
+			<p:panelGrid styleClass="ui-panel-header-ytm">
+				<p:row>
+					<p:column>
+						<div class="roundCell">
+							<h:outputLabel value="#{bank.curBank.bank.BANK_NAME}"
+								styleClass="leftPart" />
+						</div>
+					</p:column>
+				</p:row>
+
+			</p:panelGrid>
+			<p:accordionPanel style="border: none;">
+				<p:tab  title="#{msg.showStats}">
+					<p:panelGrid style="margin-left: 20px;">
+
+						<p:row>
+							<p:column style="border-bottom: 2px solid #cdcdcd;width: 1100px;">
+								<h:outputLabel value="#{msg.banks}" style="font-size: 18px;" />
+							</p:column>
+							<p:column style="border-bottom: 2px solid #cdcdcd;"
+								rendered="#{bank.curBank.bank.BANK_CODE != 'RBC'}">
+								<h:outputLabel value="#{msg.rbc}" style="font-size: 15px;" />
+							</p:column>
+							<p:column style="border-bottom: 2px solid #cdcdcd;"
+								rendered="#{bank.curBank.bank.BANK_CODE != 'TD'}">
+								<h:outputLabel value="#{msg.td}" style="font-size: 15px;" />
+							</p:column>
+							<p:column style="border-bottom: 2px solid #cdcdcd;"
+								rendered="#{bank.curBank.bank.BANK_CODE != 'SCOTIA'}">
+								<h:outputLabel value="#{msg.scotia}" style="font-size: 15px;" />
+							</p:column>
+						</p:row>
+
+						<p:row>
+							<p:column>
+								<h:outputLabel styleClass="labelStats" value="#{msg.newAccounts}" />
+							</p:column>
+							<p:column rendered="#{bank.curBank.bank.BANK_CODE != 'RBC'}">
+								<h:outputLabel value="+#{bank.getRBCDailyAccount()}" />
+							</p:column>
+							<p:column rendered="#{bank.curBank.bank.BANK_CODE != 'TD'}">
+								<h:outputLabel value="+#{bank.getTDDailyAccount()}" />
+							</p:column>
+							<p:column rendered="#{bank.curBank.bank.BANK_CODE != 'SCOTIA'}">
+								<h:outputLabel value="+#{bank.getScotiaCDailyAccount()}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputLabel styleClass="labelStats" value="#{msg.deletedAccounts}" />
+							</p:column>
+							<p:column rendered="#{bank.curBank.bank.BANK_CODE != 'RBC'}">
+								<h:outputLabel value="+#{bank.getRBCDeletedAccounts()}" />
+							</p:column>
+							<p:column rendered="#{bank.curBank.bank.BANK_CODE != 'TD'}">
+								<h:outputLabel value="+#{bank.getTDDeletedAccounts()}" />
+							</p:column>
+							<p:column rendered="#{bank.curBank.bank.BANK_CODE != 'SCOTIA'}">
+								<h:outputLabel value="+#{bank.getScotiaDeletedAccounts()}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputLabel value="#{msg.currentAccountTotal}" />
+							</p:column>
+							<p:column width="20px;"
+								rendered="#{bank.curBank.bank.BANK_CODE != 'RBC'}">
+								<h:outputLabel value="+#{bank.getRBCAccount()}" />
+							</p:column>
+							<p:column width="20px;"
+								rendered="#{bank.curBank.bank.BANK_CODE != 'TD'}">
+								<h:outputLabel value="+#{bank.getTDAccount()}" />
+							</p:column>
+							<p:column width="20px;"
+								rendered="#{bank.curBank.bank.BANK_CODE != 'SCOTIA'}">
+								<h:outputLabel value="+#{bank.getScotiaAccount()}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputLabel value="#{msg.totalDailyTransactions}" />
+							</p:column>
+							<p:column width="20px;"
+								rendered="#{bank.curBank.bank.BANK_CODE != 'RBC'}">
+								<h:outputLabel value="+#{bank.getRBCDailyTrades()}" />
+							</p:column>
+							<p:column width="20px;"
+								rendered="#{bank.curBank.bank.BANK_CODE != 'TD'}">
+								<h:outputLabel value="+#{bank.getTDDailyTrades()}" />
+							</p:column>
+							<p:column width="20px;"
+								rendered="#{bank.curBank.bank.BANK_CODE != 'SCOTIA'}">
+								<h:outputLabel value="+#{bank.getScotiaCDailyTrades()}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="border-bottom: 2px solid #cdcdcd;">
+								<h:outputLabel value="#{msg.monthToDayDate}" />
+							</p:column>
+							<p:column width="20px;" style="border-bottom: 2px solid #cdcdcd;"
+								rendered="#{bank.curBank.bank.BANK_CODE != 'RBC'}">
+								<h:outputLabel value="+#{bank.getRBCMonthToDayTrades()}" />
+							</p:column>
+							<p:column width="20px;" style="border-bottom: 2px solid #cdcdcd;"
+								rendered="#{bank.curBank.bank.BANK_CODE != 'TD'}">
+								<h:outputLabel value="+#{bank.getTDMonthToDayTrades()}" />
+							</p:column>
+							<p:column width="20px;" style="border-bottom: 2px solid #cdcdcd;"
+								rendered="#{bank.curBank.bank.BANK_CODE != 'SCOTIA'}">
+								<h:outputLabel value="+#{bank.getScotiaMonthToDayTrades()}" />
+							</p:column>
+						</p:row>
+
+						<p:row>
+							<p:column>
+								<h:outputLabel
+									value="#{msg.lastUploadTime} #{blockchainController.getLastUpdateTime()}" />
+							</p:column>
+							<p:column>
+								<h:outputLabel />
+							</p:column>
+						</p:row>
+
+					</p:panelGrid>
+
+				</p:tab>
+			</p:accordionPanel>
+		</p:panel>
+		<p class="clear" />
+	</ui:define>
+
+	<ui:define name="eastContent">
+		<ui:param name="updateOnSelect" value=":butForm :accForm" />
+
+
+
+		<h:form id="butForm">
+			<p:selectBooleanButton styleClass="sideButton"
+				onLabel="#{msg.employees}" value="#{bank.viewEmployees}"
+				offLabel="#{msg.employees}" onIcon="infoBigOrange"
+				offIcon="infoBigGray">
+
+				<p:ajax update="#{updateOnSelect}" process="@this" immediate="true"
+					listener="#{bank.generateEmployees()}" />
+			</p:selectBooleanButton>
+
+			<p:selectBooleanButton styleClass="sideButton"
+				onLabel="#{msg.permissionedAccounts}" value="#{bank.viewInside}"
+				offLabel="#{msg.permissionedAccounts}" onIcon="infoBigOrange"
+				offIcon="infoBigGray">
+
+				<p:ajax update="#{updateOnSelect}" process="@this" immediate="true"
+					listener="#{bank.generateInside()}" />
+			</p:selectBooleanButton>
+
+			<p:selectBooleanButton styleClass="sideButton"
+				onLabel="#{msg.externalyMonitoredAccounts}"
+				value="#{bank.viewOutside}"
+				offLabel="#{msg.externalyMonitoredAccounts}" onIcon="infoBigOrange"
+				offIcon="infoBigGray">
+				<p:ajax update="#{updateOnSelect}" process="@this" immediate="true"
+					listener="#{bank.generateOutside()}" />
+			</p:selectBooleanButton>
+
+
+
+		</h:form>
+
+	</ui:define>
+	<ui:define name="centerContent">
+		<script>
+			function skinChart() {
+				this.cfg.shadow = false;
+				this.cfg.title = '';
+				this.cfg.seriesColors = [ '#3E98D3', '#EF3F61', '#2BB673',
+						'#F15732' ];
+				this.cfg.grid = {
+					background : '#ffffff',
+					borderColor : '#ffffff',
+					gridLineColor : '#F5F5F5',
+					shadow : false
+				};
+				this.cfg.axesDefaults = {
+					rendererOptions : {
+						textColor : '#666F77'
+					}
+				};
+				this.cfg.seriesDefaults = {
+					shadow : false,
+					lineWidth : 1,
+					markerOptions : {
+						shadow : false,
+						size : 7,
+						style : 'circle'
+					}
+				}
+			}
+
+		</script>
+
+
+
+
+
+		<h:form id="accForm">
+			<p:panel styleClass="centerPanel" rendered="#{bank.viewInside}">
+
+				<p:panelGrid styleClass="roundGrid newprof table-header">
+
+					<h:outputLabel styleClass="leftPart ui-blue ui-font-big"
+						value="#{msg.tableDisplays}">
+					</h:outputLabel>
+
+					<p:selectOneMenu styleClass="normalRight" autoWidth="false"
+						value="#{bank.curModeInternal}" style="margin-left:32px;">
+
+						<f:selectItems value="#{bank.getInternalTablesHash()}" />
+						<p:ajax process="@this" update="@form"
+							listener="#{bank.refreshFilters()}" />
+					</p:selectOneMenu>
+
+				</p:panelGrid>
+
+				<p:remoteCommand name="onFilterInsideAccounts"
+					update=":accForm:insideTable:itemNum" />
+
+				<p:dataTable styleClass="tableSize" rows="10" id="insideTable"
+					paginator="true" paginatorPosition="bottom" scrollable="true"
+					resizableColumns="true" scrollRows="20" widgetVar="intAllVar"
+					pageLinks="5" var="acc" rendered="#{bank.allInternal}"
+					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+					rowsPerPageTemplate="10,50,100" scrollHeight="412"
+					value="#{bank.allIntAccounts.datasource}">
+					<p:ajax event="filter" oncomplete="onFilterInsideAccounts()" />
+
+					<p:column headerText="#{msg.accountId}"
+						filterBy="#{acc.account.ACCOUNT_ID}" filterMatchMode="contains"
+						sortBy="#{acc.account.ACCOUNT_ID}">
+						
+						<h:link value="#{acc.account.ACCOUNT_ID} "
+							outcome="account" id="previewAccount2" >
+							<f:param name="accountId" value="#{acc.account.ACCOUNT_ID}" />
+						</h:link>
+					</p:column>
+
+					<p:column headerText="#{msg.accountNumber}"
+						filterMatchMode="contains" sortBy="#{acc.account.ACCOUNT_NUMBER}"
+						filterBy="#{acc.account.ACCOUNT_NUMBER}">
+						<h:outputText value="#{acc.account.ACCOUNT_NUMBER}" />
+					</p:column>
+
+					<p:column headerText="#{msg.firstName}"
+						filterMatchMode="contains" sortBy="#{acc.account.FIRST_NAME}"
+						filterBy="#{acc.account.FIRST_NAME}">
+						<h:outputText value="#{acc.account.FIRST_NAME}" />
+					</p:column>
+					<p:column headerText="#{msg.lastName}"
+						filterMatchMode="contains" sortBy="#{acc.account.LAST_NAME}"
+						filterBy="#{acc.account.LAST_NAME}">
+						<h:outputText value="#{acc.account.LAST_NAME}" />
+					</p:column>
+					
+					<p:column headerText="#{msg.bankName}"
+						sortBy="#{acc.entityBank.bank.BANK_NAME}"
+						filterMatchMode="contains"
+						filterBy="#{acc.entityBank.bank.BANK_NAME}">
+						<h:outputText value="#{acc.entityBank.bank.BANK_NAME}" />
+					</p:column>
+
+					<p:column headerText="#{msg.accountType}"
+						filterBy="#{acc.account.TYPE}" filterMatchMode="contains"
+						sortBy="#{acc.account.TYPE}">
+						<h:outputText value="#{acc.account.TYPE}" />
+					</p:column>
+					<p:column headerText="#{msg.brokerID}"
+						filterBy="#{acc.account.BROKER_CODE}" filterMatchMode="contains"
+						sortBy="#{acc.account.BROKER_CODE}">
+						<h:outputText value="#{acc.account.BROKER_CODE}" />
+					</p:column>
+
+					<p:column styleClass="ui-column-toggler"
+						headerText="#{msg.monitoredBy}">
+
+						<p:dataList value="#{acc.entityMonitor}" var="car" type="ordered"
+							emptyMessage="">
+       				          #{car.entityEmployee.entityBank.bank.BANK_NAME}
+   				    </p:dataList>
+						<p:rowToggler />
+					</p:column>
+
+					<p:rowExpansion>
+						<h:outputLabel value="#{msg.monitoringDetails}"></h:outputLabel>
+
+						<br />
+						<br />
+
+
+						<p:dataList value="#{acc.entityMonitor}" type="ordered" var="mon">
+
+
+
+							<h:outputLabel value="#{msg.institution}"></h:outputLabel>
+							<h:outputLabel
+								value="#{mon.entityEmployee.employee.EMPLOYING_INSTITUTION}"></h:outputLabel>
+							<br />
+
+							<h:outputLabel value="#{msg.employee}"></h:outputLabel>
+							<h:outputLabel
+								value="#{mon.entityEmployee.employee.FIRST_NAME} #{mon.entityEmployee.employee.LAST_NAME}, #{mon.entityEmployee.employee.EMPLOYEE_ID}" />
+							<br />
+							<h:outputLabel value="#{msg.asOf}:"></h:outputLabel>
+							<h:outputLabel value="#{mon.monitor.AS_OF_DATE}">
+								<br />
+								<f:convertDateTime pattern="dd.MM.yyyy" />
+							</h:outputLabel>
+
+							<h:outputLabel value="#{msg.endDate}:"></h:outputLabel>
+							<h:outputLabel value="#{mon.monitor.END_DATE}">
+								<br />
+								<f:convertDateTime pattern="dd.MM.yyyy" />
+							</h:outputLabel>
+
+							<h:outputLabel value="#{msg.permissionedBy}:"></h:outputLabel>
+							<h:outputLabel value="#{mon.monitor.CREATE_TIMESTAMP}">
+								<f:convertDateTime pattern="dd.MM.yyyy" />
+							</h:outputLabel>
+							<br/>
+							<h:outputLabel value="#{msg.approved}" rendered="#{mon.approved}" style="color:green;"/>
+							<h:outputLabel value="#{msg.notApproved}" rendered="#{!mon.approved}" style="color:red;" />
+
+						</p:dataList>
+					</p:rowExpansion>
+
+
+
+
+			
+
+					<f:facet name="footer">
+						<span> <h:outputLabel id="itemNum" styleClass="rowCount"
+								style="margin-bottom: 19px;"
+								value="#{msg.count}: #{bank.allIntAccounts.filteredEntities.size()} " />
+						</span>
+						<p class="clear" />
+					</f:facet>
+				</p:dataTable>
+
+
+				<p:remoteCommand name="onFilterPermisedAccounts"
+					update=":accForm:intAct:itemNum" />
+				<p:dataTable id="intAct" widgetVar="intActVar" var="acc"
+					rendered="#{bank.activeInternal}" scrollHeight="400"
+					value="#{bank.intActiveMonitored.datasource}" scrollable="true"
+					resizableColumns="true" rowKey="#{acc.to.ACCOUNT_ID}"
+					selection="#{user.accounts.selectedEntities}"
+					filteredValue="#{user.accounts.filteredEntities}">
+					<p:ajax event="filter" oncomplete="onFilterPermisedAccounts()" />
+
+					<p:column headerText="#{msg.accountId}"
+						sortBy="#{acc.entityAccount.account.ACCOUNT_ID}"
+						filterMatchMode="contains"
+						filterBy="#{acc.entityAccount.account.ACCOUNT_ID}">
+						
+						<h:link
+							value="#{acc.entityAccount.account.ACCOUNT_ID}"
+							outcome="account" id="previewAccount2" styleClass="">
+							<f:param name="accountId"
+								value="#{acc.entityAccount.account.ACCOUNT_ID}" />
+						</h:link>
+					</p:column>
+					
+					<p:column headerText="#{msg.accountNumber}"
+						filterMatchMode="contains" sortBy="#{acc.entityAccount.account.ACCOUNT_NUMBER}"
+						filterBy="#{acc.entityAccount.account.ACCOUNT_NUMBER}">
+						<h:outputText value="#{acc.entityAccount.account.ACCOUNT_NUMBER}" />
+					</p:column>
+
+					<p:column headerText="#{msg.firstName}"
+						filterMatchMode="contains" sortBy="#{acc.entityAccount.account.FIRST_NAME}"
+						filterBy="#{acc.entityAccount.account.FIRST_NAME}">
+						<h:outputText value="#{acc.entityAccount.account.FIRST_NAME}" />
+					</p:column>
+					<p:column headerText="#{msg.lastName}"
+						filterMatchMode="contains" sortBy="#{acc.entityAccount.account.LAST_NAME}"
+						filterBy="#{acc.entityAccount.account.LAST_NAME}">
+						<h:outputText value="#{acc.entityAccount.account.LAST_NAME}" />
+					</p:column>
+
+					<p:column headerText="#{msg.bankName}" filterMatchMode="contains"
+						sortBy="#{acc.entityBank.bank.BANK_NAME}"
+						filterBy="#{acc.entityBank.bank.BANK_NAME}">
+						<h:outputText value="#{acc.entityBank.bank.BANK_NAME}" />
+					</p:column>
+
+					<p:column headerText="#{msg.asOf}" filterMatchMode="contains"
+						sortBy="#{acc.monitor.AS_OF_DATE}"
+						filterBy="#{acc.monitor.AS_OF_DATE}">
+						<h:outputText value="#{acc.monitor.AS_OF_DATE}">
+							<f:convertDateTime pattern="dd.MM.yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="#{msg.permissionedBy}"
+						filterMatchMode="contains"
+						sortBy="#{acc.monitor.CREATE_TIMESTAMP}"
+						filterBy="#{acc.monitor.CREATE_TIMESTAMP}">
+						<h:outputText value="#{acc.monitor.CREATE_TIMESTAMP}">
+							<f:convertDateTime pattern="dd.MM.yyyy" />
+						</h:outputText>
+					</p:column>
+
+
+					<f:facet name="footer">
+						<p:commandButton id="toggler" type="button"
+							value="#{msg.tabelView}" icon="ui-icon-calculator"
+							style="float:left;background:rgb(68, 68, 68);margin-right: 8px;height:30px;" />
+						<p:columnToggler datasource="intAct" trigger="toggler" />
+						<span> <h:outputLabel id="itemNum" styleClass="rowCount"
+								value="#{msg.count}: #{bank.intActiveMonitored.filteredEntities.size()}"></h:outputLabel>
+
+						</span>
+						<h:commandLink id="pdf" style="float: left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://icons.iconarchive.com/icons/treetog/file-type/96/pdf-icon.png"
+								width="24" />
+							<p:dataExporter type="pdf" target="intAct" fileName="acc" />
+						</h:commandLink>
+
+						<h:commandLink id="csv" style="float: left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/csv.png.xhtml"
+								width="24" />
+							<p:dataExporter type="csv" target="intAct" fileName="acc" />
+						</h:commandLink>
+
+						<h:commandLink id="xml" style="float: left;margin-top: 5px;">
+							<p:graphicImage
+								url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/xml.png.xhtml"
+								width="24" />
+							<p:dataExporter type="xml" target="intAct" fileName="acc" />
+						</h:commandLink>
+						<h:commandLink id="xls" style="float: left;margin-top: 5px;">
+							<p:graphicImage
+								url="http://icons.iconarchive.com/icons/ziggy19/microsoft-office-mac-tilt/96/Excel-icon.png"
+								width="24" />
+							<p:dataExporter type="xls" target="intAct" fileName="acc" />
+						</h:commandLink>
+						<p class="clear" />
+
+					</f:facet>
+
+
+				</p:dataTable>
+
+
+				<p:remoteCommand name="onFilterInsidePrevioslyPermissioned"
+					update=":accForm:intIna:itemNum" />
+				<p:dataTable id="intIna" widgetVar="intInaVar" var="acc"
+					rendered="#{bank.inactiveInternal}" scrollHeight="400"
+					value="#{bank.intInactiveMonitored.datasource}" scrollable="true"
+					resizableColumns="true"
+					rowKey="#{acc.entityAccount.account.ACCOUNT_ID}"
+					selection="#{bank.intInactiveMonitored.selectedEntities}"
+					filteredValue="#{bank.intInactiveMonitored.filteredEntities}">
+					<p:ajax event="filter"
+						oncomplete="onFilterInsidePrevioslyPermissioned()" />
+
+					<p:column headerText="#{msg.accountId}" filterMatchMode="contains"
+						sortBy="#{acc.entityAccount.account.ACCOUNT_ID}"
+						filterBy="#{acc.entityAccount.account.ACCOUNT_ID}">
+							<h:link
+							value="#{acc.entityAccount.account.ACCOUNT_ID} "
+							outcome="account" id="previewAccount3" styleClass="">
+							<f:param name="accountId"
+								value="#{acc.entityAccount.account.ACCOUNT_ID}" />
+						</h:link>
+					</p:column>
+					<p:column headerText="#{msg.accountNumber}"
+						filterMatchMode="contains"
+						sortBy="#{acc.entityAccount.account.ACCOUNT_NUMBER}"
+						filterBy="#{acc.entityAccount.account.ACCOUNT_NUMBER}">
+						<h:outputText value="#{acc.entityAccount.account.ACCOUNT_NUMBER}" />
+					</p:column>
+				
+					<p:column headerText="#{msg.firstName}"
+						filterMatchMode="contains" sortBy="#{acc.entityAccount.account.FIRST_NAME}"
+						filterBy="#{acc.entityAccount.account.FIRST_NAME}">
+						<h:outputText value="#{acc.entityAccount.account.FIRST_NAME}" />
+					</p:column>
+					<p:column headerText="#{msg.lastName}"
+						filterMatchMode="contains" sortBy="#{acc.entityAccount.account.LAST_NAME}"
+						filterBy="#{acc.entityAccount.account.LAST_NAME}">
+						<h:outputText value="#{acc.entityAccount.account.LAST_NAME}" />
+					</p:column>
+
+					<p:column headerText="#{msg.bankName}" filterMatchMode="contains"
+						sortBy="#{acc.entityBank.bank.BANK_NAME}"
+						filterBy="#{acc.entityBank.bank.BANK_NAME}">
+						<h:outputText value="#{acc.entityBank.bank.BANK_NAME}" />
+					</p:column>
+
+					<p:column headerText="#{msg.asOf}" filterMatchMode="contains"
+						sortBy="#{acc.monitor.AS_OF_DATE}"
+						filterBy="#{acc.monitor.AS_OF_DATE}">
+						<h:outputText value="#{acc.monitor.AS_OF_DATE}">
+							<f:convertDateTime pattern="dd.MM.yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="#{msg.permissionedBy}"
+						filterMatchMode="contains"
+						sortBy="#{acc.monitor.CREATE_TIMESTAMP}"
+						filterBy="#{acc.monitor.CREATE_TIMESTAMP}">
+						<h:outputText value="#{acc.monitor.CREATE_TIMESTAMP}">
+							<f:convertDateTime pattern="dd.MM.yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="#{msg.endDate}" filterMatchMode="contains"
+						sortBy="#{acc.monitor.END_DATE}"
+						filterBy="#{acc.monitor.END_DATE}">
+						<h:outputText value="#{acc.monitor.END_DATE}">
+							<f:convertDateTime pattern="dd.MM.yyyy" />
+						</h:outputText>
+					</p:column>
+
+					<f:facet name="footer">
+						<p:commandButton id="toggler" type="button"
+							value="#{msg.tabelView}" styleClass="buttonConfirm"
+							icon="ui-icon-calculator"
+							style="float:left;margin-right: 8px;background:rgb(68, 68, 68);height:30px;" />
+						<p:columnToggler datasource="intIna" trigger="toggler" />
+						<span> <h:outputLabel id="itemNum" styleClass="rowCount"
+								value="#{msg.count}: #{bank.intInactiveMonitored.filteredEntities.size()}"></h:outputLabel>
+						</span>
+						<h:commandLink id="pdf" style="float: left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://icons.iconarchive.com/icons/treetog/file-type/96/pdf-icon.png"
+								width="24" />
+							<p:dataExporter type="pdf" target="intIna" fileName="acc" />
+						</h:commandLink>
+
+						<h:commandLink id="csv" style="float: left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/csv.png.xhtml"
+								width="24" />
+							<p:dataExporter type="csv" target="intIna" fileName="acc" />
+						</h:commandLink>
+
+						<h:commandLink id="xml" style="float: left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/xml.png.xhtml"
+								width="24" />
+							<p:dataExporter type="xml" target="intIna" fileName="acc" />
+						</h:commandLink>
+						<h:commandLink id="xls" style="float: left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://icons.iconarchive.com/icons/ziggy19/microsoft-office-mac-tilt/96/Excel-icon.png"
+								width="24" />
+							<p:dataExporter type="xls" target="intIna" fileName="acc" />
+						</h:commandLink>
+
+						<p class="clear" />
+					</f:facet>
+
+				</p:dataTable>
+
+
+			</p:panel>
+
+			<p:panel styleClass="centerPanel" rendered="#{bank.viewOutside}">
+				<p:panelGrid styleClass="roundGrid newprof table-header">
+					<h:outputLabel styleClass="leftPart ui-blue ui-font-big"
+						value="#{msg.tableDisplays}" />
+					<p:selectOneMenu styleClass="normalRight"
+						value="#{bank.curModeExternal}">
+						<f:selectItems value="#{bank.getExternalTablesHash()}" />
+						<p:ajax process="@this" update="@form"
+							listener="#{bank.refreshFilters()}" />
+					</p:selectOneMenu>
+				</p:panelGrid>
+				<p:remoteCommand name="onFilterOutsideAccounts"
+					update=":accForm:outsideTable:itemNum" />
+				<p:dataTable lazy="true" rows="10" paginator="true" rendered="false"
+					paginatorPosition="bottom" scrollable="true"
+					resizableColumns="true" scrollRows="20" pageLinks="5" var="acc"
+					id="outsideTable"
+					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+					rowsPerPageTemplate="10,50,100" scrollHeight="400"
+					styleClass="tableSize" value="#{bank.allExtAccountsLazy}">
+					<p:ajax event="filter" oncomplete="onFilterOutsideAccounts()" />
+
+					<p:column headerText="#{msg.monitoredAccounts}"
+						filterBy="#{acc.to.ACCOUNT_FIRST_NAME}" filterMatchMode="contains"
+						sortBy="#{acc.to.ACCOUNT_FIRST_NAME}">
+						<h:outputText
+							value="#{acc.to.ACCOUNT_FIRST_NAME} #{acc.to.ACCOUNT_LAST_NAME}" />
+					</p:column>
+
+					<p:column headerText="#{msg.bank}"
+						filterBy="#{acc.to.ACCOUNT_BANK_NAME}" filterMatchMode="contains"
+						sortBy="#{acc.to.ACCOUNT_BANK_NAME}">
+						<h:outputText value="#{acc.to.ACCOUNT_BANK_NAME}" />
+					</p:column>
+
+					<p:column headerText="#{msg.actions}"
+						styleClass="ui-column-title-top">
+
+						<h:link value="#{msg.preview}" outcome="account"
+							id="previewAccount" styleClass="">
+							<f:param name="accountId" value="#{acc.to.ACCOUNT_ID}" />
+						</h:link>
+
+					</p:column>
+
+
+					<p:column headerText="#{msg.accountNumber}"
+						filterMatchMode="contains" sortBy="#{acc.to.ACCOUNT_NUMBER}"
+						filterBy="#{acc.to.ACCOUNT_NUMBER}">
+						<h:outputText value="#{acc.to.ACCOUNT_NUMBER}" />
+					</p:column>
+
+					<f:facet name="footer">
+						<span class="rowCount"> <h:outputLabel id="itemNum"
+								style="color:#262626;font-weight:bold;float:right;margin-right:1px"
+								value=" #{bank.allExtAccounts.filteredEntities.size()} " /> <h:outputLabel
+								value="#{msg.count}: "></h:outputLabel>
+						</span>
+						<p class="clear" />
+					</f:facet>
+				</p:dataTable>
+
+				<p:remoteCommand name="onFilterExtEactiveMonitored"
+					update=":accForm:extAct:itemNum" />
+				<p:dataTable id="extAct" widgetVar="extActVar" var="acc"
+					rendered="#{bank.activeExternal}" scrollHeight="400"
+					value="#{bank.extActiveMonitored.datasource}" scrollable="true"
+					resizableColumns="true"
+					rowKey="#{acc.entityAccount.account.ACCOUNT_ID}"
+					selection="#{bank.extActiveMonitored.selectedEntities}"
+					filteredValue="#{bank.extActiveMonitored.filteredEntities}">
+
+					<p:ajax event="filter" oncomplete="onFilterExtEactiveMonitored()" />
+
+					<p:column headerText="#{msg.accountId}" style="width:170px;"
+						filterMatchMode="contains"
+						sortBy="#{acc.entityAccount.account.ACCOUNT_ID}"
+						filterBy="#{acc.entityAccount.account.ACCOUNT_ID}">
+						<h:link
+							value="#{acc.entityAccount.account.ACCOUNT_ID} "
+							outcome="account" id="previewAccount" styleClass="">
+							<f:param name="accountId"
+								value="#{acc.entityAccount.account.ACCOUNT_ID}" />
+						</h:link>
+						
+					</p:column>
+
+
+					<p:column headerText="#{msg.accountNumber}" style="width:170px;"
+						filterMatchMode="contains"
+						sortBy="#{acc.entityAccount.account.ACCOUNT_NUMBER}"
+						filterBy="#{acc.entityAccount.account.ACCOUNT_NUMBER}">
+						<h:outputText value="#{acc.entityAccount.account.ACCOUNT_NUMBER}" />
+					</p:column>
+
+
+				
+				
+					
+					<p:column headerText="#{msg.firstName}"
+						filterMatchMode="contains" sortBy="#{acc.entityAccount.account.FIRST_NAME}"
+						filterBy="#{acc.entityAccount.account.FIRST_NAME}">
+						<h:outputText value="#{acc.entityAccount.account.FIRST_NAME}" />
+					</p:column>
+					<p:column headerText="#{msg.lastName}"
+						filterMatchMode="contains" sortBy="#{acc.entityAccount.account.LAST_NAME}"
+						filterBy="#{acc.entityAccount.account.LAST_NAME}">
+						<h:outputText value="#{acc.entityAccount.account.LAST_NAME}" />
+					</p:column>
+					
+					<p:column headerText="#{msg.bankName}" filterMatchMode="contains"
+						sortBy="#{acc.entityAccount.entityBank.bank.BANK_NAME}"
+						filterBy="#{acc.entityAccount.entityBank.bank.BANK_NAME}}">
+						<h:outputText
+							value="#{acc.entityAccount.entityBank.bank.BANK_NAME}" />
+					</p:column>
+
+
+					<p:column headerText="#{msg.asOf}" filterMatchMode="contains"
+						sortBy="#{acc.monitor.AS_OF_DATE}"
+						filterBy="#{acc.monitor.AS_OF_DATE}">
+						<h:outputText value="#{acc.monitor.AS_OF_DATE}">
+							<f:convertDateTime pattern="dd.MM.yyyy" />
+						</h:outputText>
+					</p:column>
+
+
+
+
+
+
+
+					<f:facet name="footer">
+						<p:commandButton id="toggler" type="button"
+							value="#{msg.tabelView}" styleClass="buttonConfirm"
+							icon="ui-icon-calculator"
+							style="float:left;margin-right: 8px;background:rgb(68, 68, 68);height:30px;" />
+						<p:columnToggler datasource="extAct" trigger="toggler" />
+						<span> <h:outputLabel id="itemNum" styleClass="rowCount"
+								value="#{msg.count}: #{bank.extActiveMonitored.filteredEntities.size()}">
+							</h:outputLabel>
+						</span>
+						<h:commandLink id="pdf" style="float: left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://icons.iconarchive.com/icons/treetog/file-type/96/pdf-icon.png"
+								width="24" />
+							<p:dataExporter type="pdf" target="extAct" fileName="acc" />
+						</h:commandLink>
+
+						<h:commandLink id="csv" style="float: left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/csv.png.xhtml"
+								width="24" />
+							<p:dataExporter type="csv" target="extAct" fileName="acc" />
+						</h:commandLink>
+
+						<h:commandLink id="xml" style="float: left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/xml.png.xhtml"
+								width="24" />
+							<p:dataExporter type="xml" target="extAct" fileName="acc" />
+						</h:commandLink>
+						<h:commandLink id="xls" style="float: left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://icons.iconarchive.com/icons/ziggy19/microsoft-office-mac-tilt/96/Excel-icon.png"
+								width="24" />
+							<p:dataExporter type="xls" target="extAct" fileName="acc" />
+						</h:commandLink>
+						<p class="clear" />
+					</f:facet>
+
+				</p:dataTable>
+
+
+
+
+
+				<p:remoteCommand name="onFilterExtInactiveMonitored"
+					update=":accForm:extIna:itemNum" />
+				<p:dataTable id="extIna" var="acc" widgetVar="extInaVar"
+					rendered="#{bank.inactiveExternal}" scrollHeight="400"
+					value="#{bank.extInactiveMonitored.datasource}" scrollable="true"
+					resizableColumns="true" rowKey="#{acc.to.ACCOUNT_ID}"
+					selection="#{bank.extInactiveMonitored.selectedEntities}"
+					filteredValue="#{bank.extInactiveMonitored.filteredEntities}">
+					<p:ajax event="filter" oncomplete="onFilterExtInactiveMonitored()" />
+
+					<p:column headerText="#{msg.accountId}" style="width:170px;"
+						sortBy="#{acc.entityAccount.account.ACCOUNT_ID}"
+						filterMatchMode="contains"
+						filterBy="#{acc.entityAccount.account.ACCOUNT_ID}">
+						
+						<h:link
+							value="#{acc.entityAccount.account.ACCOUNT_ID}"
+							outcome="account" id="previewAccount" styleClass="">
+							<f:param name="accountId"
+								value="#{acc.entityAccount.account.ACCOUNT_ID}" />
+						</h:link>
+						
+					</p:column>
+
+					<p:column headerText="#{msg.accountNumber}" style="width:170px;"
+						filterMatchMode="contains"
+						sortBy="#{acc.entityAccount.account.ACCOUNT_NUMBER}"
+						filterBy="#{acc.entityAccount.account.ACCOUNT_NUMBER}">
+						<h:outputText value="#{acc.entityAccount.account.ACCOUNT_NUMBER}" />
+					</p:column>
+
+
+					<p:column headerText="#{msg.firstName}"
+						filterMatchMode="contains" sortBy="#{acc.entityAccount.account.FIRST_NAME}"
+						filterBy="#{acc.entityAccount.account.FIRST_NAME}">
+						<h:outputText value="#{acc.entityAccount.account.FIRST_NAME}" />
+					</p:column>
+					<p:column headerText="#{msg.lastName}"
+						filterMatchMode="contains" sortBy="#{acc.entityAccount.account.LAST_NAME}"
+						filterBy="#{acc.entityAccount.account.LAST_NAME}">
+						<h:outputText value="#{acc.entityAccount.account.LAST_NAME}" />
+					</p:column>
+					
+					<p:column headerText="#{msg.bankName}" filterMatchMode="contains"
+						sortBy="#{acc.entityAccount.entityBank.bank.BANK_NAME}"
+						filterBy="#{acc.entityAccount.entityBank.bank.BANK_NAME}">
+						<h:outputText
+							value="#{acc.entityAccount.entityBank.bank.BANK_NAME}" />
+					</p:column>
+
+
+					<p:column headerText="#{msg.asOf}" filterMatchMode="contains"
+						sortBy="#{acc.monitor.AS_OF_DATE}"
+						filterBy="#{acc.monitor.AS_OF_DATE}">
+						<h:outputText value="#{acc.monitor.AS_OF_DATE}">
+							<f:convertDateTime pattern="dd.MM.yyyy" />
+						</h:outputText>
+					</p:column>
+
+
+					<p:column headerText="#{msg.endDate}" filterMatchMode="contains"
+						sortBy="#{acc.monitor.END_DATE}"
+						filterBy="#{acc.monitor.END_DATE}">
+						<h:outputText value="#{acc.monitor.END_DATE}">
+							<f:convertDateTime pattern="dd.MM.yyyy" />
+						</h:outputText>
+					</p:column>
+
+
+
+
+					<f:facet name="footer">
+						<p:commandButton id="toggler" type="button"
+							value="#{msg.tabelView}" styleClass="buttonConfirm"
+							icon="ui-icon-calculator"
+							style="float:left;margin-right: 8px;background:rgb(68, 68, 68);height:30px;" />
+
+						<p:columnToggler datasource="extIna" trigger="toggler" />
+						<span> <h:outputLabel id="itemNum" styleClass="rowCount"
+								value="#{msg.count}: #{bank.extInactiveMonitored.filteredEntities.size()}"></h:outputLabel></span>
+						<h:commandLink id="pdf" style="float: left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://icons.iconarchive.com/icons/treetog/file-type/96/pdf-icon.png"
+								width="24" />
+							<p:dataExporter type="pdf" target="extIna" fileName="acc" />
+						</h:commandLink>
+						<h:commandLink id="csv" style="float: left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/csv.png.xhtml"
+								width="24" />
+							<p:dataExporter type="csv" target="extIna" fileName="acc" />
+						</h:commandLink>
+						<h:commandLink id="xml" style="float: left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/xml.png.xhtml"
+								width="24" />
+							<p:dataExporter type="xml" target="extIna" fileName="acc" />
+						</h:commandLink>
+						<h:commandLink id="xls" style="float: left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://icons.iconarchive.com/icons/ziggy19/microsoft-office-mac-tilt/96/Excel-icon.png"
+								width="24" />
+							<p:dataExporter type="xls" target="extIna" fileName="acc" />
+						</h:commandLink>
+						<p class="clear" />
+					</f:facet>
+				</p:dataTable>
+
+				<p:remoteCommand name="onFilterInsideAllMonitored"
+					update=":accForm:extAll:itemNum" />
+				<p:dataTable id="extAll" var="acc" widgetVar="extAllVar"
+					rendered="#{bank.allExternal}" scrollHeight="400"
+					value="#{bank.extAllMonitored.datasource}" scrollable="true"
+					resizableColumns="true" rowKey="#{acc.to.ACCOUNT_ID}"
+					selection="#{bank.extAllMonitored.selectedEntities}"
+					filteredValue="#{bank.extAllMonitored.filteredEntities}">
+					<p:ajax event="filter" oncomplete="onFilterInsideAllMonitored()" />
+
+					<p:column headerText="#{msg.accountId}" style="width:170px;"
+						sortBy="#{acc.entityAccount.account.ACCOUNT_ID}"
+						filterBy="#{acc.entityAccount.account.ACCOUNT_ID}">
+							<h:link
+							value="#{acc.entityAccount.account.ACCOUNT_ID}"
+							outcome="account" id="previewAccount" styleClass="">
+							<f:param name="accountId"
+								value="#{acc.entityAccount.account.ACCOUNT_ID}" />
+						</h:link>
+					</p:column>
+					<p:column headerText="#{msg.accountNumber}" style="width:170px;"
+						filterMatchMode="contains"
+						sortBy="#{acc.entityAccount.account.ACCOUNT_NUMBER}"
+						filterBy="#{acc.entityAccount.account.ACCOUNT_NUMBER}">
+						<h:outputText value="#{acc.entityAccount.account.ACCOUNT_NUMBER}" />
+					</p:column>
+				
+				
+					<p:column headerText="#{msg.firstName}"
+						filterMatchMode="contains" sortBy="#{acc.entityAccount.account.FIRST_NAME}"
+						filterBy="#{acc.entityAccount.account.FIRST_NAME}">
+						<h:outputText value="#{acc.entityAccount.account.FIRST_NAME}" />
+					</p:column>
+					<p:column headerText="#{msg.lastName}"
+						filterMatchMode="contains" sortBy="#{acc.entityAccount.account.LAST_NAME}"
+						filterBy="#{acc.entityAccount.account.LAST_NAME}">
+						<h:outputText value="#{acc.entityAccount.account.LAST_NAME}" />
+					</p:column>
+					
+					<p:column headerText="#{msg.bankName}"
+						sortBy="#{acc.entityAccount.entityBank.bank.BANK_NAME}"
+						filterBy="#{acc.entityAccount.entityBank.bank.BANK_NAME}}">
+						<h:outputText
+							value="#{acc.entityAccount.entityBank.bank.BANK_NAME}" />
+					</p:column>
+
+
+					<p:column headerText="#{msg.asOf}"
+						sortBy="#{acc.monitor.AS_OF_DATE}"
+						filterBy="#{acc.monitor.AS_OF_DATE}">
+						<h:outputText value="#{acc.monitor.AS_OF_DATE}">
+							<f:convertDateTime pattern="dd.MM.yyyy" />
+						</h:outputText>
+					</p:column>
+
+
+					<p:column headerText="#{msg.endDate}"
+						sortBy="#{acc.monitor.END_DATE}"
+						filterBy="#{acc.monitor.END_DATE}">
+						<h:outputText value="#{acc.monitor.END_DATE}">
+							<f:convertDateTime pattern="dd.MM.yyyy" />
+						</h:outputText>
+					</p:column>
+
+
+					<f:facet name="footer">
+						<p:commandButton id="toggler" type="button"
+							value="#{msg.tabelView}" styleClass="buttonConfirm"
+							icon="ui-icon-calculator"
+							style="float:left;margin-right: 8px;background:rgb(68, 68, 68);height:30px;" />
+						<p:columnToggler datasource="extAll" trigger="toggler" />
+						<span> <h:outputLabel id="itemNum" styleClass="rowCount"
+								value="#{msg.count}: #{bank.extAllMonitored.filteredEntities.size()}"></h:outputLabel>
+						</span>
+						<h:commandLink id="pdf" style="float: left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://icons.iconarchive.com/icons/treetog/file-type/96/pdf-icon.png"
+								width="24" />
+							<p:dataExporter type="pdf" target="extAll" fileName="acc" />
+						</h:commandLink>
+
+						<h:commandLink id="csv" style="float: left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/csv.png.xhtml"
+								width="24" />
+							<p:dataExporter type="csv" target="extAll" fileName="acc" />
+						</h:commandLink>
+
+						<h:commandLink id="xml" style="float: left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/xml.png.xhtml"
+								width="24" />
+							<p:dataExporter type="xml" target="extAll" fileName="acc" />
+						</h:commandLink>
+						<h:commandLink id="xls" style="float: left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://icons.iconarchive.com/icons/ziggy19/microsoft-office-mac-tilt/96/Excel-icon.png"
+								width="24" />
+							<p:dataExporter type="xls" target="extAll" fileName="acc" />
+						</h:commandLink>
+						<!-- 						<h:outputLabel -->
+						<!-- 							value="#{msg.count}: #{bank.extAllMonitored.filteredEntities.size()}"></h:outputLabel> -->
+
+
+						<p class="clear" />
+					</f:facet>
+				</p:dataTable>
+
+
+			</p:panel>
+
+			<p:panel styleClass="centerPanel" rendered="#{bank.viewEmployees}">
+
+
+
+				<p:remoteCommand name="onFilterInsideEmployees"
+					update=":accForm:emplTab:itemNum" />
+				<p:dataTable id="emplTab" widgetVar="emplTabVar" var="acc"
+					scrollHeight="400" value="#{bank.employees.datasource}"
+					scrollable="true" resizableColumns="true"
+					rowKey="#{acc.employee.EMPLOYEE_ID}"
+					selection="#{bank.employees.selectedEntities}"
+					filteredValue="#{bank.employees.filteredEntities}">
+					<p:ajax event="filter" oncomplete="onFilterInsideEmployees()" />
+					<f:facet name="header">
+
+
+					</f:facet>
+					<p:column headerText="#{msg.firstName}"
+						sortBy="#{acc.employee.FIRST_NAME}"
+						filterBy="#{acc.employee.FIRST_NAME}">
+						<h:outputText value="#{acc.employee.FIRST_NAME} " />
+					</p:column>
+					<p:column headerText="#{msg.lastName}"
+						sortBy="#{acc.employee.LAST_NAME}"
+						filterBy="#{acc.employee.LAST_NAME}">
+						<h:outputText value="#{acc.employee.LAST_NAME} " />
+					</p:column>
+					<p:column headerText="#{msg.code}"
+						sortBy="#{acc.employee.EMPLOYEE_ID}"
+						filterBy="#{acc.employee.EMPLOYEE_ID}">
+						<h:outputText value="#{acc.employee.EMPLOYEE_ID}" />
+					</p:column>
+
+					<p:column headerText="#{msg.actions}" exportable="false">
+						<h:link value="#{msg.preview}" outcome="employee">
+							<f:param name="employeeId" value="#{acc.employee.EMPLOYEE_ID}" />
+						</h:link>
+
+					</p:column>
+
+					<f:facet name="footer">
+						<p:commandButton id="toggler" type="button"
+							value="#{msg.tabelView}" styleClass="buttonConfirm"
+							icon="ui-icon-calculator"
+							style="float:left;margin-right: 8px;background:rgb(68, 68, 68);height:30px;" />
+						<p:columnToggler datasource="emplTab" trigger="toggler" />
+						<span> <h:outputLabel id="itemNum" styleClass="rowCount"
+								value="#{msg.count}: #{bank.employees.filteredEntities.size()}"></h:outputLabel>
+						</span>
+						<h:commandLink id="pdf" style="float: left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://icons.iconarchive.com/icons/treetog/file-type/96/pdf-icon.png"
+								width="24" />
+							<p:dataExporter type="pdf" target="emplTab" fileName="acc" />
+						</h:commandLink>
+
+						<h:commandLink id="csv" style="float: left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/csv.png.xhtml"
+								width="24" />
+							<p:dataExporter type="csv" target="emplTab" fileName="acc" />
+
+						</h:commandLink>
+
+						<h:commandLink id="xml" style="float: left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/xml.png.xhtml"
+								width="24" />
+							<p:dataExporter type="xml" target="emplTab" fileName="acc" />
+						</h:commandLink>
+						<h:commandLink id="xls" style="float: left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://icons.iconarchive.com/icons/ziggy19/microsoft-office-mac-tilt/96/Excel-icon.png"
+								width="24" />
+							<p:dataExporter type="xls" target="emplTab" fileName="acc" />
+						</h:commandLink>
+						<p class="clear" />
+					</f:facet>
+
+				</p:dataTable>
+
+
+
+			</p:panel>
+
+		</h:form>
+
+
+	</ui:define>
+	<ui:define name="dialogs">
+		<h:form id="monitorForm">
+			<p:dialog widgetVar="monitorDlg" id="monitorId" resizable="false"
+				hideEffect="fade" modal="true" header="#{msg.editMonitoring}">
+
+
+				<p:panelGrid>
+					<h:outputText value="#{msg.monitoredBy}: " />
+					<br />
+					<p:selectManyCheckbox id="monitors" layout="grid" columns="2"
+						value="#{bank.selectedBankIds}">
+						<f:selectItems value="#{bank.bankHashMap}" />
+					</p:selectManyCheckbox>
+
+
+
+					<br />
+
+					<div class="ui-dialog-button-separator">
+						<p:commandButton value="#{msg.cancel}" process="@form"
+							styleClass="normalRight" update=":accForm"
+							style="background:black" oncomplete="PF('monitorDlg').hide()" />
+						<p:commandButton value="#{msg.confirm}" process="@form"
+							styleClass="normalRight" style="background: #039BE5;"
+							update=":accForm" actionListener="#{bank.confirmMonitoring()}"
+							oncomplete="PF('monitorDlg').hide()" />
+
+					</div>
+				</p:panelGrid>
+				<p class="clear" />
+
+
+			</p:dialog>
+		</h:form>
+
+
+		<h:form id="externalMonitorForm">
+			<p:dialog widgetVar="externalDlg" id="externalId" resizable="false"
+				styleClass="separator-buttons" hideEffect="fade" modal="true">
+				<f:facet name="header">
+					<div class="headerBox">
+						<div class="headerIcon poolsIconWhite" />
+					</div>
+					<div class="subHeader firstLeft" style="padding-left: 2px">#{msg.connEmployee}</div>
+				</f:facet>
+
+				<p:panelGrid columns="2">
+					<h:outputText value="#{msg.employees}: "
+						styleClass="leftPart ui-blue ui-font-big" />
+
+					<p:selectOneMenu value="#{bank.selectedEmployeeId}">
+						<f:selectItem itemLabel="#{msg.selectEmployee}" />
+						<f:selectItems value="#{bank.employeeHashMap}" />
+					</p:selectOneMenu>
+				</p:panelGrid>
+				<p:separator />
+
+				<div class="ui-dialog-button-separator">
+					<p:commandButton value="#{msg.cancel}" process="@form"
+						update=":accForm" styleClass="normalRight"
+						style="background:black" oncomplete="PF('externalDlg').hide()">
+					</p:commandButton>
+					<p:commandButton value="#{msg.confirm}" process="@form"
+						update=":accForm"
+						actionListener="#{bank.updateMonitorByEmployee()}"
+						style="background: #039BE5;" styleClass="normalRight"
+						oncomplete="PF('externalDlg').hide()">
+
+					</p:commandButton>
+				</div>
+
+			</p:dialog>
+		</h:form>
+
+
+
+	</ui:define>
+
+</ui:composition>

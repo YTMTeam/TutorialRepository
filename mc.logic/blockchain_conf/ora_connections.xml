@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OraConnections>
+<!-- 	<Connection name="local">		 -->
+<!-- 		<jdbcconnection>jdbc:oracle:thin:@localhost:1523/oracle</jdbcconnection> -->
+<!-- 		<username>C##lex1</username>	 -->
+<!-- 		<password>C##lex1</password> -->
+<!-- 	</Connection> -->
+	<Connection name="local">		
+		<jdbcconnection>jdbc:oracle:thin:@localhost:1521/orcl</jdbcconnection>
+		<username>C##lex</username>	
+		<password>C##lex</password>
+	</Connection>
+<!-- 	<Connection name="Lex2">		 -->
+<!-- 		<jdbcconnection>jdbc:oracle:thin:@home.mallocinc.com:50244/orcl</jdbcconnection> -->
+<!-- 		<username>lex2</username>	 -->
+<!-- 		<password>lex2</password> -->
+<!-- 	</Connection> -->
+<!-- 	<Connection name="Local">		 -->
+<!-- 		<jdbcconnection>jdbc:oracle:thin:@localhost:1523/oracle</jdbcconnection> -->
+<!-- 		<username>C##mc1</username>	 -->
+<!-- 		<password>C##mc1</password> -->
+<!-- 	</Connection> -->
+<!-- 	<Connection name="Lokal_YTM">		 -->
+<!-- 		<jdbcconnection>jdbc:oracle:thin:@192.168.1.235:1521/borcl</jdbcconnection> -->
+<!-- 		<username>lex1</username>	 -->
+<!-- 		<password>lex1</password> -->
+<!-- 	</Connection> -->
+<!-- 	<Connection name="Lexternal">		 -->
+<!-- 		<jdbcconnection>jdbc:oracle:thin:@home.mallocinc.com:50244/orcl</jdbcconnection> -->
+<!-- 		<username>lex5</username>	 -->
+<!-- 		<password>lex5</password> -->
+<!-- 	</Connection> -->
+</OraConnections>

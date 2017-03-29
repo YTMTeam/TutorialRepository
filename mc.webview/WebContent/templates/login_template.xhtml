@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<h:head>
+		<title>#{msg.login}</title>
+		<link
+			href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700,800'
+			rel='stylesheet' type='text/css' />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="refresh" content="300" />
+<!-- 		<meta http-equiv="refresh" content="0; url=login.xhtml" /> -->
+		<link href="styles/css/style.css" type="text/css" rel="stylesheet" />
+		<link href="styles/css/new_styles.css" type="text/css" rel="stylesheet" />
+		<link href="styles/css/sprites.css" type="text/css" rel="stylesheet" />
+		<link href="styles/css/flags.css" type="text/css" rel="stylesheet" />
+		<link rel="icon" type="image/png" href="images/favicon.ico?v=2" />
+		<h:outputScript library="primefaces" name="jquery/jquery.js" />
+			 
+	</h:head>
+	<h:body>
+<f:view locale="#{language.localeCode}">
+<ui:insert name="metadata" />
+
+		<p:layout fullPage="true" >
+
+			<p:layoutUnit id="header" position="north" size="60" gutter="-1" rendered="false"
+				resizable="true" closable="true" collapsible="true">
+<!-- 				<div class="leftLogo" /> -->
+				<div id="rightHead">
+
+					<ui:insert name="threeLinesContent">
+						 Three lines content go here
+						</ui:insert>
+
+				</div>
+			</p:layoutUnit>
+
+<!-- 			<p:layoutUnit id="footer" styleClass="transparentFooter" position="south" gutter="0" rendered="true" -->
+<!-- 				resizable="true" closable="true" collapsible="true"> -->
+<!-- 				<div style="margin-top: -3px"> -->
+<!-- 					<h:outputText id="footerText" -->
+<!-- 						value="#{msg.copyright} &#169; #{msg.mallocIncRights}" /> -->
+<!-- 						<h:outputText value="Client's IP: #{user.ipAddress}.  Last build: #{user.build_ts}"></h:outputText> -->
+<!-- 				</div> -->
+<!-- 			</p:layoutUnit> -->
+			<p:layoutUnit id="logCenter" styleClass="centerContent" gutter="-1" size="66%"
+				position="center">
+				<ui:insert name="centerContent">Put default content here, if any.</ui:insert>
+				<h:panelGroup styleClass="transparentFooter" >
+								<div  >
+					<h:outputText id="footerText"
+						value="#{msg.copyright} &#169; #{msg.mallocIncRights}" />
+				</div>
+				</h:panelGroup>
+			</p:layoutUnit>
+			
+			<p:layoutUnit position="east" styleClass="eastContentLogin #{user.bittitan? 'Titan' :''}" gutter="0" collapsible="true" size="34%" >
+				<ui:insert name="eastContent" />
+			</p:layoutUnit>
+
+		</p:layout>
+
+		<ui:insert name="dialogs">Put dialogs</ui:insert>
+<h:form id="msgForm">
+
+			
+		<p:ajaxStatus style="position:fixed;right:10px;bottom:30px">
+			<f:facet name="start">
+				<p:graphicImage value="images/ajax-loader.gif" />
+			</f:facet>
+			<f:facet name="complete">
+				<h:outputText value="" />
+			</f:facet>
+		</p:ajaxStatus>
+</h:form>
+		<p:growl id="messages" showDetail="true" autoUpdate="true" life="5000"
+			severity="info" closable="true" />
+
+		<p:growl id="messages2" showDetail="true" autoUpdate="true"
+			severity="error" sticky="true" closable="true" />
+			
+		<p:growl id="messages3" showDetail="true" autoUpdate="true"
+			severity="warn" sticky="true" closable="true" />
+<h:form id="contactform">
+<p:dialog id="contactDlg"  visible="#{contactForm.viewContact}"
+				widgetVar="dlgContact" modal="true" resizable="false" >
+				<f:facet name="header">
+				<div class="headerBox">
+				<div class="headerIcon mailIconWhite" />
+				</div>
+				<div class="subHeader firstLeft">#{msg.contact}</div>
+				</f:facet>
+					<p:ajax event="close" resetValues="true"
+					listener="#{contactForm.setViewContact(false)}"
+					update=":contactform " >
+					</p:ajax>
+				<p:panelGrid id="contactGrid" styleClass="roundGrid dialogMedium" style="width:694px !important">
+					<p:row>
+						<p:column colspan="2">
+							<div class="roundCell">
+								<h:outputLabel for="email" value="#{msg.email}*:"
+									styleClass="leftPart" />
+								<p:inputText id="email" styleClass="bigRight" requiredMessage="#{msg.requiredEmail}"
+									value="#{contactForm.email}" validatorMessage="#{msg.eEmail}"
+									required="true">
+									<f:validateRegex
+										pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+								</p:inputText>
+								<p class="clear" />
+							</div>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="2">
+							<div class="roundCell">
+								<h:outputLabel for="subject" value="#{msg.subject}*:" styleClass="leftPart"/>
+								<p:inputText id="subject" styleClass="bigRight" requiredMessage="#{msg.requiredSubject}"
+									required="true" value="#{contactForm.subject}" />
+								<p class="clear" />
+							</div>
+						</p:column>
+					</p:row>
+<p:row>
+						<p:column colspan="2">
+							<div class="roundCell">
+								<h:outputLabel for="body" value="#{msg.body}*:" styleClass="leftPart"/>
+								<p:inputTextarea id="body" style="height:initial"  styleClass="bigRight" requiredMessage="#{msg.requiredMessageBody}"
+									required="true" value="#{contactForm.body}" />
+								<p class="clear" />
+							</div>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<div class="roundCell">
+					<p:inputText value="#{contactForm.captchaCode}" style="position:relative;left:130px;width:75px"
+						id="captchaCodeContact" disabled="true" />
+					<p:commandButton value="refreshCaptcha" style="position:relative;left:180px;top: 2px"
+						actionListener="#{contactForm.refreshCaptcha()}" process="@this"
+						update=":contactform:captchaCodeContact" />
+					<h:outputLabel for="captchaCodeUserContact" style="position:relative;left:180px"
+						value="#{msg.securityCode}:*" />
+					<p:inputText id="captchaCodeUserContact"
+						value="#{contactForm.captchaUserInput}" maxlength="5" style="position:relative;left:182px"
+						requiredMessage="#{msg.requiredCaptcha}" required="true">
+						<f:attribute name="captchaCode" value="#{contactForm.captchaCode}" />
+						<f:validator validatorId="captchaValidator" />
+					</p:inputText>
+					<p class="clear" />
+				</div>
+				<div style="text-align: center; margin-top: 10px;">
+					<p:commandButton value="#{msg.send}" process=":contactform" id="sendMailBtn"
+						update=":contactform" icon="icon-mail"
+						actionListener="#{contactForm.sendEmail}" 
+						oncomplete="if (!args.validationFailed)  dlgContact.hide();" />
+				</div>
+			</p:dialog>
+
+
+		</h:form>
+</f:view>
+	</h:body>
+
+</html>

@@ -1,0 +1,196 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	<h:form id="dummyForm">
+		<p:panel style="text-align:center" id="dummyPanel"
+			rendered="#{user.oneButtonSwitchValue eq '1' or user.oneButtonSwitchValue == '1'}"
+			styleClass="lexPanel">
+			<f:facet name="header">
+
+				<div class="subHeader firstCenter">WALLET</div>
+
+			</f:facet>
+			<p:panel style="width:70%;float:left"
+				styleClass="innerPanel paddingToChart">
+				<f:facet name="header">
+					<div class="subHeader firstLeft">WALLET INFO</div>
+				</f:facet>
+				<p:panelGrid
+					styleClass="roundGrid newprof lexRoundGrid marginToChart">
+					<p:row>
+						<p:column style="padding:1px">
+							<br></br>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<div class="roundCell">
+								<h:outputLabel value="connected wallet:"
+									styleClass="normalRight"></h:outputLabel>
+							</div>
+						</p:column>
+						<p:column>
+							<div class="roundCell">
+								<h:outputText value="vasvasvaslkvhlas13" styleClass="leftPart"></h:outputText>
+							</div>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<div class="roundCell">
+								<h:outputLabel value="wallet alias:" styleClass="normalRight"></h:outputLabel>
+							</div>
+						</p:column>
+						<p:column>
+							<div class="roundCell">
+								<h:outputText value="lexington's wallet" styleClass="leftPart"></h:outputText>
+							</div>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<div class="roundCell">
+								<h:outputLabel value="blockchain:" styleClass="normalRight"></h:outputLabel>
+							</div>
+						</p:column>
+						<p:column>
+							<div class="roundCell">
+								<h:outputText value="lexington inc" styleClass="leftPart"></h:outputText>
+							</div>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<div class="roundCell">
+								<h:outputLabel value="wallet alias:" styleClass="normalRight"></h:outputLabel>
+							</div>
+						</p:column>
+						<p:column>
+							<div class="roundCell">
+								<h:outputText value="lexington's wallet" styleClass="leftPart"></h:outputText>
+							</div>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column style="padding:5px">
+							<br></br>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</p:panel>
+			<p:panel style="width:30%;float:right" styleClass="innerPanel">
+				<f:facet name="header">
+					<div class="subHeader firstLeft">ACCOUNT BALANCE</div>
+				</f:facet>
+				<p:panelGrid styleClass="roundGrid newprof">
+					<p:row>
+						<p:column styleClass="bigTextColumn">
+							<p:outputLabel styleClass="bigTextGreen" value="123,456.78"></p:outputLabel>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:commandButton styleClass="blackButtonBig"
+								value="advanced stats"></p:commandButton>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+
+							<p:commandButton styleClass="blackButtonBig"
+								value="deposit funds"></p:commandButton>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</p:panel>
+			<p:panel>
+
+			</p:panel>
+			<p class="clear" />
+		</p:panel>
+
+		<p:panel
+			rendered="#{user.oneButtonSwitchValue eq '1' or user.oneButtonSwitchValue == '1'}"
+			styleClass="lexPanel">
+			<p:panelGrid styleClass="roundGrid newprof">
+				<p:row>
+					<p:column>
+						<p:panel style="width:70%;float:left" styleClass="innerPanel">
+							<p:panelGrid styleClass="roundGrid newprof">
+								<p:row>
+									<p:column style="padding:0">
+										<p:lineChart id="linear" value="#{chartBean.categoryModel}"
+											title="SUMMARY" showDatatip="true"
+											datatipFormat="#{chartBean.datatipFormat}"
+											showMarkers="false" animate="true" seriesColors="51C1B1"
+											minY="0" maxY="20" style="height:315px;width:100%;float:left" />
+									</p:column>
+								</p:row>
+
+							</p:panelGrid>
+						</p:panel>
+
+
+						<p:panel style="width:30%;float:right;text-align:center"
+							styleClass="innerPanel">
+							<f:facet name="header">
+								<div class="subHeader firstLeft">transactions</div>
+							</f:facet>
+							<div style="width: 100%;">
+								<p:panel styleClass="innerPanel">
+									<f:facet name="header">
+										<div class="subHeader firstLeft smallHeader"
+											style="color: #222 !important">sent</div>
+									</f:facet>
+									<p:panelGrid styleClass="roundGrid newprof">
+										<p:row>
+											<p:column>
+												<p:outputLabel styleClass="bigTextGreen"
+													style="color:#222;line-height:1px" value="25"></p:outputLabel>
+											</p:column>
+										</p:row>
+									</p:panelGrid>
+								</p:panel>
+								<p:panel styleClass="innerPanel">
+									<f:facet name="header">
+										<div class="subHeader firstLeft smallHeader">received</div>
+									</f:facet>
+									<p:panelGrid styleClass="roundGrid newprof">
+										<p:row>
+											<p:column>
+												<p:outputLabel styleClass="bigTextGreen"
+													style="color:#868586;line-height:1px" value="105"></p:outputLabel>
+											</p:column>
+										</p:row>
+									</p:panelGrid>
+								</p:panel>
+								<p:panel styleClass="innerPanel">
+									<f:facet name="header">
+										<div class="subHeader firstLeft smallHeader"
+											style="color: #51C1B1 !important">total</div>
+									</f:facet>
+									<p:panelGrid styleClass="roundGrid newprof">
+										<p:row>
+											<p:column>
+												<p:outputLabel styleClass="bigTextGreen"
+													style="color:#51C1B1;line-height:1px" value="130"></p:outputLabel>
+											</p:column>
+										</p:row>
+									</p:panelGrid>
+								</p:panel>
+							</div>
+						</p:panel>
+						<p:panel>
+
+						</p:panel>
+						<p class="clear" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+
+		</p:panel>
+	</h:form>
+</ui:composition>

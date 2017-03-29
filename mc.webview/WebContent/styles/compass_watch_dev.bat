@@ -1,0 +1,2 @@
+START compass watch --sourcemap
+

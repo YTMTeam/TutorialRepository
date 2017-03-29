@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Login</title>
+	<link
+		href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700,800'
+		rel='stylesheet' type='text/css' />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="styles/css/style.css" type="text/css" rel="stylesheet" />
+	<link rel="icon" type="image/png" href="images/favicon.ico" />
+	<h:outputScript library="primefaces" name="jquery/jquery.js" />
+</h:head>
+<h:body>
+	<f:view locale="#{language.localeCode}">
+
+		<p:layout fullPage="true">
+			<p:layoutUnit id="header" position="north" size="60" gutter="-1"
+				resizable="true" closable="true" collapsible="true">
+				<div class="leftLogo" />
+
+
+
+				<div id="rightHead">
+					<h:form id="menuForm">
+						<p:menuButton value="&#9776;" id="threeLine" update="" icon="arrowToRightBlue">
+							<p:menuitem value="#{msg.FAQs}" update="" />
+							<p:menuitem value="#{msg.contact}" update="" />
+							<p:menuitem value="#{msg.language}" update="" />
+							<p:separator id="separator"/> 
+							<p:menuitem value="#{msg.register}" update="" />
+						</p:menuButton>
+					</h:form>
+					
+				</div>
+			</p:layoutUnit>
+
+			<p:layoutUnit id="footer" position="south" gutter="-1"
+				resizable="true" closable="true" collapsible="true">
+				<div style="margin-top: -3px">
+					<h:outputText id="footerText"
+						value="#{msg.copyright} &#169; #{msg.mallocIncRights}" />
+				</div>
+			</p:layoutUnit>
+			<p:layoutUnit id="logCenter" styleClass="centerContent" position="center">
+				<h:form id="msgForm">
+		<p:growl id="messages" showDetail="true" autoUpdate="true"
+							closable="true" /></h:form>
+				<div id="logoCenter" style="padding-right: 40px;">
+					<h:graphicImage value="images/logoBig.png" />
+				</div>
+				<h:form id="loginForm">
+				
+					<div id="loginDiv" class="loginDiv">
+						<p:panelGrid id="loginGrid" columns="2" styleClass="centerPos">
+							<h:outputLabel for="username" value="#{msg.username}:" />
+									<p:inputText id="username" style="width:250px"
+										value="#{user.username}" required="true" requiredMessage="#{msg.requiredUsername}"
+										label="#{msg.username}"/>
+							<h:outputLabel for="password" value="#{msg.password}:" />
+									<p:password id="password" style="width:250px"
+										value="#{user.password}" required="true" requiredMessage="#{msg.requiredPass}"
+										label="#{msg.password}">
+
+									</p:password>
+
+							<f:facet name="footer">
+							<p:commandButton  value="#{msg.signIn}"
+									icon="arrowToRightBlue" style="float:right;"
+										process=":loginForm:loginGrid" update=":loginForm:loginGrid"
+										action="#{user.login}" /> 
+							<p:commandLink style="font-weight:400 !important; font-size:small !important; float:left; margin-top:2px;" value="Forgot password?" process="@this"
+										onclick="dlg.show()" />
+							</f:facet>
+							
+						</p:panelGrid>
+					</div>
+
+				</h:form>
+				
+				
+				
+					
+						<p:ajaxStatus onstart="statusDialog.show();"
+							onsuccess="statusDialog.hide();" />
+						<p:dialog modal="true" widgetVar="statusDialog" header="Status"
+							draggable="false" closable="false">
+							<p:graphicImage value="images/ajax-loader1.gif" />
+							
+						</p:dialog>
+					
+			</p:layoutUnit>
+
+		</p:layout>
+
+	
+
+	</f:view>
+</h:body>
+</html>

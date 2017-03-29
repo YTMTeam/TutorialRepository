@@ -1,0 +1,53 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<script>
+		$('*').scroll(function(){
+			var parentElement = $('.#{firstUseHelpId}Parent');
+			var rect = parentElement.offset();
+			var leftPos, topPos;
+			if(typeof rect === 'undefined'){
+			   leftPos = -1000;
+			   topPos = -1000;
+			} else {
+				leftPos = rect.left + (parentElement.hasClass('leftSideHint') ? 0 : parentElement.outerWidth()) - 25;
+				topPos = rect.top - 25;
+			}
+			$('#firstUse#{firstUseHelpId}Form').css('left', leftPos);
+			$('#firstUse#{firstUseHelpId}Form').css('top', topPos);
+		});
+		$('body').click(function(){
+			var parentElement = $('.#{firstUseHelpId}Parent');
+			var rect = parentElement.offset();
+			var leftPos, topPos;
+			if(typeof rect === 'undefined'){
+			   leftPos = -1000;
+			   topPos = -1000;
+			} else {
+				leftPos = rect.left + (parentElement.hasClass('leftSideHint') ? 0 : parentElement.outerWidth()) - 25;
+				topPos = rect.top - 25;
+			}
+			$('#firstUse#{firstUseHelpId}Form').css('left', leftPos);
+			$('#firstUse#{firstUseHelpId}Form').css('top', topPos);
+		});
+	</script>
+
+	<h:form id="firstUse#{firstUseHelpId}Form" style="position:absolute">
+		<h:panelGroup rendered="#{user.displayHint(firstUseHelpId)}">
+			<p:outputPanel id="#{firstUseHelpId}" styleClass="firstUseHelpButton" style="display: block" />
+			<p:overlayPanel id="#{firstUseHelpId}Panel" for="#{firstUseHelpId}" onShow="pauseAnimation()" onHide="unpauseAnimation()" hideEffect="fade" style="min-width:400px; overflow: auto;">
+				<p:panel>
+					<div class="hintPanelTitle">#{hints_name[firstUseHelpId]}</div>
+					<br/>
+					<p>#{hints_desc[firstUseHelpId]}</p>
+				</p:panel>
+				<p:commandButton value="#{msg.gotIt}" action="#{user.disableUserHint(firstUseHelpId)}" update="firstUse#{firstUseHelpId}Form" styleClass="darkBlueBtn" style="float: right; margin-bottom: 10px"/>
+			</p:overlayPanel>
+		</h:panelGroup>
+	</h:form>
+	
+</ui:composition>

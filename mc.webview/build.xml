@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+Any modifications will be overwritten.
+To include a user specific buildfile here, simply create one in the same
+directory with the processing instruction <?eclipse.ant.import?>
+as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="mc.webview">
+   <property environment="env"/>
+   <property name="mc.model.location" value="${www_source.dir}/mc.model"/>
+   <property name="mc.logic.location" value="${www_source.dir}/mc.logic"/>
+   <property name="mc.webview.location" value="${www_source.dir}/mc.webview"/>
+   <property name="debuglevel" value="source,lines,vars"/>
+   <property name="target" value="1.7"/>
+   <property name="source" value="1.7"/>
+
+   <path id="Web App Libraries.libraryclasspath">
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/servlet-api.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/antlr-2.7.7.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/atmosphere-runtime-2.4.3.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/barbecue-1.5-beta1.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/barcode4j-2.0.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/batik-anim.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/batik-awt-util.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/batik-bridge.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/batik-css.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/batik-dom.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/batik-ext.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/batik-gvt.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/batik-parser.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/batik-script.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/batik-svg-dom.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/batik-svggen.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/batik-util.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/batik-xml.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/bcel-5.2.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/bsh-2.0b4.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/castor-1.2.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/commons-beanutils-1.8.0.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/commons-collections-2.1.1.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/commons-digester-1.7.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/commons-javaflow-20060411.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/commons-logging-1.2.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/commons-validator-1.3.1.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/core-renderer-minimal.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/core-renderer.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/dom4j-1.6.1.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/groovy-all-2.0.1.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/hsqldb-1.8.0-10.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/iText-2.1.7.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/imgscalr-lib-4.0.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/jackson-core-lgpl-1.7.4.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/jackson-mapper-lgpl-1.7.4.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/jasperreports-5.6.0.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/jasperreports-fonts.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/jasypt-1.9.0.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/javax.faces.jar"/>
+	 <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/javax.inject-1.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/jaxen-1.1.1.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/jcommon-1.0.15.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/jdt-compiler-3.1.1.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/jfreechart-1.0.12.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/jpa.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/jsf-api-2.1.3.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/jsf-impl-2.1.3.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/jsoup-1.7.3.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/jstl-1.2.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/jxl-2.6.10.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/mail.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/mondrian-3.1.1.12687.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/myfaces-commons-utils20-1.0.2.1.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/myfaces-validators20-1.0.2.1.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/omnifaces-1.8.1.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/png-encoder-1.5.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/poi-3.7-20101029.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/poi-ooxml-3.7-20101029.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/poi-ooxml-schemas-3.7-20101029.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/primefaces-6.0.2.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/primefaces-extensions-6.0.0.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/resources-ckeditor-nik-repack-1.2.0.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/rhino-1.7R1.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/saaj-api-1.3.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/serializer.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/servlet.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/stringtemplate.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/velocity-1.7-dep.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/xalan-2.7.1.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/xbean.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/xercesImpl-2.7.0.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/xml-apis-ext.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/xml-apis-xerces-2.9.1.jar"/>
+     <pathelement location="${mc.webview.location}/WebContent/WEB-INF/lib/xml-apis.jar"/>
+    </path>
+
+<path id="mc.model.classpath">
+   <pathelement location="${mc.model.location}/bin"/>
+   <pathelement location="${mc.model.location}/lib/gdao.jar"/>
+   <pathelement location="${mc.model.location}/lib/log4j-1.2.14.jar"/>
+   <pathelement location="${mc.model.location}/lib/commons-codec-1.9.jar"/>
+   <pathelement location="${mc.model.location}/lib/commons-collections-3.2.1.jar"/>
+   <pathelement location="${mc.model.location}/lib/commons-configuration-1.7.jar"/>
+   <pathelement location="${mc.model.location}/lib/commons-fileupload-1.2.2.jar"/>
+   <pathelement location="${mc.model.location}/lib/commons-io-2.1.jar"/>
+   <pathelement location="${mc.model.location}/lib/commons-lang-2.6.jar"/>
+   <pathelement location="${mc.model.location}/lib/commons-lang3-3.1.jar"/>
+   <pathelement location="${mc.model.location}/lib/commons-logging-1.1.3.jar"/>
+   <pathelement location="${mc.model.location}/lib/jxl.jar"/>
+</path>
+
+<path id="mc.logic.classpath">
+   <pathelement location="${mc.logic.location}/bin"/>
+   <path refid="mc.model.classpath"/>
+   <pathelement location="${mc.logic.location}/lib/jsoup-1.7.3.jar"/>
+   <pathelement location="${mc.logic.location}/lib/ojdbc7.jar"/>
+   <pathelement location="${mc.logic.location}/lib/ucp.jar"/>
+   <pathelement location="${mc.logic.location}/lib/jasypt-1.9.0.jar"/>
+   <pathelement location="${mc.logic.location}/lib/mail.jar"/>
+   <pathelement location="${mc.logic.location}/lib/stringtemplate.jar"/>
+   <pathelement location="${mc.logic.location}/lib/antlr-2.7.7.jar"/>
+   <pathelement location="${mc.logic.location}/lib/json-simple-1.1.1.jar"/>
+   <pathelement location="${mc.logic.location}/lib/ooxml-lib/xmlbeans-2.6.0.jar"/>
+   <pathelement location="${mc.logic.location}/lib/junit-4.11.jar"/>
+   <pathelement location="${mc.logic.location}/lib/poi-3.11-beta2-20140822.jar"/>
+   <pathelement location="${mc.logic.location}/lib/poi-examples-3.11-beta2-20140822.jar"/>
+   <pathelement location="${mc.logic.location}/lib/poi-excelant-3.11-beta2-20140822.jar"/>
+   <pathelement location="${mc.logic.location}/lib/poi-ooxml-3.11-beta2-20140822.jar"/>
+   <pathelement location="${mc.logic.location}/lib/poi-ooxml-schemas-3.11-beta2-20140822.jar"/>
+   <pathelement location="${mc.logic.location}/lib/poi-scratchpad-3.11-beta2-20140822.jar"/>
+   <pathelement location="${mc.logic.location}/lib/log4j-1.2.17.jar"/>
+   <pathelement location="${mc.logic.location}/lib/gson-2.2.4.jar"/>
+   <pathelement location="${mc.logic.location}/lib/gson-2.2.4-sources.jar"/>
+	<pathelement location="${mc.logic.location}/lib/httpclient-4.2.jar"/>
+    <pathelement location="${mc.logic.location}/lib/httpcore-4.0.1-sources.jar"/>
+	<pathelement location="${mc.logic.location}/lib/httpcore-4.2.1.jar"/>
+   <pathelement location="${mc.logic.location}/lib/quartz-2.0.2.jar"/> <!-- quartz scheduler-->
+   <pathelement location="${mc.logic.location}/lib/slf4j-api-1.6.0.jar"/> <!-- quartz scheduler-->
+   <pathelement location="${mc.logic.location}/lib/slf4j-simple-1.6.1.jar"/> <!-- quartz scheduler-->
+</path>
+
+<path id="mc.webview.classpath">
+   <pathelement location="build/classes"/>
+   <path refid="Web App Libraries.libraryclasspath"/>
+   <path refid="mc.model.classpath"/>
+   <path refid="mc.logic.classpath"/>
+</path>
+
+<target name="init">
+   <mkdir dir="build/classes"/>
+   <copy includeemptydirs="false" todir="build/classes">
+      <fileset dir="src">
+         <exclude name="**/*.launch"/>
+         <exclude name="**/*.java"/>
+      </fileset>
+   </copy>
+</target>
+
+<target name="clean">
+   <delete dir="build/classes"/>
+</target>
+
+<target depends="clean" name="cleanall">
+   <ant antfile="build.xml" dir="${mc.model.location}" inheritAll="false" target="clean"/>
+   <ant antfile="build.xml" dir="${mc.logic.location}" inheritAll="false" target="clean"/>
+</target>
+
+<target depends="build-project" name="build"/>
+
+<target depends="init" name="build-project">
+   <echo message="${ant.project.name}: ${ant.file}"/>
+   <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
+      <src path="src"/>
+      <classpath refid="mc.webview.classpath"/>
+      <!--<compilerarg value="-Xlint"/>-->
+   </javac>
+</target>
+
+<target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+</project>

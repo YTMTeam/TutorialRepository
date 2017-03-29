@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+Any modifications will be overwritten.
+To include a user specific buildfile here, simply create one in the same
+directory with the processing instruction <?eclipse.ant.import?>
+as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="mc.logic">
+   <property environment="env"/>
+   <property name="mc.webview.location" value="../mc.webview"/>
+   <property name="ECLIPSE_HOME" value="../../../../eclipseBirt"/>
+   <property name="mc.model.location" value="../mc.model"/>
+   <property name="debuglevel" value="source,lines,vars"/>
+   <property name="target" value="1.7"/>
+   <property name="source" value="1.7"/>
+   <path id="EAR Libraries.libraryclasspath"/>
+   <path id="mc.model.classpath">
+      <pathelement location="${mc.model.location}/bin"/>
+      <pathelement location="${mc.model.location}/lib/commons-codec-1.9.jar"/>
+      <pathelement location="${mc.model.location}/lib/commons-collections-3.2.1.jar"/>
+      <pathelement location="${mc.model.location}/lib/commons-configuration-1.7.jar"/>
+      <pathelement location="${mc.model.location}/lib/commons-fileupload-1.2.2.jar"/>
+      <pathelement location="${mc.model.location}/lib/commons-io-2.1.jar"/>
+      <pathelement location="${mc.model.location}/lib/commons-lang-2.6.jar"/>
+      <pathelement location="${mc.model.location}/lib/commons-lang3-3.1.jar"/>
+      <pathelement location="${mc.model.location}/lib/commons-logging-1.1.3.jar"/>
+      <pathelement location="${mc.model.location}/lib/gdao.jar"/>
+      <pathelement location="${mc.model.location}/lib/jxl.jar"/>
+      <path refid="EAR Libraries.libraryclasspath"/>
+   </path>
+   <path id="mc.logic.classpath">
+      <pathelement location="bin"/>
+      <path refid="mc.model.classpath"/>
+      <pathelement location="lib/jsoup-1.7.3.jar"/>
+      <pathelement location="lib/ojdbc7.jar"/>
+      <pathelement location="lib/ucp.jar"/>
+      <pathelement location="lib/jasypt-1.9.0.jar"/>
+      <pathelement location="lib/mail.jar"/>
+      <pathelement location="lib/stringtemplate.jar"/>
+      <pathelement location="lib/antlr-2.7.7.jar"/>
+      <pathelement location="lib/json-simple-1.1.1.jar"/>
+      <pathelement location="lib/ooxml-lib/xmlbeans-2.6.0.jar"/>
+      <pathelement location="lib/junit-4.11.jar"/>
+      <pathelement location="lib/poi-3.11-beta2-20140822.jar"/>
+      <pathelement location="lib/poi-examples-3.11-beta2-20140822.jar"/>
+      <pathelement location="lib/poi-excelant-3.11-beta2-20140822.jar"/>
+      <pathelement location="lib/poi-ooxml-3.11-beta2-20140822.jar"/>
+      <pathelement location="lib/poi-ooxml-schemas-3.11-beta2-20140822.jar"/>
+      <pathelement location="lib/poi-scratchpad-3.11-beta2-20140822.jar"/>
+	  <pathelement location="lib/gson-2.2.4.jar"/>
+	  <pathelement location="lib/gson-2.2.4-sources.jar"/>
+	  <pathelement location="lib/httpclient-4.2.jar"/>
+	  <pathelement location="lib/httpcore-4.0.1-sources.jar"/>
+	  <pathelement location="lib/httpcore-4.2.1.jar"/>
+      <pathelement location="lib/quartz-2.0.2.jar"/> <!-- quartz scheduler-->
+	   <pathelement location="lib/slf4j-api-1.6.0.jar"/> <!-- quartz scheduler-->
+      <pathelement location="lib/slf4j-simple-1.6.1.jar"/> <!-- quartz scheduler-->
+      <pathelement location="lib/log4j-1.2.17.jar"/>
+	  <pathelement location="lib/problem_processor_v1.0.jar" /> <!-- First version of problem_processor library -->
+      <path refid="EAR Libraries.libraryclasspath"/>
+   </path>
+   <target name="init">
+      <mkdir dir="bin"/>
+      <copy includeemptydirs="false" todir="bin">
+         <fileset dir="src">
+            <exclude name="**/*.launch"/>
+            <exclude name="**/*.java"/>
+         </fileset>
+      </copy>
+   </target>
+   <target name="clean">
+      <delete dir="bin"/>
+   </target>
+   <target depends="clean" name="cleanall">
+      <ant antfile="build.xml" dir="${mc.model.location}" inheritAll="false" target="clean"/>
+   </target>
+
+   <target depends="build-project" name="build"/>
+
+   <target depends="init" name="build-project">
+      <echo message="${ant.project.name}: ${ant.file}"/>
+      <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+         <src path="src"/>
+         <classpath refid="mc.logic.classpath"/>
+         <compilerarg value="-Xlint"/>
+      </javac>
+   </target>
+   
+   
+   
+   <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects">
+      <ant antfile="build.xml" dir="${mc.webview.location}" inheritAll="false" target="clean"/>
+      <ant antfile="build.xml" dir="${mc.webview.location}" inheritAll="false" target="build">
+         <propertyset>
+            <propertyref name="build.compiler"/>
+         </propertyset>
+      </ant>
+   </target>
+   
+   
+   <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+      <copy todir="${ant.library.dir}">
+         <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+      </copy>
+      <unzip dest="${ant.library.dir}">
+         <patternset includes="jdtCompilerAdapter.jar"/>
+         <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+      </unzip>
+   </target>
+   <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+      <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+      <antcall target="build"/>
+   </target>
+</project>

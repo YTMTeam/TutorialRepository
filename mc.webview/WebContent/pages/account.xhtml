@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/templates/standard_template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<h:head>
+		<title>#{msg.lexExplorer}</title>
+		<link
+			href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700,800'
+			rel='stylesheet' type='text/css' />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="refresh" content="300" />
+		<!-- 		<meta http-equiv="refresh" content="0; url=login.xhtml" /> -->
+		<link href="styles/css/style.css" type="text/css" rel="stylesheet" />
+		<link href="styles/css/new_styles.css" type="text/css"
+			rel="stylesheet" />
+		<link href="styles/css/sprites.css" type="text/css" rel="stylesheet" />
+		<link href="styles/css/flags.css" type="text/css" rel="stylesheet" />
+		<link rel="icon" type="image/png" href="images/favicon.ico?v=2" />
+		<h:outputScript library="primefaces" name="jquery/jquery.js" />
+
+	</h:head>
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:viewParam name="accountId" value="#{account.accountId}" />
+			<f:event type="preRenderView" listener="#{account.init}" />
+		</f:metadata>
+
+
+	</ui:define>
+	
+	<ui:define name="westContent">
+		
+	</ui:define>
+	<ui:define name="centerContent">
+		
+		<h:form id="curUserForm">
+<!-- 		<h:panelGroup rendered="false"> -->
+<!-- 			<p:panel styleClass="innerPanel paddingToChart ui-paneltitle"> -->
+<!-- 		<ui:include src="/pages/includeParts/addresses/curuserview.xhtml"> -->
+<!-- 		<ui:param name="curUser" value="#{account.curUser}"></ui:param> -->
+<!-- 		</ui:include> -->
+		
+		
+<!-- 		</p:panel> -->
+<!-- 		</h:panelGroup> -->
+		</h:form>
+		
+		
+	
+
+	<h:form id="familyForm">  
+<!-- 		<h:panelGroup rendered="#{account.family.viewFamily}">		 -->
+<!-- 		<ui:include src="/pages/includeParts/family/familyview.xhtml" > -->
+<!-- 		<ui:param name="outerForm" value="familyForm"></ui:param> -->
+<!-- 		<ui:param name="family" value="#{account.family}"></ui:param> -->
+<!-- 		</ui:include> -->
+<!-- 		</h:panelGroup> -->
+		</h:form>
+	
+ 
+		<h:form id="tradesForm">  
+		<h:panelGroup rendered="true">		
+		<ui:include src="/pages/includeParts/trades/tradesview.xhtml" >
+		<ui:param name="outerForm" value="tradesForm"></ui:param>
+		<ui:param name="trades" value="#{account.trades}"></ui:param>
+		</ui:include>
+		</h:panelGroup>
+		</h:form>
+		
+		
+	
+	</ui:define>
+ 
+
+</ui:composition>

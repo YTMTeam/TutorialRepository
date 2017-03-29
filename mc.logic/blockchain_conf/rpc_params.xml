@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RpcParameters>
+<!-- 	<Nodes>		 -->
+<!-- 		<Node name="schain_zoran"> -->
+<!-- 			<rpcHost>192.168.1.81</rpcHost> -->
+<!-- 			<rpcPort>2746</rpcPort> -->
+<!-- 			<rpcUsername>multichainrpc</rpcUsername> -->
+<!-- 			<rpcPassword>CS3Le4hPGr7HiU33vTnMHBzMtGmECA59wMFKTbMe6Bgc</rpcPassword> -->
+<!-- 		</Node>		 -->
+<!-- 	</Nodes> -->
+<!-- 	<Nodes>		 -->
+<!-- 		<Node name="schain"> -->
+<!-- 			<rpcHost>192.168.1.235</rpcHost> -->
+<!-- 			<rpcPort>4392</rpcPort> -->
+<!-- 			<rpcUsername>multichainrpc</rpcUsername> -->
+<!-- 			<rpcPassword>2g734a2phkhteehHPeqiq86qdALDHcK52pPBD8SBTYxy</rpcPassword> -->
+<!-- 		</Node>		 -->
+<!-- 	</Nodes> -->
+	<Nodes>		
+		<Node name="schain">
+			<rpcHost>192.168.1.235</rpcHost>
+			<rpcPort>7404</rpcPort>
+			<rpcUsername>multichainrpc</rpcUsername>
+			<rpcPassword>7X39syqDG8SBzJ1RkTY9BeJXPgMJehkQaBSHD7S46Ut9</rpcPassword>
+		</Node>		
+	</Nodes>
+<!-- 	<Nodes>		 -->
+<!-- 		<Node name="bchain"> -->
+<!-- 			<rpcHost>192.168.1.76</rpcHost> -->
+<!-- 			<rpcPort>7777</rpcPort> -->
+<!-- 			<rpcUsername>multichainrpc</rpcUsername> -->
+<!-- 			<rpcPassword>CS3Le4hPGr7HiU33vTnMHBzMtGmECA59wMFKTbMe6Bgc</rpcPassword> -->
+<!-- 		</Node>		 -->
+<!-- 	</Nodes> -->
+</RpcParameters>

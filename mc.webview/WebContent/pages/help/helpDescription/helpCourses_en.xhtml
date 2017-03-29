@@ -1,0 +1,133 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:pe="http://primefaces.org/ui/extensions">
+
+This page provides all information about courses and classes, as well as who are used for user grouping. They can be used for filtering users when connecting them with tests or pools. 
+Courses may contain lessons and multimedia supported literature.<br/> <br/> 
+
+<div class="tdHeadline">Course</div>
+Courses are hierarchically organized. <br/>
+A course can have either one or no parent courses, and an unlimited number of sub-courses, classes, lessons and literature. <br/>
+Courses can be "Active" or "Inactive". Only the users from "Active" courses may be added as members to tests and pools. <br/>
+If a course is set to "Inactive" then all of its sub-courses are automatically set to inactive. <br/>
+Members of a certain course are also members of its parent course. <br/>
+Course members can have one out of two ranks in the course: "User" or "Manager". <br/>
+If a user has the "Manager" rank on a certain course, then they automatically manage all of its child courses as well. However, managing privileges on a course do not extend to the connected class/es, it is required to add a rank separately. <br/>
+A user with corresponding privileges can make their own tree organization of courses and classes, while users with higher level privileges can manage any course and class in the system.<br/>
+Users can make a sub-tree only to those course wheres they have the "Manager" rank.<br/><br/>
+
+<div class="tdHeadline">Class</div>
+Classes can be attached to multiple courses.
+Class members can have one of two possible ranks in the class: "User" or "Manager".
+Members can be added or removed from classes, without affecting the course that the class is attached to. <br/>
+Only the users from 'Active' classes may be added as members to tests and pools.
+ <br/><br/>
+
+
+<div class="tdHeadline">Navigation sidebar</div>
+Users can see the courses and classes organized into a tree-like organized hierarchy. <br/>
+Users can use the search icon to directly jump to a course or class from the tree.<br/>
+Users can choose between "Personal" and "All" model types. "Personal" mode displays only those courses and classes where the user is a member. "All" mode displays every existing course and class.  <br/>
+Trees can be filtered by choosing the course - class status combination. For example, if a user chooses Active status for a course and Inactive for a class, by clicking the 'tree' icon, all active and inactive classes attached to that course are shown. In case there are inactive classes not connected to any of the courses, they will not be displayed. <br/>
+If a user wishes to see all classes in the system (those not connected to any courses included), only the class status needs to be chosen, while course status remains unselected. <br/><br/>
+
+<div class="tdHeadline">Top action buttons</div> 
+1. Changing status - Users with managing privileges of a selected course can activate, deactivate or delete courses. If a course is activated, all of its parent courses are activated as well. In case a course is deleted or deactivated, same action will be executed on all of its child courses.<br/>
+Users with managing privileges of a selected class can delete that class. <br/> 
+2. New course - Users can add a sub-course to a course where they have managing privileges and they have the privilege to create either normal courses or top-level parent courses. All managers of the parent course (if the parent course exists) will  be automatically set as managers of the newly created sub-courses.<br/> 
+3. New class - Users can create a new class and choose multiple courses where newly created classes will be connected, in case they have managing privileges. If the user has the manager rank on every course in the system and hierarchy viewing model is set to 'all', every course in the system will be shown. <br />
+Users that create a new class are automatically set as its managers.<br /> <br />
+ 
+ <table class="helpTable"> 
+		
+		<tr>
+			<td class="helpTdLeft">
+				<div class="helpCourseClassesIconBlue" />
+			</td>
+			<td class="helpTdRight"><div class="tdHeadline">Classes connected to selected course</div>Users who have managing privileges in the course are able to see a table containing connected and available classes. The user has the "Manager" rank on those classes they can see. <br/> It is possible to assign and remove classes from courses using bulk actions. <br/> If a user is a selects the "all" tree mode, they can view and manage all classes within the selected course. <br/><br /></td>
+		</tr>
+
+<tr>
+			<td class="helpTdLeft">
+				<div class="helpClassCoursesBlue" />
+			</td>
+			<td class="helpTdRight"><div class="tdHeadline">Courses connected to a selected class</div>A table containing courses where the user has managing privileges will be shown. <br />Those already connected to the course will be checked. It is possible to check/un-check courses and use several bulk action options. <br/> If the user has the "Manager" rank in all existing courses and "All" tree mode is selected, the table will be filled with all courses from the system. <br /> <br /></td>
+		</tr>
+
+<tr>
+			<td class="helpTdLeft">
+				<div class="helpMembersBlue" />
+			</td>
+			<td class="helpTdRight"><div class="tdHeadline">Members</div>The 'Members' section shows which users are part of a selected course/class and allows users with managing privileges to assign and remove users from courses and classes, as well as change their ranks.<br />
+			Members are able to see other participants of their class/course. In case they have the managing privileges, they can manage the participants within that course/class.<br/>
+			Users with higher-level privileges can manage participants of every course and class. <br/>
+			A user with high-level privileges can see and manage members from any course and class. <br/>
+			When managing course members only those members that are participants in the parent course are available. In case it is a top level course, all users within that course are available.<br/>
+			When managing class members, it is possible to choose from all users in the system. When filtering through course members, it is only possible to choose those courses where you have the managing privileges.<br/>
+			 <br /></td>
+		</tr>
+
+<tr>
+			<td class="helpTdLeft">
+				<div class="helpStatsIconBlue" />
+			</td>
+<td class="helpTdRight"><div class="tdHeadline">Statistics</div> A course manager has the ability to track detailed test statistics within a course. Tests may be added either one by one or by selecting a time period (every test available in that time period will be added). The tests included in the chosen statistics can be from both the sub-courses of the selected course and the course itself. <br />
+          The subjects may be shown in form of a lined graph or a bar chart.<br/>
+          The statistics can be exported as a PDF document, based on the current month or the selected timeline.            
+          <br/>The subject types that can be compared are as following: <br />
+          1. The average success value of all results within a selected course on the desired tests. The analysis also includes the results from the sub-courses. <br />
+          2. The average success value of a course user within a selected class that is a connected to that same course. The analysis only includes the results of users who have membership in the selected course and class. <br />
+          3. The success value of a user within a selected course (or sub-course). In case a user had multiple attempts at a test within the selected course or its hierarchy, an average value is taken. <br />
+          4. Average values of each member, grouped by the skill level - basic, intermediate and advanced. The users included in this analysis are those who possess the entered course level within the selected course, which means that if those users performed tests within some of its sub-courses, where their skill level differs, those results will also be taken into account. <br /><br />
+	
+	</td>
+	</tr>
+	
+	
+	<tr>
+           <td class="helpTdLeft">
+               <div class="helpLessonsBlue" />
+           </td>
+           <td class="helpTdRight"><div class="tdHeadline">Lessons</div> Course managers can add lessons to a course and organize them accordingly. The lessons are comprised of a series of chapters, which may be linked either to tests the current user is managing, or the literature attached in the same course. Lesson chapters may also be organized accordingly. <br />
+            The course manager may control both the entire lesson's availability or the availability of each chapter inside. If the changes occur during the lesson participation, notices will be shown directly on the lesson screen. <br />
+            Lesson chapter availability can be restricted to certain classes within the corresponding course - thus enabling the option of varied testing in different classes.<br />
+            A test within a lesson is available only if the course is active, the lesson has been published and the lesson chapter enabled. That information is also shown on the global notification system.<br />
+            While configuring tests, users may also include the following parameters: <br />
+            1. User skill level within a course (restricted to practice tests) - the test is tailored according to the skill level system and each user will receive taks that suit their current level best.<br />
+            2. Enabling a test repeat - the test may be re-taken and the new result substitutes the previous one.<br />
+            3. Including managers into testing - the managers will also receive a request to participate in the test.
+             <br /><br />
+           
+           
+           
+           </td>
+       </tr>
+	<tr>
+           <td class="helpTdLeft">
+               <div class="helpAttachBlue" />
+           </td>
+           <td class="helpTdRight"><div class="tdHeadline">Literature</div>Course managers are able to attach literature to their managed courses. Literature can be attached to lessons or used as a resource when creating questions. <br />
+           It is visible only to course managers, while other members can view it only inside the lesson. <br/>
+          Literature may take one of the following forms:
+            1. Video (.MP4) - up to 100 MB in size<br />
+            2. Audio (.MP3) - up to 100 MB in size<br />
+            3. PDF document (.PDF) - up to 100 MB in size<br />
+            4. Google document - it is only necessary to copy the link of the Google document in order to share it <br />
+            5. Archive (.ZIP) - up to 100 MB in size<br />
+            6. YouTube video - it's enough to copy the link in order to share any YouTube video <br/>
+            7. Link - any link online  <br/>
+            8. Problem procesor (.JAR) - this type can be used to create any question that supports this option <br/>
+            9. Picture (.PNG | .JPG | .JPEG | .GIF) - up to 100 MB in size <br/>
+             <br /><br />
+           
+           
+           
+           </td>
+       </tr>
+	
+	
+	</table>
+ 
+ 
+ 
+</ui:composition>

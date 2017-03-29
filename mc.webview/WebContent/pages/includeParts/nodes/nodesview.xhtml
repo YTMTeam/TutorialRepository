@@ -1,0 +1,222 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<p:diagram value="#{diagramControl.model}"
+		style="height:410px;width:520px;float:left" var="el">
+
+		<f:facet name="element">
+			<p:outputLabel styleClass="outerDiv">
+				<div id="#{el.name}"
+					class="circleBell #{el.backgroundColor} #{el.image}">
+					<!-- 					<p:graphicImage id="img_" name="#{el.image}" /> -->
+					<p:outputLabel id="label" value="#{el.bankName}"
+						styleClass="nodePicture" />
+
+				</div>
+			</p:outputLabel>
+		</f:facet>
+	</p:diagram>
+	<p:remoteCommand name="elementClicked" update="@form:panelGroup"
+		process="@this" actionListener="#{diagramControl.onElementClicked}" />
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".ui-diagram-element").toggleClass('inActiveLabel', true);
+			var id = 1;
+			$(".ui-diagram-element .nodePicture").each(function(index) {
+
+				$(this).attr('id', "Bank-" + id++);
+			})
+
+		});
+		$(document).on('click', '.ui-diagram > .ui-diagram-element',
+				function(info) {
+					elementClicked([ {
+						name : 'elementId',
+						value : info.target.id
+					} ]);
+				});
+	</script>
+
+	<style type="text/css">
+.ui-diagram-element {
+	border: 0.1em dotted #d4e06b;
+	width: 14em;
+	height: 4em;
+	line-height: 4em;
+	text-align: center;
+}
+
+.ui-diagram-element {
+	border: 0.1em dotted #E5E4E2;
+	/*         background-color: #EFEEEC; */
+	width: 10em;
+	height: 8em;
+	text-align: center;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+}
+
+.ui-diagram-element:hover {
+	background-color: #C7C6C4;
+}
+</style>
+	<h:panelGroup id="panelGroup">
+		<p:panel id="panel" style="width:50%; height:400px;float:right" rendered="#{diagramControl.selected}"
+			styleClass="innerPanel paddingToChart ui-panelhalf">
+			<p:panelGrid style="border-bottom:1px solid #E0E0E0"
+				styleClass="roundGrid newprof lexRoundGrid marginToChart">
+				<p:row>
+					<p:column style="padding-bottom: 20px;">
+						<div class="roundCell">
+							<h:outputLabel value="#{diagramControl.activeNode.data.bankName}"
+								style="font-size:24px;color:#262626 !important"
+								styleClass="leftPart"></h:outputLabel>
+						</div>
+						<div class="roundCell">
+							<h:outputLabel value="#{diagramControl.activeNode.data.upTime}"
+								style="color:#3A89D8 !important;font-size:16px;font-weight: 500;"
+								styleClass="leftPart"></h:outputLabel>
+							<h:outputLabel value="Uptime"
+								style="color:#727272 !important;font-size:16px;font-weight: 500;margin-left: 5px;"
+								styleClass="leftPart"></h:outputLabel>
+						</div>
+					</p:column>
+					<p:column style="padding-bottom: 20px;">
+						<div class="roundCell">
+							<h:outputText value="TB"
+								style="float:right;color:#727272;font-size:24px;font-weight: 600;"></h:outputText>
+							<h:outputText value="#{diagramControl.activeNode.data.diskSpace}"
+								style="float:right;font-size:24px;color:#262626;font-weight: 600;"></h:outputText>
+
+						</div>
+						<div class="roundCell">
+							<h:outputText value="Storage Memory"
+								style="float:right;color:#727272;font-size:16px;"></h:outputText>
+
+						</div>
+					</p:column>
+				</p:row>
+
+			</p:panelGrid>
+			<p:panelGrid styleClass="roundGrid newprof ui-panelGrid-standard">
+				<p:row>
+					<p:column style="padding-top:24px;">
+						<div class="roundCell">
+							<p:outputLabel value="#{diagramControl.activeNode.data.id}" />
+						</div>
+						<div class="roundCell">
+							<h:outputText value="Id" />
+						</div>
+					</p:column>
+					<p:column style="text-align:center;padding-top:24px;">
+						<div class="roundCell">
+							<p:outputLabel
+								value="#{diagramControl.activeNode.data.memPoolSize} bytes" />
+						</div>
+						<div class="roundCell">
+							<h:outputText value="Memory Pool Size" />
+						</div>
+					</p:column>
+					<p:column style="text-align:right;padding-top:24px;">
+						<div class="roundCell">
+							<p:outputLabel value="#{diagramControl.activeNode.data.byteSent} bytes" />
+						</div>
+						<div class="roundCell">
+							<h:outputText value="Sent" />
+						</div>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<div class="roundCell">
+							<p:outputLabel value="#{diagramControl.activeNode.data.hostport}" />
+						</div>
+						<div class="roundCell">
+							<h:outputText value="Address" />
+						</div>
+					</p:column>
+					<p:column style="text-align:center">
+						<div class="roundCell">
+							<p:outputLabel
+								value="#{diagramControl.activeNode.data.blockCutIn} sec" />
+						</div>
+						<div class="roundCell">
+							<h:outputText value="Block Cut Period" />
+						</div>
+					</p:column>
+					<p:column style="text-align:right">
+						<div class="roundCell">
+							<p:outputLabel
+								value="#{diagramControl.activeNode.data.byteReceived} bytes" />
+						</div>
+						<div class="roundCell">
+							<h:outputText value="Received" />
+						</div>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<div class="roundCell">
+							<p:outputLabel value="#{diagramControl.activeNode.data.ipport}" />
+						</div>
+						<div class="roundCell">
+							<h:outputText value="Local Address" />
+						</div>
+					</p:column>
+					<p:column style="text-align:center">
+						<div class="roundCell">
+							<p:outputLabel
+								value="#{diagramControl.activeNode.data.blockCount}" />
+						</div>
+						<div class="roundCell">
+							<h:outputText value="Block Count" />
+						</div>
+					</p:column>
+					<p:column style="text-align:right">
+						<div class="roundCell">
+							<p:outputLabel value="#{diagramControl.activeNode.data.pingTime} sec" />
+						</div>
+						<div class="roundCell">
+							<h:outputText value="Pingtime" />
+						</div>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column   style="text-align:left">
+						<div class="roundCell">
+							<p:outputLabel
+								value="#{diagramControl.activeNode.data.lastTxNumber}" />
+						</div>
+						<div class="roundCell">
+							<h:outputText value="Transactions in Last Block" />
+						</div>
+					</p:column>
+
+					<p:column style="text-align:center">
+						<div class="roundCell">
+							<p:outputLabel value="#{diagramControl.activeNode.data.cpuUsage} %" />
+						</div>
+						<div class="roundCell">
+							<h:outputText value="CPU Usage" />
+						</div>
+					</p:column>
+					<p:column style="text-align:right">
+						<div class="roundCell">
+							<p:outputLabel value="#{diagramControl.activeNode.data.ramUsage} %" />
+						</div>
+						<div class="roundCell">
+							<h:outputText value="RAM Usage" />
+						</div>
+					</p:column>
+
+				</p:row>
+
+			</p:panelGrid>
+
+		</p:panel>
+	</h:panelGroup>
+
+</ui:composition>

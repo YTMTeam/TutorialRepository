@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/templates/standard_template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<h:head>
+		<title>#{msg.lexExplorer}</title>
+		<link
+			href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700,800'
+			rel='stylesheet' type='text/css' />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="refresh" content="300" />
+		<!-- 		<meta http-equiv="refresh" content="0; url=login.xhtml" /> -->
+		<link href="styles/css/style.css" type="text/css" rel="stylesheet" />
+		<link href="styles/css/new_styles.css" type="text/css"
+			rel="stylesheet" />
+		<link href="styles/css/sprites.css" type="text/css" rel="stylesheet" />
+		<link href="styles/css/flags.css" type="text/css" rel="stylesheet" />
+		<link rel="icon" type="image/png" href="images/favicon.ico?v=2" />
+		<h:outputScript library="primefaces" name="jquery/jquery.js" />
+
+	</h:head>
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:viewParam name="employeeId" value="#{employee.employeeId}" />
+			<f:event type="preRenderView" listener="#{employee.init}" />
+		</f:metadata>
+
+	</ui:define>
+	<ui:define name="westContent">
+
+	</ui:define>
+
+	<!-- File upload components first button -->
+	<ui:define name="titleContent">
+		<h:form id="titleForm" />
+		<p:panel styleClass="centerPanel titlePanel">
+			<p:panelGrid id="aboutQuizInstanceUser"
+				styleClass="roundGrid newprof" style="margin-bottom:10px">
+
+				<p:row>
+					<p:column>
+						<div class="roundCell2">
+							<h:outputLabel value="#{msg.nameEmployee}" styleClass="leftPart " />
+							<h:outputText id="employeeFirstNameLastName"
+								styleClass="normalRight"
+								value="#{employee.curEmployee.employee.FIRST_NAME}  #{employee.curEmployee.employee.LAST_NAME}" />
+							<br />
+							<p:separator />
+							<h:outputLabel value="#{msg.employeeCode}" styleClass="leftPart " />
+							<h:outputText id="employeeCode"
+								value="#{employee.curEmployee.employee.EMPLOYEE_ID}"
+								styleClass="normalRight" />
+
+							<p class="clear" />
+							<p:separator />
+							
+						</div>
+					</p:column>
+
+				</p:row>
+			</p:panelGrid>
+		</p:panel>
+
+
+		<p class="clear" />
+	</ui:define>
+
+	<ui:define name="eastContent">
+		<ui:param name="updateOnSelect" value=":butForm" />
+
+
+
+		<h:form id="butForm">
+			<p:selectBooleanButton styleClass="sideButton"
+				onLabel="#{msg.householdAccounts}" value="#{employee.viewAccounts}"
+				offLabel="#{msg.householdAccounts}">
+				<p:ajax update="#{updateOnSelect}" process="@this"
+					listener="#{employee.generateAccounts()}" />
+			</p:selectBooleanButton>
+
+
+
+		</h:form>
+
+	</ui:define>
+	<ui:define name="centerContent">
+		<h:form id="emplForm">
+			<p:panel styleClass="centerPanel" rendered="#{employee.viewAccounts}">
+
+				<p:remoteCommand name="onFilterHouseholdAccounts"
+					update=":emplForm:extAll:itemNum" />
+
+				<p:dataTable id="extAll" var="acc" widgetVar="extAllVar"
+					value="#{employee.accountsDatasource.datasource}" scrollable="true"
+					scrollHeight="400" resizableColumns="true"
+					rowKey="#{acc.to.ACCOUNT_ID}"
+					selection="#{employee.accountsDatasource.selectedEntities}"
+					filteredValue="#{employee.accountsDatasource.filteredEntities}">
+
+					<p:ajax event="filter" oncomplete="onFilterHouseholdAccounts()" />
+					
+
+					<p:column headerText="#{msg.accountId}" filterMatchMode="contains"
+						sortBy="#{acc.entityAccount.account.ACCOUNT_ID}"
+						filterBy="#{acc.entityAccount.account.ACCOUNT_ID}">
+						<h:link
+							value="#{acc.entityAccount.account.ACCOUNT_ID}" 
+							outcome="account" id="previewAccount4" styleClass="">
+							<f:param name="accountId"
+								value="#{acc.entityAccount.account.ACCOUNT_ID}" />
+						</h:link>
+					</p:column>
+
+
+<p:column headerText="#{msg.accountNumber}" filterMatchMode="contains"
+						sortBy="#{acc.entityAccount.account.ACCOUNT_NUMBER}"
+						filterBy="#{acc.entityAccount.account.ACCOUNT_NUMBER}">
+						<h:outputText value="#{acc.entityAccount.account.ACCOUNT_NUMBER}" />
+					</p:column>
+
+					
+					
+					<p:column headerText="#{msg.firstName}"
+						filterMatchMode="contains" sortBy="#{acc.entityAccount.account.FIRST_NAME}"
+						filterBy="#{acc.entityAccount.account.FIRST_NAME}">
+						<h:outputText value="#{acc.entityAccount.account.FIRST_NAME}" />
+					</p:column>
+					<p:column headerText="#{msg.lastName}"
+						filterMatchMode="contains" sortBy="#{acc.entityAccount.account.LAST_NAME}"
+						filterBy="#{acc.entityAccount.account.LAST_NAME}">
+						<h:outputText value="#{acc.entityAccount.account.LAST_NAME}" />
+					</p:column>
+					
+					<p:column headerText="#{msg.relationship}"
+						sortBy="#{acc.entityEmployee.employee.FIRST_NAME}"
+						filterBy="#{acc.entityEmployee.employee.FIRST_NAME}">
+						
+							<h:outputText 
+								value="#{acc.entityEmployee.employee.FIRST_NAME} #{acc.entityEmployee.employee.LAST_NAME}" />
+					</p:column>
+					<p:column headerText="#{msg.bankName}"
+						sortBy="#{acc.entityBank.bank.BANK_NAME}"
+						filterBy="#{acc.entityBank.bank.BANK_NAME}">
+						<h:outputText value="#{acc.entityBank.bank.BANK_NAME}" />
+					</p:column>
+
+					<p:column headerText="#{msg.asOf}"
+						sortBy="#{acc.monitor.AS_OF_DATE}"
+						filterBy="#{acc.monitor.AS_OF_DATE}">
+						<h:outputText value="#{acc.monitor.AS_OF_DATE}">
+							<f:convertDateTime pattern="dd.MM.yyyy" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="#{msg.endDate}"
+						sortBy="#{acc.monitor.END_DATE}"
+						filterBy="#{acc.monitor.END_DATE}">
+						<h:outputText value="#{acc.monitor.END_DATE}">
+							<f:convertDateTime pattern="dd.MM.yyyy" />
+						</h:outputText>
+					</p:column>
+
+
+					<f:facet name="footer">
+					   <p:commandButton id="toggler" type="button" value="#{msg.tabelView}"
+							styleClass="buttonConfirm" icon="ui-icon-calculator" style="float:left;margin-right: 8px;background:rgb(68, 68, 68);height:30px;" />
+						<p:columnToggler datasource="extAll" trigger="toggler" />
+						<span> <h:outputLabel id="itemNum" styleClass="rowCount"
+								value="#{msg.count}: #{employee.accountsDatasource.filteredEntities.size()}"></h:outputLabel>
+						</span>
+						<h:commandLink id="pdf" style="float:left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://icons.iconarchive.com/icons/treetog/file-type/96/pdf-icon.png"
+								width="24" />
+							<p:dataExporter type="pdf" target="extAll" fileName="acc" />
+						</h:commandLink>
+
+						<h:commandLink id="csv" style="float:left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/csv.png.xhtml"
+								width="24" />
+							<p:dataExporter type="csv" target="extAll" fileName="acc" />
+						</h:commandLink>
+
+						<h:commandLink id="xml" style="float:left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://www.primefaces.org/showcase/javax.faces.resource/demo/images/xml.png.xhtml"
+								width="24" />
+							<p:dataExporter type="xml" target="extAll" fileName="acc" />
+						</h:commandLink>
+						<h:commandLink id="xls" style="float:left;margin-top:  5px;">
+							<p:graphicImage
+								url="http://icons.iconarchive.com/icons/ziggy19/microsoft-office-mac-tilt/96/Excel-icon.png"
+								width="24" />
+							<p:dataExporter type="xls" target="extAll" fileName="acc" />
+						</h:commandLink>
+
+						<p class="clear" />
+					</f:facet>
+				</p:dataTable>
+
+
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+
+</ui:composition>

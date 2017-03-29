@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:form id="regForm">
+		<div id="registerDiv" >
+		<p:panelGrid id="registerGrid"  columns="2">
+			<h:outputLabel for="name" value="Bank name: "></h:outputLabel>
+			<p:inputText id="bankName" label="name"
+				value="#{register.curBank.bank.BANK_NAME}"></p:inputText>
+
+			<h:outputLabel for="username" value="Bank code:"></h:outputLabel>
+			<p:selectOneMenu value="#{register.selectedBankId}">
+				<f:selectItem itemLabel="Select bank" />
+				<f:selectItems value="#{register.bankHashMap}" />
+			</p:selectOneMenu>
+
+
+			<h:outputLabel for="username" value="Username: "></h:outputLabel>
+			<p:inputText id="bankUsername" label="username"
+				value="#{register.curUser.user.USER_NAME}"></p:inputText>
+
+
+			<p:commandButton value="#{msg.confirm}" process="@form"
+				update=":regForm" actionListener="#{register.registerButton()}"
+				style="background: #039BE5;" styleClass="normalRight">
+
+			</p:commandButton>
+			</p:panelGrid>
+		</div>
+
+	</h:form>
+
+
+
+</html>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Majora JSF 2.1">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+			<attribute name="owner.project.facets" value="jst.jsf"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/barbecue-1.5-beta1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/barcode4j-2.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/batik-anim.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/batik-awt-util.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/batik-bridge.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/batik-css.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/batik-dom.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/batik-ext.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/batik-gvt.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/batik-parser.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/batik-script.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/batik-svg-dom.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/batik-svggen.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/batik-util.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/batik-xml.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/bcel-5.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/bsh-2.0b4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/castor-1.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-beanutils-1.8.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-collections-2.1.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-digester-1.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-javaflow-20060411.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-validator-1.3.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/core-renderer-minimal.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/core-renderer.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/groovy-all-2.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hsqldb-1.8.0-10.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/imgscalr-lib-4.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/iText-2.1.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-core-lgpl-1.7.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-mapper-lgpl-1.7.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jasperreports-5.6.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jasperreports-fonts.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jasypt-1.9.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.faces.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jaxen-1.1.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jcommon-1.0.15.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jdt-compiler-3.1.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jfreechart-1.0.12.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jpa.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jsf-api-2.1.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jsf-impl-2.1.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jsoup-1.7.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jxl-2.6.10.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mail.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mondrian-3.1.1.12687.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/myfaces-commons-utils20-1.0.2.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/myfaces-validators20-1.0.2.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/omnifaces-1.8.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/png-encoder-1.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/poi-3.7-20101029.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/poi-ooxml-3.7-20101029.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/poi-ooxml-schemas-3.7-20101029.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/resources-ckeditor-nik-repack-1.2.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/rhino-1.7R1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/saaj-api-1.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/serializer.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/servlet.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/stringtemplate.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/velocity-1.7-dep.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xalan-2.7.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xbean.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xercesImpl-2.7.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xml-apis-ext.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xml-apis-xerces-2.9.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xml-apis.jar"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/mc.logic"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/mc.model"/>
+	<classpathentry kind="lib" path="/mc.logic/lib/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="/mc.logic/lib/jasypt-1.9.0.jar"/>
+	<classpathentry kind="lib" path="/mc.logic/lib/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/mc.logic/lib/jsoup-1.7.3.jar"/>
+	<classpathentry kind="lib" path="/mc.logic/lib/junit-4.11.jar"/>
+	<classpathentry kind="lib" path="/mc.logic/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="/mc.logic/lib/mail.jar"/>
+	<classpathentry kind="lib" path="/mc.logic/lib/ojdbc7.jar"/>
+	<classpathentry kind="lib" path="/mc.logic/lib/poi-3.11-beta2-20140822.jar"/>
+	<classpathentry kind="lib" path="/mc.logic/lib/poi-examples-3.11-beta2-20140822.jar"/>
+	<classpathentry kind="lib" path="/mc.logic/lib/poi-excelant-3.11-beta2-20140822.jar"/>
+	<classpathentry kind="lib" path="/mc.logic/lib/poi-ooxml-3.11-beta2-20140822.jar"/>
+	<classpathentry kind="lib" path="/mc.logic/lib/poi-ooxml-schemas-3.11-beta2-20140822.jar"/>
+	<classpathentry kind="lib" path="/mc.logic/lib/poi-scratchpad-3.11-beta2-20140822.jar"/>
+	<classpathentry kind="lib" path="/mc.logic/lib/problem_processor_v1.0.jar"/>
+	<classpathentry kind="lib" path="/mc.logic/lib/quartz-2.0.2.jar"/>
+	<classpathentry kind="lib" path="/mc.logic/lib/slf4j-api-1.6.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/mc.logic/lib/slf4j-simple-1.6.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/mc.logic/lib/stringtemplate.jar"/>
+	<classpathentry kind="lib" path="/mc.logic/lib/ucp.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/atmosphere-runtime-2.4.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.inject-1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/primefaces-6.0.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/primefaces-extensions-6.0.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="/batch_source/lib/gson-2.2.4.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

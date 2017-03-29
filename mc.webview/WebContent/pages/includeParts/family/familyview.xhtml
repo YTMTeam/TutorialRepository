@@ -1,0 +1,179 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+
+
+
+	<h:panelGroup layout="block" id="lay" styleClass="ui-wrapper-middle">
+		<p:dataTable id="groups" var="us" value="#{family.familyMembers}"
+			selectionMode="single" selection="#{family.curUserTo}"
+			rowKey="#{us.ACCOUNT_ID}" style="float:left;width:400px"
+			emptyMessage="#{msg.noData}" scrollable="true"
+			resizableColumns="true" widgetVar="familyTable" scrollHeight="522"
+			filteredValue="#{family.listMembers}">
+
+			<p:ajax event="rowSelect" listener="#{family.onRowSelect}"
+				update=":#{outerForm}:familyPanelGroup" />
+			<p:ajax event="rowUnselect" listener="#{family.onRowUnselect}"
+				update="@form" />
+			<p:column sortBy="#{us.FIRST_NAME}" filterBy="#{us.FIRST_NAME}"
+				filterMatchMode="contains" sortable="true"
+				headerText="#{msg.householdMembers}">
+				<!--         <div style="display:block;width:55px; " > -->
+				<p:graphicImage value="#{family.streamProfilePicSession}"
+					style="max-width: 100%;width:55px;height:55px;float: left;">
+					<f:param name="addressId" value="#{us.ACCOUNT_ID}" />
+				</p:graphicImage>
+				<!--  </div> -->
+				<div style="position: relative; float: left; top: 7px; left: 17px">
+					<h:outputText value="#{us.FIRST_NAME}"
+						style=" font-size:14px;font-weight:bold;float:left;" />
+					<p:outputLabel value="Pro" styleClass="ui-output-rounded"
+						style="float:left " rendered="#{us.TYPE == 'WABANKUSER'}" />
+					<p class="clear" />
+					<h:outputText value="#{us.LAST_NAME}" id="test"
+						style="color:#3A89D8 !important;font-size:15px;font-weight: 500;float:left;margin-top: 5px;width:100%  " />
+					<p class="clear" />
+				</div>
+			</p:column>
+			<f:facet name="footer">
+				<span class="rowCount"> <h:outputLabel
+						value="#{family.familyMembers.size()} members"
+						style="font-weight:600;float:right;color:#727272;margin-right:2px" />
+
+				</span>
+				<p class="clear" />
+			</f:facet>
+		</p:dataTable>
+
+
+		<!-- 		<p:panel styleClass="innerPanel paddingToChart ui-paneltitle"> -->
+		<!-- 		<ui:include src="/pages/includeParts/addresses/curuserview.xhtml"> -->
+		<!-- 		<ui:param name="curUser" value="#{family.curUser}"></ui:param> -->
+		<!-- 		</ui:include> -->
+		<!-- 	</p:panel> -->
+
+		<h:panelGroup id="familyPanelGroup">
+			<p:panel id="familyPanel" style="height:599px"
+				styleClass="innerPanel paddingToChart ui-panelhalf"
+				rendered="#{family.curFamilyMember!=null}">
+				<p:panelGrid style="border-bottom:1px solid #E0E0E0"
+					styleClass="roundGrid newprof lexRoundGrid marginToChart ui-paneltitle">
+					<p:row>
+						<p:column style="padding-bottom: 20px;padding-top:13px">
+
+							<p:graphicImage value="#{family.streamProfilePicSession}"
+								style="width:69px;height:69px;border:1px solid #CCCCCC;float:left;margin-right:24px">
+								<f:param name="addressId"
+									value="#{family.curFamilyMember.to.ACCOUNT_ID}" />
+							</p:graphicImage>
+							<!-- 					<div class="roundCell"> -->
+							<!-- 						<h:outputLabel value="#{family.curFamilyMember.to.FIRST_NAME} #{family.curFamilyMember.to.LAST_NAME}" -->
+							<!-- 							style="font-size:24px;color:#262626 !important" -->
+							<!-- 							styleClass="leftPart"></h:outputLabel> -->
+							<!-- 					</div> -->
+							<!-- 					<div class="roundCell" style="padding-top: 2px"> -->
+							<!-- 						<h:outputLabel value="#{family.curFamilyMember.to.TYPE}" -->
+							<!-- 							style="color:#727272 !important;font-size:21px;font-weight: 500;" -->
+							<!-- 							styleClass="leftPart"></h:outputLabel> -->
+							<!-- 					</div> -->
+							<!-- 					<div class="roundCell" style="padding-top: 2px"> -->
+							<!-- 						<h:outputLabel value="SIN: #{family.curFamilyMember.to.SIN}" rendered="#{family.curFamilyMember.bankUser}" -->
+							<!-- 							style="color:#727272 !important;font-size:21px;font-weight: 500;" -->
+							<!-- 							styleClass="leftPart"></h:outputLabel> -->
+							<!-- 					</div> -->
+							<div class="roundCell">
+								<h:outputLabel value="#{family.curFamilyMember.to.FIRST_NAME} "
+									style="font-size:19px;color:#262626 !important"
+									styleClass="leftPart">
+								</h:outputLabel>
+							</div>
+							<div class="roundCell">
+								<h:outputLabel value="#{family.curFamilyMember.to.LAST_NAME}"
+									style="color:#3A89D8 !important;font-size:15px;font-weight: 500;"
+									styleClass="leftPart"></h:outputLabel>
+							</div>
+							<div class="roundCell">
+								<h:outputLabel value="#{family.curFamilyMember.to.BANK_NAME}"
+									rendered="#{family.curFamilyMember.bankUser}"
+									style="color:#727272 !important;font-size:15px;font-weight: 500;"
+									styleClass="leftPart"></h:outputLabel>
+							</div>
+						</p:column>
+						<p:column>
+							<div style="display: table; width: 100%;">
+								<div class="roundCell"
+									style="display: table-cell; height: 69px; vertical-align: middle;">
+									<p:selectOneMenu style="float:right" value="a">
+										<!--             <f:selectItem itemLabel="Add member" itemValue="" /> -->
+										<!--             <f:selectItem itemLabel="Remove member" itemValue="Xbox One" /> -->
+									</p:selectOneMenu>
+								</div>
+							</div>
+
+						</p:column>
+					</p:row>
+
+				</p:panelGrid>
+				<p:panelGrid styleClass="roundGrid newprof ui-panelGrid-standard">
+
+
+					<p:row>
+						<p:column style="padding-top:24px;">
+							<div class="roundCell">
+								<p:outputLabel value="#{family.curFamilyMember.to.STREET}" />
+							</div>
+							<div class="roundCell">
+								<h:outputText value="#{msg.street}" />
+							</div>
+						</p:column>
+						<p:column style="text-align:right;padding-top:24px;">
+							<div class="roundCell">
+								<p:outputLabel value="#{family.curFamilyMember.to.CITY}" />
+							</div>
+							<div class="roundCell">
+								<h:outputText value="#{msg.city}" />
+							</div>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column style="padding-top:24px;"
+							rendered="#{family.curFamilyMember.bankUser}">
+							<div class="roundCell">
+								<p:outputLabel value="#{family.curFamilyMember.to.SIN}" />
+							</div>
+							<div class="roundCell">
+								<h:outputText value="SIN" />
+							</div>
+						</p:column>
+
+					</p:row>
+				</p:panelGrid>
+			</p:panel>
+		</h:panelGroup>
+		<p class="clear" />
+		<p:commandButton value="#{msg.viewTrades}"
+			actionListener="#{user.selectNewUser(family.curFamilyMember)}"
+			onstart="progressStart()"
+			oncomplete="start();googleClick();progressEnd();"
+			styleClass="ui-button-standard"
+			style="border-radius:0;float:right;margin-right:5px;margin-top:6px;"
+			update=":familyForm :tradesForm :curUserForm :menuForm" />
+		<!--  	 <p:commandButton value="Export to Excel" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);"  styleClass="ui-button-standard"	style="border-radius:0;float:right;margin-right:7px"> -->
+		<!--         <p:fileDownload  value="#{manageExportView.getExcelForUserTrades(27)}" /> -->
+
+		<!--     </p:commandButton> -->
+
+
+		<!-- 	 <p:commandButton value="Generate new transactions" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" styleClass="ui-button-standard" style="border-radius:0;float:right" > -->
+		<!--         <p:fileDownload  value="#{manageBlockchain.generateRandomStockTransactions()}" /> -->
+
+		<!--     </p:commandButton> -->
+
+
+	</h:panelGroup>
+</ui:composition>

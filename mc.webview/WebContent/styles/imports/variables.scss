@@ -1,0 +1,339 @@
+//colors **********************************************************************************************************************************
+
+//dialog header font-color
+$color_shakespeare_approx: #3399CC;
+
+$white: #fff;
+$black: #000;
+$color_geyser_approx: #d1d9ed;
+$color_celeste_approx: #cdcdcd;
+$color_suva_gray_53_approx: rgba(137, 136, 136, 0.53);
+$color_alabaster_approx: #f9f9f9;
+$color_aqua_haze_approx: #edf3f6;
+$color_gray_nurse_approx: #eaeaea;
+$color_storm_dust_approx: #656565;
+$color_fuscous_gray_5_approx: rgba(85, 85, 85, 0.05);
+$color_fuscous_gray_15_approx: rgba(85, 85, 85, 0.15);
+$wild_sand: #f4f4f4;
+$color_mercury_approx: #e4e4e4;
+$color_pink_swan_20_approx: rgba(183, 183, 183, 0.2);
+$black_15: rgba(0, 0, 0, 0.15);
+$color_teal_blue_approx: #04465d;
+$color_tundora_approx: #444;
+$color_casablanca_approx: #f7b154;
+$color_desert_storm_approx: #f7f8f9;
+
+//used for ui-separator
+$color_cloud_approx: #c4c4c4;
+
+$color_celeste_62_approx: rgba(205,205,205,0.62);
+$color_celeste_41_approx: rgba(205, 205, 205, 0.41);
+$color_flush_mahogany_approx: #c13637;
+$black_45: rgba(0,0,0,0.45);
+$gallery: #efefef;
+$color_gravel_approx: #4c4c4c;
+$color_rangoon_green_approx: #191919;
+$color_casper_approx: #a9c2cb;
+$color_mountain_mist_approx: #999;
+$color_mine_shaft_approx: #313131;
+$color_bon_jour_approx: #e0e0e0;
+$color_black_haze_approx: #f7f7f7;
+$black_12: rgba(0, 0, 0, 0.12);
+$black_7: rgba(0, 0, 0, 0.07);
+$mercury: #e5e5e5;
+$color_log_cabin_approx: #222;
+$color_suva_gray_approx: #878787;
+$color_chicago_approx: #5d5f5e;
+$color_monsoon_approx: #898989;
+$black_60: rgba(0, 0, 0, 0.6);
+$color_dove_gray_approx: #6a6a6a;
+$color_gray_approx: #7f7f7f;
+
+//used for link color
+$color_lochmara_approx: #0180cf;
+
+$color_eastern_blue_approx: #1f94c0;
+$black_4: rgba(0, 0, 0, 0.04);
+$black_10: rgba(0, 0, 0, 0.1);
+$color_web_orange_25_approx: rgba(255, 168, 0, 0.25);
+$black_30: rgba(0, 0, 0, 0.3);
+$black_50: rgba(0, 0, 0, 0.5);
+$color_alto_approx: #dcdcdc;
+$color_yellow_orange_approx: #faaf42;
+$color_gothic_approx: #69909e;
+$color_mountain_mist_28_approx: rgba(153, 153, 153, 0.28);
+$color_tuna_approx: #333a48;
+$color_tall_poppy_approx: #b52024;
+$color_zeus_approx: #231f20;
+$color_strikemaster_approx: #976b84;
+$color_concord_approx: #7c7c7b;
+
+$color_star_dust_approx: #9a9a9a;
+$color_jelly_bean_approx: #1a84a9;
+$color_silver_approx: #c1c1c1;
+$color_iron_approx: #d8d8d7;
+$color_chateau_green_approx: #39b54a;
+$color_pumice_approx: #c5c5c5;
+
+$color_gunsmoke_approx: #848484;
+$concrete_30: rgba(242, 242, 242, 0.3);
+$color_viking_30_approx: rgba(109, 195, 228, 0.3);
+$color_mantis_approx: #7dce52;
+$color_shark_21_approx: rgba(40, 40, 40, 0.21);
+$color_cape_honey_approx: #fcecac;
+$color_onahau_approx: #d0f4fc;
+$color_endeavour_approx: #06a;
+$color_boston_blue_approx: #39a;
+$color_turquoise_blue_approx: #5ef;
+$color_narvik_approx: #ecf9f0;
+$color_serenade_approx: #fef3e7;
+$color_tree_poppy_approx: #f79421;
+$color_vanilla_ice_approx: #f5dee0;
+$concrete: #f2f2f2;
+$gray: gray;
+$color_fuscous_gray_6_approx: rgba(85, 85, 85, 0.06);
+$color_picton_blue_approx: #41acdb;
+$color_havelock_blue_approx: #3f8fcd;
+$color_de_york_approx: #6bc17e;
+$black_35: rgba(0,0,0,0.35);
+$black_25: rgba(0,0,0,0.25);
+$color_chicago_28_approx: rgba(93, 93, 93, 0.28);
+$color_ironside_gray_approx: #666766;
+$color_cape_cod_approx: #404040;
+$color_link_water_approx: #d8e5ef;
+$color_sunshade_approx: #ffa233;
+$color_casper_75_approx: rgba(169, 194, 203, 0.75);
+$color_malachite_approx: #0aca69;
+$color_sea_buckthorn_approx: #ffa62a;
+$color_polar_approx: #e4f3fa;
+$color_scooter_40_approx: rgba(41,170,225,0.4);
+$color_apple_approx: rgb(66, 182, 39);
+$color_fire_bush_approx: #d69936;
+$color_plum_approx: #911c6d;
+
+
+$color_shakespeare_approx: #50b7d7;
+$white: #ffffff;
+$black: #000000;
+$color_charade_approx: #262f38;
+$color_shark_approx: #262626;
+$color_gallery_approx: #eceeec;
+$color_mystic_approx: #e7ecf2;
+$color_scooter_approx: #33afde;
+$color_chestnut_rose_approx: #d0525d;
+$color_fuscous_gray_approx: #4f4f4f;
+$color_emerald_approx: #5fcf80;
+$color_scarlet_approx: #f62313;
+$color_tapa_approx: #737475;
+$color_quill_gray_approx: #d3d3d3;
+$color_oslo_gray_approx: #7b8d8e;
+$color_whisper_approx: #f5f7fa;
+$color_casal_approx: #336666;
+$color_bunker_approx: #141414;
+$color_fountain_blue_approx: #51c1b1;
+$color_valencia_approx: #db4437;
+$color_cerise_red_approx: #e5356f;
+$color_alizarin_crimson_approx: #e41e2f;
+$color_shiraz_approx: #b00b1c;
+$color_congress_blue_approx: #174590;
+$color_regal_blue_approx: #013974;
+$color_blumine_approx: #295776;
+$color_curious_blue_approx: #29d;
+$color_silver_chalice_approx: #b0b0b0;
+$color_scooter_10_approx: rgba(26, 179, 232, .1);
+
+
+//new colors ****************************************************************************************
+//red border for notification tab
+$color_notif_label_bell: #ff4081;
+
+//new gray color for panel_headers
+$color_centerPanel_header: #EAECEE;
+
+//panel header color, selectonemenu bg, dialog header,footer
+$color_white_lilac_approx: #f6f9fb;
+
+//main header color
+$color_header: #039BE5;
+
+//main header active color
+$color_header_active: #01579B;
+
+//main header hover color 
+$color_header_hover: #0279C0;
+
+//custom color for title panel bottom border
+$color_title_border: #b5b5b5;
+
+//ytm-accord-header font color 
+$color_accord_header: #0288D1;
+
+//ytm-accord-header border
+$color_accord_border: #DCE2F1;
+
+//ripple background
+$white_40: rgba(255, 255, 255, 0.4);
+
+//active ripple white bg
+$button_bg_ripple_color_active: rgba(153,153,153,0.4);
+
+//light button color
+$button_light_bg: #CDE3E8;
+
+//pink ripple button colors
+$button_bg_ripple_color: #ff4081;
+$button_bg_ripple_color_active_focus: #ff80ab;
+$button_bg_ripple_color_hover: #c51162;
+//green riple button colors
+$button_bg_ripple_green: #64B219;
+$button_bg_ripple_green_hover: #558B2F;
+$button_bg_ripple_green_active_focus: #9CCC65;
+//blue riple button colors
+$button_bg_ripple_blue: #0091EA;
+$button_bg_ripple_blue_hover: #096BAD;
+$button_bg_ripple_blue_active_focus: #80D8FF;
+//modena menu-item color
+$menu_item_link_ft_color: #546e7a;
+$color_inputText_highlight: #03a9f4;
+
+//new gray border
+$border_gray_color: #BDC5D6;
+
+//gc standard border
+$gc_border_color: #D1D9ED;
+
+//new leftPart label in panelGrid
+$leftPart_grid_label: #212121;
+
+//inplace background color,hover
+$inplace_bg_color: #EEF9FF;
+$inplace_bg_color_hover: #CEE4EA;
+
+//accordion hover-active-border
+$accord_bg_hover: #E8F7FE;
+$accord_bg_active: #B3E5FC;
+$accord_bg_active_border: #039BE5;
+
+//datatable even row
+$datatable_row_even_bg: #f8fafd;
+
+//searchMenu background,placeholder
+$searchMenu_bg: #096BAD;
+$searhcMenu_ph: #77B5E8;
+
+//paginator page hover 
+$paginator_bg_hover: #068AD0;
+
+//login border color on focus
+$border_color_focus_log: #6CA5D3;
+$border_color_log: #919191;
+
+//unselectable background
+$unselectable_bg: #D6E4EA;
+
+//square button border
+$table_button_border: #BCC3D3;
+
+
+//font colors
+$dark: #444;
+$standard: #565656 !default;
+$lightGray: #999;
+//clear selection button font-color
+$c_font_color: #b7d2e4;
+//
+$standard_font_size: 14px;
+
+
+//NVARs font sizes*************************************************************************************************************************************************
+$input_line_height: 20px;
+$font_size_standard: 14px !default;
+$font_size_big: 16px;
+$font_size_small: 13px;
+$font_size_huge:22px;
+//font size on login inputs
+$font_size_log: 18px;
+//font-size in accordion datatable
+$font_accordion_table: 12px;
+//fonts
+//$font_1: "Open Sans";
+//$font_2: "RalewayFallback";
+//$font_3: "sans-serif";
+$font_1: "robotoregular";
+$font_2: "robotolight";
+$font_3: "robotomedium";
+//data-uris
+$data_uri_0: "data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale";
+
+//urls
+//$url_0: url("http://fonts.googleapis.com/css?family=Raleway");
+$url_1: url("../../font/raleway/Raleway-Regular.ttf");
+$url_2: url("../../font/raleway/Raleway-SemiBold.ttf");
+$url_3: url("../../font/raleway/Raleway-SemiBoldItalic.ttf");
+$url_4: url("../../font/raleway/Raleway-Italic.ttf");
+$url_6: url("../../images/logoSmall.png");
+$url_7: url("../../images/LEX.png");
+$url_8: url("../../images/logoSmallTitan.png");
+$url_9: url("../../images/SpritesBig.png");
+$url_10: url("../../images/login_background.png");
+$url_11: url("../../images/pattern.png");
+$url_12: url("../../images/Login.jpg");
+$url_13: url("../../images/LoginTitan.jpg");
+$url_14: url("../../images/white-x.png");
+$url_15: url("../../images/SpritesNormal.png");
+$url_16: url("../../images/import_pool_icon.png");
+$url_17: url("../../images/SpritesTree.png");
+$url_18: url("../../images/IndexBackArrows.png");
+$url_19: url("../../images/SpritesIndex.png");
+$url_20: url("../../images/search-icon-gray.png");
+$url_21: url("../../images/search-icon-gray-faded.png");
+$url_22: url("../../images/GradeIcon.png");
+$url_24: url("../../images/SpritesTreeBlue.png");
+$url_26: url("../../images/topButtonGradient.png");
+$url_27: url("../../images/search-icon-blues.png");
+$url_28: url("../../images/search-icon-gray.png");
+$url_29: url("../../images/tips_icon.png");
+$url_30: url("../../images/search-icon-gray-big.png");
+$url_31: url("../../images/search-icon-gray-big-faded.png");
+$url_32: url("../../resources/Untitled-6.png");
+$url_33: url("../../resources/Untitled-8.png");
+$url_34: url("../../resources/Untitled-5.png");
+$url_35: url("../../resources/Untitled-2.png");
+$url_36: url("../../resources/Untitled-4.png");
+$url_37: url("../../resources/Untitled-1.png");
+$url_38: url("../../resources/iiroc-3-gray.png");
+$url_39: url("../../resources/iiroc-3.png");
+$url_40: url("../../images/search-icon-gray-big-faded.png");
+$url_41: url("../../images/SpritesBig.svg");//old SpritesBig40.png
+$url_42: url("../../images/flags.png");
+$url_61: url("../../images/search-icon-white.png");
+$url_62: url("../../images/search-icon-gray-left.png");
+$url_63: url("../../images/search-icon-blue-left.png");
+$url_5: url("/javax.faces.resource/images/ui-icons_898989_256x240.png.xhtml?ln=primefaces-aristo");
+$url_23: url("/javax.faces.resource/images/ui-icons_2e83ff_256x240.png.xhtml?ln=primefaces-aristo");
+$url_25: url("/javax.faces.resource/images/ui-icons_ffffff_256x240.png.xhtml?ln=primefaces-aristo");
+$url_64: url("/javax.faces.resource/images/ui-icons_2d5972_256x240.png.xhtml?ln=primefaces-aristo");
+$url_65: url("/javax.faces.resource/images/ui-icons_3a6983_256x240.png.xhtml?ln=primefaces-aristo");
+$url_66: url("/javax.faces.resource/images/ui-icons_38667f_256x240.png.xhtml?ln=primefaces-aristo");
+$url_67: url("/javax.faces.resource/images/ui-icons_cd0a0a_256x240.png.xhtml?ln=primefaces-aristo");
+$url_68: url("/javax.faces.resource/images/ui-icons_616161_256x240.png.xhtml?ln=primefaces-aristo");
+//modena fonts
+
+$url_43: url("../fonts/modena/roboto-light-webfont.eot");
+$url_44: url("../fonts/modena/roboto-light-webfont.eot?#iefix");
+$url_45: url("../fonts/modena/roboto-light-webfont.woff2");
+$url_46: url("../fonts/modena/roboto-light-webfont.woff");
+$url_47: url("../fonts/modena/roboto-light-webfont.ttf");
+$url_48: url("../fonts/modena/roboto-light-webfont.svg#robotolight");
+$url_49: url("../fonts/modena/roboto-regular-webfont.eot");
+$url_50: url("../fonts/modena/roboto-regular-webfont.eot?#iefix");
+$url_51: url("../fonts/modena/roboto-regular-webfont.woff2");
+$url_52: url("../fonts/modena/roboto-regular-webfont.woff");
+$url_53: url("../fonts/modena/roboto-regular-webfont.ttf");
+$url_54: url("../fonts/modena/roboto-regular-webfont.svg#robotoregular");
+$url_55: url("../fonts/modena/roboto-medium-webfont.eot");
+$url_56: url("../fonts/modena/roboto-medium-webfont.eot?#iefix");
+$url_57: url("../fonts/modena/roboto-medium-webfont.woff2");
+$url_58: url("../fonts/modena/roboto-medium-webfont.woff");
+$url_59: url("../fonts/modena/roboto-medium-webfont.ttf");
+$url_60: url("../fonts/modena/roboto-medium-webfont.svg#robotomedium");

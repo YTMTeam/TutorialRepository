@@ -1,0 +1,643 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<h:panelGroup layout="block" id="lay_trade"
+		styleClass="ui-wrapper-middle">
+
+		<div class="buttonPosition">
+			<p:selectBooleanButton id="value2" value="#{trades.viewUserTrades}"
+				offLabel="#{msg.userTrades}" onLabel="#{msg.viewPositions}"
+				styleClass="ui-button-standard">
+				<p:ajax update="@form" process="@this"
+					listener="#{trades.clearCurTrade()}" />
+			</p:selectBooleanButton>
+			<p:commandButton value="#{msg.exportToExcel}" ajax="false"
+				onclick="PrimeFaces.monitorDownload(start, stop);"
+				styleClass="ui-button-standard exportToExcel">
+				<p:fileDownload value="#{trades.exportAccount}" />
+			</p:commandButton>
+<!-- 			<p:commandButton value="Export trades" ajax="false" -->
+<!-- 				onclick="PrimeFaces.monitorDownload(start, stop);" -->
+<!-- 				styleClass="ui-button-standard exportToExcel"> -->
+<!-- 				<p:fileDownload value="#{trades.exportAccountTrades}" /> -->
+<!-- 			</p:commandButton> -->
+<!-- 			<p:commandButton value="Export positions" ajax="false" -->
+<!-- 				onclick="PrimeFaces.monitorDownload(start, stop);" -->
+<!-- 				styleClass="ui-button-standard exportToExcel"> -->
+<!-- 				<p:fileDownload value="#{trades.exportAccountPositions}" /> -->
+<!-- 			</p:commandButton> -->
+		</div>
+		<p:panel styleClass="centerPanel ui-panel-left">
+			<p:remoteCommand name="onFilterUserTrades"
+				update=":#{outerForm}:userTradeTable:itemNum" />
+
+			<!-- 		 :#{outerForm}:userTradeTable:buyNum :#{outerForm}:userTradeTable:sellNum -->
+
+
+			<p:dataTable id="userTradeTable" var="tx"
+				widgetVar="showUserTxsTable" rendered="#{trades.viewUserTrades}"
+				selectionMode="single" rowKey="#{tx.trade.TRADE_ID}"
+				filteredValue="#{trades.userTradesLazy.filteredEntities}"
+				value="#{trades.userTradesLazy.datasource}" scrollRows="20"
+				selection="#{trades.userTradesLazy.selectedItem}"
+				emptyMessage="#{msg.noData}" scrollable="true"
+				resizableColumns="true" scrollHeight="544" rows="10"
+				paginator="true" pageLinks="5" paginatorPosition="bottom"
+				paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+				rowsPerPageTemplate="10,50,100">
+				<p:ajax event="rowSelect" listener="#{trades.onRowSelect}"
+					process="@this" immediate="true" update=":#{outerForm}:tradePanel" />
+				<p:ajax event="rowUnselect" listener="#{trades.onRowUnselect}"
+					process="@this" update=":#{outerForm}:tradePanel" />
+				<p:ajax event="filter" oncomplete="onFilterUserTrades()" />
+				<p:column sortBy="#{tx.trade.SECURITY_SYMBOL}"
+					headerText="#{trades.curAccount.account.FIRST_NAME} - Personal Trades"
+					filterMatchMode="contains" filterBy="#{tx.trade.SECURITY_SYMBOL}">
+
+					<div class="roundCell">
+						<h:outputText styleClass="boldText"
+							value="#{tx.trade.SECURITY_SYMBOL}" />
+						<h:outputText value="&#160; shares" styleClass="leftShares" />
+						<h:outputText value="&#160;#{tx.trade.QUANTITY}"
+							styleClass="boldText quantity" />
+						<!-- 				<h:outputText value="#{tx.buyDirection ? tx.to.RECEIVER_FIRST_NAME : tx.to.SENDER_FIRST_NAME} -" -->
+						<!-- 					style="float:right;color:#727272;font-size:13px" />	 -->
+
+
+					</div>
+					<div class="roundCell">
+						<h:outputText value="$#{tx.trade.EXECUTION_PRICE}"
+							styleClass="leftExecutionPrice" />
+						<h:outputText
+							value="#{user.translateDirection(tx.trade.TRANSACTION_TYPE)}"
+							styleClass="boldText leftTransactionType" />
+						<h:outputText styleClass="leftTimeStamp"
+							value="#{timeUtil.getOnlyDateString(tx.trade.CREATE_TIMESTAMP)}" />
+
+					</div>
+
+
+					<!-- <p:commandButton  value="#{msg.details}"  actionListener="#{trades.setCurTrade(tx)}" process="@this" update="@form" /> -->
+
+				</p:column>
+				<f:facet name="footer">
+
+
+					<span class="rowCount"> <!-- TODO ADD THIS WHEN FIXED
+					<h:outputLabel value=" ) "
+							style="float:right" /> <h:outputLabel value="B "
+							style="font-weight:600;float:right;color:#727272" /> <h:outputLabel
+							id="buyNum" value=" #{trades.userTradesLazy.rowCntBuy}"
+							style="color:#262626;font-weight:bold;float:right;" /> <h:outputLabel
+							value="S + "
+							style="font-weight:600;float:right;color:#727272;margin-right:3px" />
+						<h:outputLabel id="sellNum"
+							value=" #{trades.userTradesLazy.rowCntSell}"
+							style="color:#262626;font-weight:bold;float:right;" /> <h:outputLabel
+							value=" ( " style="float:right" /> 
+							--> <h:outputLabel id="itemNum" styleClass="footerListSize "
+							style="margin-bottom: 20px;"
+							value=" #{trades.userTradesLazy.datasource.size()} " /> <h:outputLabel
+							value="#{msg.trades}" styleClass="footerTrades "></h:outputLabel>
+					</span>
+					<p class="clear" />
+				</f:facet>
+			</p:dataTable>
+
+			<p:remoteCommand name="onFilterPositions"
+				update=":#{outerForm}:positionTable:itemNum" />
+			<p:dataTable id="positionTable" var="tx"
+				widgetVar="showGroupTxsTable" rendered="#{!trades.viewUserTrades}"
+				selectionMode="single" rowKey="#{tx.position.POSITION_ID}"
+				filteredValue="#{trades.accountPositionsLazy.filteredEntities}"
+				value="#{trades.accountPositionsLazy.datasource}" scrollRows="20"
+				selection="#{trades.accountPositionsLazy.selectedItem}"
+				emptyMessage="#{msg.noData}" scrollable="true"
+				resizableColumns="true" scrollHeight="544" rows="10"
+				paginator="true" pageLinks="5" paginatorPosition="bottom"
+				paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+				rowsPerPageTemplate="10,50,100">
+				<p:ajax event="rowSelect" listener="#{trades.onPositionSelect}"
+					update=":#{outerForm}:tradePanel" />
+				<!--         <p:ajax event="rowUnselect" listener="#{trades.onRowUnselect}" update=":#{outerForm}:tradePanel" /> -->
+				<p:ajax event="filter" oncomplete="onFilterPositions()" />
+				<p:column sortBy="#{tx.position.SECURITY_SYMBOL}"
+					headerText="#{trades.curAccount.account.FIRST_NAME} - Positions"
+					filterMatchMode="contains"
+					filterBy="#{tx.position.SECURITY_SYMBOL}">
+					<div class="roundCell">
+						<h:outputText styleClass="boldText"
+							value="#{tx.position.SECURITY_SYMBOL}" />
+						<h:outputText value="&#160; shares" styleClass="leftShares" />
+						<h:outputText value="&#160;#{tx.position.QUANTITY}"
+							styleClass="boldText quantity" />
+					</div>		
+					<div class="roundCell">
+								<h:outputText styleClass="leftExecutionPrice"  value="$#{tx.position.EXECUTION_PRICE}" /> 
+								<h:outputText  styleClass="leftExecutionPrice" style="margin-left:5px;" value="#{tx.position.CURRENCY}" />
+								<h:outputText  styleClass="positionShares" style="margin-left:5px;" value="#{tx.position.CURRENCY}" />
+								<h:outputText styleClass="positionShares" value="$#{tx.position.MARKET_PRICE}" /> 
+								
+								
+							
+						<!-- 						<h:outputText value="#{tx.buyDirection ? tx.to.RECEIVER_FIRST_NAME : tx.to.SENDER_FIRST_NAME} -" -->
+						<!-- 					style="float:right;color:#727272;font-size:13px" />	 -->
+					</div>
+					
+					<!-- 			<div class="roundCell"> -->
+					<!-- 				<h:outputText value="$#{tx.to.EXECUTION_PRICE}" style="font-size:15px;color:#727272" /> -->
+					<!-- 				<h:outputText value="#{user.translateDirection(tx.to.TRANSACTION_TYPE)}" styleClass="boldText" -->
+					<!-- 					style="float:right;margin-left:7px;font-size:16px;color:#262626;font-weight:bold" /> -->
+					<!-- 				<h:outputText style="float:right;font-size:13px;color:#727272" -->
+					<!-- 					value="#{timeUtil.getOnlyDateString(tx.to.TRADE_DATE)}" /> -->
+
+					<!-- 			</div> -->
+
+				</p:column>
+				<f:facet name="footer">
+					<span class="rowCount"> <!-- 			<h:outputLabel value=" ) " style="float:right" /> -->
+						<!-- 			<h:outputLabel value="B " style="font-weight:600;float:right;color:#727272" /> -->
+						<!-- 			<h:outputLabel id="buyNum" value=" #{trades.accountPositionsLazy.rowCntBuy}" style="color:#262626;font-weight:bold;float:right;" /> -->
+						<!-- 			<h:outputLabel value="S + " style="font-weight:600;float:right;color:#727272;margin-right:3px" /> -->
+						<!-- 			<h:outputLabel  id="sellNum" value=" #{trades.accountPositionsLazy.rowCntSell}" style="color:#262626;font-weight:bold;float:right;" />  -->
+						<!-- 			<h:outputLabel value=" ( " style="float:right" /> --> <h:outputLabel
+							id="itemNum" styleClass="footerListSize"
+							value=" #{trades.accountPositionsLazy.datasource.size()} " /> <h:outputLabel
+							value="#{msg.trades}" styleClass="footerTrades"
+							style="margin-bottom: 20px;"></h:outputLabel>
+					</span>
+					<p class="clear" />
+				</f:facet>
+			</p:dataTable>
+
+
+			<!--  doesent exist anymore
+		<p:remoteCommand name="onFilterGroupTrades"
+				update=":#{outerForm}:groupTradeTable:itemNum :#{outerForm}:groupTradeTable:buyNum :#{outerForm}:groupTradeTable:sellNum" />
+			<p:dataTable id="groupTradeTable" var="tx"
+				widgetVar="showGroupTxsTable"
+				rendered="#{!trades.viewUserTrades and false}"
+				selectionMode="single"
+				filteredValue="#{trades.groupTradesLazy.filteredEntities}"
+				value="#{trades.groupTradesLazy}" scrollRows="20"
+				selection="#{trades.groupTradesLazy.selectedItem}"
+				emptyMessage="#{msg.noData}" scrollable="true"
+				resizableColumns="true" scrollHeight="522" lazy="true" rows="10"
+				paginator="true" pageLinks="5" paginatorPosition="bottom"
+				paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+				rowsPerPageTemplate="10,50,100">
+				<p:ajax event="rowSelect" listener="#{trades.onRowSelect}"
+					update=":#{outerForm}:tradePanel" />
+				<p:ajax event="rowUnselect" listener="#{trades.onRowUnselect}"
+					update=":#{outerForm}:tradePanel" />
+				<p:ajax event="filter" oncomplete="onFilterGroupTrades()" />
+				<p:column sortBy="#{tx.to.SECURITY_SYMBOL}"
+					headerText="#{trades.curUser.to.FIRST_NAME} - Household Trades"
+					filterMatchMode="contains" filterBy="#{tx.to.SECURITY_SYMBOL}">
+					<div class="roundCell">
+						<h:outputText styleClass="boldText"
+							style="color:#262626;font-size:16px;font-weight:bold"
+							value="#{tx.to.SECURITY_SYMBOL}" />
+						<h:outputText value="&#160; shares"
+							style="float:right;color:#727272;font-size:13px" />
+						<h:outputText value="&#160;#{tx.to.QUANTITY}"
+							styleClass="boldText"
+							style="float:right;color:#262626;font-size:16px;font-weight:bold" />
+						<h:outputText
+							value="#{tx.buyDirection ? tx.to.RECEIVER_FIRST_NAME : tx.to.SENDER_FIRST_NAME} -"
+							style="float:right;color:#727272;font-size:13px" />
+
+					</div>
+					<div class="roundCell">
+						<h:outputText value="$#{tx.to.EXECUTION_PRICE}"
+							style="font-size:15px;color:#727272" />
+						<h:outputText value="#{user.translateDirection(tx.to.TRANSACTION_TYPE)}"
+							styleClass="boldText"
+							style="float:right;margin-left:7px;font-size:16px;color:#262626;font-weight:bold" />
+						<h:outputText style="float:right;font-size:13px;color:#727272"
+							value="#{timeUtil.getOnlyDateString(tx.to.TRADE_DATE)}" />
+
+					</div>
+
+				</p:column>
+				<f:facet name="footer">
+					<span class="rowCount"> <h:outputLabel value=" ) "
+							style="float:right" /> <h:outputLabel value="B "
+							style="font-weight:600;float:right;color:#727272" /> <h:outputLabel
+							id="buyNum" value=" #{trades.groupTradesLazy.rowCntBuy}"
+							style="color:#262626;font-weight:bold;float:right;" /> <h:outputLabel
+							value="S + "
+							style="font-weight:600;float:right;color:#727272;margin-right:3px" />
+						<h:outputLabel id="sellNum"
+							value=" #{trades.groupTradesLazy.rowCntSell}"
+							style="color:#262626;font-weight:bold;float:right;" /> <h:outputLabel
+							value=" ( " style="float:right" /> <h:outputLabel id="itemNum"
+							style="color:#262626;font-weight:bold;float:right;margin-right:1px"
+							value=" #{trades.groupTradesLazy.rowCount} " /> <h:outputLabel
+							value="Trades:"
+							style="font-weight:600;float:right;color:#727272;margin-right:2px"></h:outputLabel>
+					</span>
+					<p class="clear" />
+				</f:facet>
+			</p:dataTable>
+		 -->
+		</p:panel>
+
+
+
+
+
+		<p:panel id="innerPanel"
+			styleClass="innerPanel paddingToChart ui-paneltitle">
+			<ui:include src="/pages/includeParts/addresses/curuserview.xhtml">
+				<ui:param name="curAccount" value="#{trades.curAccount}"></ui:param>
+				<ui:param name="outerForm" value="#{outerForm}"></ui:param>
+			</ui:include>
+		</p:panel>
+		<h:panelGroup id="tradePanel">
+			<p:panel id="tradePanelInside"
+				styleClass="innerPanel paddingToChart ui-panelhalf">
+				<h:outputText value="#{msg.selectTradeToSeeDetails}"
+					rendered="#{trades.curTrade==null and trades.viewUserTrades}"></h:outputText>
+				<h:outputText value="#{msg.selectPositionToSeeDetails}"
+					rendered="#{trades.curPosition==null and !trades.viewUserTrades}"></h:outputText>
+				<p:panelGrid
+					rendered="#{trades.curPosition!=null and !trades.viewUserTrades}"
+					styleClass="roundGrid newprof lexRoundGrid marginToChart">
+					<p:row>
+
+						<p:column styleClass="paddingPosition"
+							style="border-bottom: 1px solid #e0e0e0; padding-top: 2px;" colspan="2">
+							<div class="roundCell">
+								<h:outputLabel value="#{msg.securitySymbol}"
+									style="font-size:16px;color:#262626 !important"></h:outputLabel>
+								<br />
+								<h:outputLabel
+									value="#{trades.curPosition.position.SECURITY_SYMBOL}"
+									styleClass="leftPart executionPrice" style="font-weight: 600;"></h:outputLabel>
+							</div>
+						</p:column>
+						<p:column style="border-bottom: 1px solid #e0e0e0; padding-top: 2px;">
+
+							<div class="roundCell" style="padding-top: 8px;">
+								<h:outputLabel value="#{msg.quantity}"
+									style="font-size:16px;color:#262626 !important;float:right;"></h:outputLabel>
+								<br />
+								<h:outputLabel
+									value="#{trades.curPosition.position.QUANTITY} #{msg.shares}"
+									styleClass="leftPart executionPrice" style="float:right;font-weight: 600;"></h:outputLabel>
+							</div>
+						</p:column>
+
+					</p:row>
+
+					<p:row>
+						<p:column styleClass="paddingPosition" colspan="2">
+							<!-- 							<div class="roundCell"> -->
+							<!-- 								<h:outputLabel -->
+							<!-- 									value="#{trades.curPosition.position.EXPIRATION_DATE} " -->
+							<!-- 									styleClass="leftPart executionPrice"></h:outputLabel> -->
+							<!-- 							</div> -->
+							<div class="roundCell">
+								<h:outputLabel
+									value="$#{trades.curPosition.position.EXECUTION_PRICE}"
+									styleClass="leftPart executionPrice" style="font-size:16px;font-weight: 600;"></h:outputLabel>
+								<br />
+
+								<h:outputLabel value="#{msg.executinPrice}"
+									style="font-size:16px;color:#262626 !important"></h:outputLabel>
+
+							</div>
+						</p:column>
+						<p:column >
+							<div class="roundCell" style="padding-top: 10px;">
+								<h:outputLabel
+									value="$#{trades.curPosition.position.MARKET_PRICE}  "
+									styleClass="leftPart executionPrice"
+									style="font-size:16px;float:right;font-weight: 600;"></h:outputLabel>
+								<br />
+								<h:outputLabel value="#{msg.marketPrice}"
+									style="font-size:16px;color:#262626 !important;float:right;"></h:outputLabel>
+
+							</div>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="paddingPosition" colspan="2">
+							<div class="roundCell">
+								<h:outputLabel value="#{trades.curPosition.position.CURRENCY}  "
+									styleClass="leftPart executionPrice" style="font-size:16px;font-weight: 600;"></h:outputLabel>
+								<br />
+								<h:outputLabel value="#{msg.currnecy}"
+									style="font-size:16px;color:#262626 !important"></h:outputLabel>
+
+
+							</div>
+						</p:column>
+						<p:column>
+							<div class="roundCell" style="padding-top: 10px;">
+								<h:outputLabel
+									value="#{trades.curPosition.position.BROKER_CODE}  "
+									styleClass="leftPart executionPrice"
+									style="font-size:16px;float:right;font-weight: 600;"></h:outputLabel>
+								<br />
+								<h:outputLabel value="#{msg.brokerCode}"
+									style="font-size:16px;color:#262626 !important;float:right;"></h:outputLabel>
+
+
+							</div>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="paddingPosition" colspan="2">
+							<div class="roundCell">
+								<h:outputLabel
+									value="#{trades.curPosition.position.POSITION_ID}"
+									styleClass="leftPart executionPrice" style="font-size:16px;font-weight: 600;"></h:outputLabel>
+								<br />
+								<h:outputLabel value="#{msg.postionId}"
+									style="font-size:16px;color:#262626 !important"></h:outputLabel>
+
+
+							</div>
+						</p:column>
+						<p:column>
+							<div class="roundCell">
+								<h:outputLabel
+									value="#{trades.curPosition.position.EXPIRATION_DATE}-"
+									styleClass="leftPart executionPrice"
+									style="font-size:16px;float:right;font-weight: 600;"></h:outputLabel>
+								<br />
+								<h:outputLabel value="#{msg.expirationDate}"
+									style="font-size:16px;color:#262626 !important;float:right;"></h:outputLabel>
+
+							</div>
+						</p:column>
+
+
+					</p:row>
+					<p:row>
+					<p:column styleClass="paddingPosition" colspan="2">
+						<div class="roundCell">
+						<h:outputLabel
+									value="#{trades.curPosition.position.CUSIP}-"
+									styleClass="leftPart executionPrice"
+									style="font-size:16px;font-weight: 600;"></h:outputLabel>
+								<br />
+								<h:outputLabel value="#{msg.cusip}"
+									style="font-size:16px;color:#262626 !important;"></h:outputLabel>
+						</div>
+					</p:column>
+						<p:column>
+							<div class="roundCell">
+							<h:outputLabel
+									value="#{trades.curPosition.position.ISIN}-"
+									styleClass="leftPart executionPrice"
+									style="font-size:16px;float:right;font-weight: 600;"></h:outputLabel>
+								<br />
+								<h:outputLabel value="#{msg.isin}"
+									style="font-size:16px;color:#262626 !important;float:right;"></h:outputLabel>
+							</div>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<div class="roundCell">
+								<h:outputLabel
+									value="#{trades.curPosition.position.SEDOL}-"
+									styleClass="leftPart executionPrice"
+									style="font-size:16px;font-weight: 600;"></h:outputLabel>
+								<br />
+								<h:outputLabel value="#{msg.sedol}"
+									style="font-size:16px;color:#262626 !important;"></h:outputLabel>
+							</div>
+						</p:column>
+					</p:row>
+
+
+					<br />
+					<!-- 								<div class="roundCell"> -->
+					<!-- 								<h:outputLabel -->
+					<!-- 									value="#{trades.curPosition.position.SEDOL} SEDOL " -->
+					<!-- 									styleClass="leftPart executionPrice"></h:outputLabel> -->
+					<!-- 							</div><br/> -->
+					<!-- 								<div class="roundCell"> -->
+					<!-- 								<h:outputLabel -->
+					<!-- 									value="#{trades.curPosition.position.ISIN} ISIN " -->
+					<!-- 									styleClass="leftPart executionPrice"></h:outputLabel> -->
+					<!-- 							</div><br/> -->
+					<!-- 								<div class="roundCell"> -->
+					<!-- 								<h:outputLabel -->
+					<!-- 									value="#{trades.curPosition.position.CUSIP} CUSIP " -->
+					<!-- 									styleClass="leftPart executionPrice"></h:outputLabel> -->
+					<!-- 							</div><br/> -->
+
+				</p:panelGrid>
+
+
+				<p:panelGrid style="border-bottom:1px solid #E0E0E0"
+					rendered="#{trades.curTrade!=null and trades.viewUserTrades}"
+					styleClass="roundGrid newprof lexRoundGrid marginToChart">
+					<p:row>
+						<p:column styleClass="paddingPosition">
+							<div class="roundCell">
+								<h:outputLabel value="#{trades.curTrade.trade.SECURITY_SYMBOL}"
+									styleClass="leftPart securitySimbol"></h:outputLabel>
+							</div>
+							<div class="roundCell" style="padding-top: 2px">
+								<h:outputLabel value="$#{trades.curTrade.trade.EXECUTION_PRICE}"
+									styleClass="leftPart executionPrice"></h:outputLabel>
+								<!-- 						<h:outputLabel value="+1.92 (0.24%)" -->
+								<!-- 							style="color:#409936 !important;font-size:21px;font-weight: 500;margin-left: 5px;" -->
+								<!-- 							styleClass="leftPart"></h:outputLabel> -->
+							</div>
+						</p:column>
+						<p:column style="padding-bottom: 20px;padding-top: 15px;"
+							colspan="2">
+							<div class="roundCell">
+								<h:outputText value="&#160;#{msg.shares}"
+									styleClass="tradeShare"></h:outputText>
+								<h:outputText value="#{trades.curTrade.trade.QUANTITY} "
+									styleClass="tradeQuantity"></h:outputText>
+
+							</div>
+							<div class="roundCell" style="padding-top: 7px">
+								<h:outputText
+									value="#{user.translateDirection(trades.curTrade.trade.TRANSACTION_TYPE)}"
+									styleClass="tradeQuantity"></h:outputText>
+
+							</div>
+						</p:column>
+					</p:row>
+
+				</p:panelGrid>
+				<p:panelGrid styleClass="roundGrid newprof ui-panelGrid-standard"
+					rendered="#{trades.curTrade!=null}">
+
+
+					<p:row>
+						<p:column styleClass="trade">
+							<div class="roundCell">
+								<p:outputLabel value="#{trades.curTrade.trade.TRADE_ID}" />
+							</div>
+							<div class="roundCell">
+								<h:outputText value="#{msg.orderId}" />
+							</div>
+						</p:column>
+						<p:column styleClass="tradeRight" colspan="2">
+							<div class="roundCell">
+								<p:outputLabel value="#{msg.market}" />
+							</div>
+							<div class="roundCell">
+								<h:outputText value="#{msg.orderType}" />
+							</div>
+						</p:column>
+					</p:row>
+
+					<p:row>
+
+						<p:column styleClass="trade">
+							<div class="roundCell">
+								<p:outputLabel value="#{trades.curTrade.trade.SECURITY_SYMBOL}" />
+							</div>
+							<div class="roundCell">
+								<h:outputText value="#{msg.securityName}" />
+							</div>
+						</p:column>
+						<p:column styleClass="tradeRight" colspan="2">
+							<div class="roundCell">
+								<p:outputLabel value="#{trades.curTrade.trade.EXCHANGE}" />
+							</div>
+							<div class="roundCell">
+								<h:outputText value="#{msg.exchange}" />
+							</div>
+						</p:column>
+					</p:row>
+					<p:row>
+
+						<p:column styleClass="trade">
+							<div class="roundCell">
+								<p:outputLabel
+									value="#{trades.curTrade.entityBank.bank.BANK_NAME}" />
+								 
+							</div>
+							<div class="roundCell">
+								<h:outputText value="#{msg.bank}" />
+							</div>
+						</p:column>
+						<p:column styleClass="tradeRight" colspan="2">
+							<div class="roundCell">
+
+								<h:outputText
+									value="#{trades.curTrade.entityAccount.account.FIRST_NAME}  #{trades.curTrade.entityAccount.account.LAST_NAME}"
+									style="font-size: 14px;color:#262626;font-weight: 600;"
+									actionListener="#{user.selectNewUserById(trades.curTrade.entityAccount.account.ACCOUNT_ID)}"
+									rendered="#{trades.curTrade.sellDirection}"
+									update=":familyForm :tradesForm :curUserForm"
+									onstart="progressStart()"
+									oncomplete="start();googleClick();progressEnd();" />
+								<h:outputText
+									value="#{trades.curTrade.entityAccount.account.FIRST_NAME}  #{trades.curTrade.entityAccount.account.LAST_NAME}"
+									style="font-size: 14px;color:#262626;font-weight: 600;"
+									actionListener="#{user.selectNewUserById(trades.curTrade.to.BANK_ID)}"
+									rendered="#{trades.curTrade.buyDirection}"
+									update=":familyForm :tradesForm :curUserForm"
+									onstart="progressStart()"
+									oncomplete="start();googleClick();progressEnd();" />
+							</div>
+							<div class="roundCell">
+								<h:outputText value="#{msg.client}" />
+							</div>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="trade">
+							<div class="roundCell">
+								<p:outputLabel value="#{trades.curTrade.trade.NET_AMOUNT}" />
+							</div>
+							<div class="roundCell">
+								<h:outputText value="#{msg.quantity}" />
+							</div>
+						</p:column>
+						<p:column styleClass="tradeRight" colspan="2">
+							<div class="roundCell">
+								<p:outputLabel value="#{trades.curTrade.trade.QUANTITY}" />
+							</div>
+							<div class="roundCell">
+								<h:outputText value="#{msg.fillAmount}" />
+							</div>
+						</p:column>
+
+					</p:row>
+
+					<p:row>
+						<p:column styleClass="trade">
+							<div class="roundCell">
+								<p:outputLabel
+									value="#{timeUtil.getDateTimeString(trades.curTrade.trade.TRADE_DATE)}" />
+							</div>
+							<div class="roundCell">
+								<h:outputText value="#{msg.orderDate}" />
+							</div>
+						</p:column>
+
+
+
+
+					</p:row>
+					<p:row>
+
+
+						<p:column styleClass="trade">
+							<div class="roundCell">
+								<p:outputLabel value="-" />
+							</div>
+							<div class="roundCell">
+								<h:outputText value="#{msg.orderPrice}" />
+							</div>
+						</p:column>
+
+						<!-- 						<p:column style="text-align:center;padding-top:24px;"> -->
+						<!-- 							<div class="roundCell"> -->
+						<!-- 								<p:outputLabel -->
+						<!-- 									value="#{user.translateTradeStatus(trades.curTrade.trade.STATUS)}" /> -->
+						<!-- 							</div> -->
+						<!-- 							<div class="roundCell"> -->
+						<!-- 								<h:outputText value="#{msg.status}" /> -->
+						<!-- 							</div> -->
+						<!-- 						</p:column> -->
+						<p:column></p:column>
+						<p:column styleClass="tradeRight">
+							<div class="roundCell">
+								<p:outputLabel value="$#{trades.curTrade.trade.EXECUTION_PRICE}" />
+							</div>
+							<div class="roundCell">
+								<h:outputText value="#{msg.executionPrice}" />
+							</div>
+						</p:column>
+					</p:row>
+
+
+				</p:panelGrid>
+			</p:panel>
+		</h:panelGroup>
+		<p class="clear" />
+
+
+
+		<script type="text/javascript">
+function start() {
+	progressStart();
+}
+ 
+function stop() {
+    progressEnd();
+}
+</script>
+	</h:panelGroup>
+
+</ui:composition>

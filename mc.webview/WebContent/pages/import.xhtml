@@ -1,0 +1,306 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/templates/standard_template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<h:head>
+		<title>#{msg.lexExplorer}</title>
+		<link
+			href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700,800'
+			rel='stylesheet' type='text/css' />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="refresh" content="300" />
+		<!-- 		<meta http-equiv="refresh" content="0; url=login.xhtml" /> -->
+		<link href="styles/css/style.css" type="text/css" rel="stylesheet" />
+		<link href="styles/css/new_styles.css" type="text/css"
+			rel="stylesheet" />
+		<link href="styles/css/sprites.css" type="text/css" rel="stylesheet" />
+		<link href="styles/css/flags.css" type="text/css" rel="stylesheet" />
+		<link rel="icon" type="image/png" href="images/favicon.ico?v=2" />
+		<h:outputScript library="primefaces" name="jquery/jquery.js" />
+
+	</h:head>
+	<ui:define name="metadata">
+
+
+
+	</ui:define>
+
+	<ui:define name="westContent">
+
+	</ui:define>
+	<ui:define name="centerContent">
+
+		<h:form enctype="multipart/form-data">
+			<p:panel styleClass="centerPanelUpload">
+				<p:panelGrid styleClass="roundGrid newprof">
+					<p:row>
+						<p:column styleClass="positionOfComponent">
+							<p:fileUpload mode="simple" label="Choose File" style="mar"
+								value="#{fileUpload.uploadFile}" skinSimple="true"
+								id="uploadButtonSimple" allowTypes="/(\.|\/)(xls|xlsx)$/" />
+							<p:commandButton style="display:none;" value="#{msg.submit}"
+								ajax="false" disabled="true" />
+						</p:column>
+						<p:column>
+							<h:outputText styleClass="leftPart importDataHelp"
+								value="#{msg.importDescription}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="2" styleClass="positionOfComponent">
+							<h:outputText styleClass="leftPart textAlign"
+								value="#{msg.importAccounts}" />
+							<p:commandButton styleClass="buttonConfirm"
+								value="#{msg.confirm}"
+								actionListener="#{fileUpload.handleAccountsUpload()}"
+								process="@form" update="@form" ajax="false" />
+							<a
+								href="#{request.contextPath}#{sys_msg.excelUploadDir}/templates/Accounts.xls"
+								class="downloadLink" style="margin-left: 66px;">Download
+								template <p:graphicImage
+									url="http://icons.iconarchive.com/icons/arkangl300/methodic-folders-remix/96/Download-icon.png"
+									styleClass="imagePosition" width="24" />
+							</a>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="2" styleClass="positionOfComponent">
+							<h:outputText styleClass="leftPart textAlign"
+								value="#{msg.importRequestFile}" />
+							<p:commandButton styleClass="buttonConfirm"
+								value="#{msg.confirm}"
+								actionListener="#{fileUpload.handleRequestFileUpload()}"
+								process="@form" update="@form" ajax="false" />
+							<a
+								href="#{request.contextPath}#{sys_msg.excelUploadDir}/templates/Requests.xls"
+								class="downloadLink">Download template <p:graphicImage
+									url="http://icons.iconarchive.com/icons/arkangl300/methodic-folders-remix/96/Download-icon.png"
+									styleClass="imagePosition" width="24" />
+							</a>
+						</p:column>
+					</p:row>
+
+					<p:row>
+
+						<p:column colspan="2" styleClass="positionOfComponent">
+							<h:outputText styleClass="leftPart textAlign"
+								value="#{msg.importPositions}" />
+							<p:commandButton styleClass="buttonConfirm"
+								value="#{msg.confirm}"
+								actionListener="#{fileUpload.handlePositionsUpload()}"
+								process="@form" update="@form" ajax="false" />
+							<a
+								href="#{request.contextPath}#{sys_msg.excelUploadDir}/templates/Positions.xls"
+								class="downloadLink" style="margin-left: 66px;">Download
+								template <p:graphicImage
+									url="http://icons.iconarchive.com/icons/arkangl300/methodic-folders-remix/96/Download-icon.png"
+									styleClass="imagePosition" width="24" />
+							</a>
+						</p:column>
+					</p:row>
+					<p:row>
+
+						<p:column colspan="2" styleClass="positionOfComponent">
+							<h:outputText styleClass="leftPart textAlign"
+								value="#{msg.importTrades}" />
+
+							<p:commandButton styleClass="buttonConfirm"
+								value="#{msg.confirm}"
+								actionListener="#{fileUpload.handleTradesUpload()}"
+								process="@form" update="@form" ajax="false" />
+
+							<a
+								href="#{request.contextPath}#{sys_msg.excelUploadDir}/templates/Trades.xls"
+								class="downloadLink" style="margin-left: 85px;">Download
+								template <p:graphicImage styleClass="imagePosition"
+									url="http://icons.iconarchive.com/icons/arkangl300/methodic-folders-remix/96/Download-icon.png"
+									width="24" />
+							</a>
+
+						</p:column>
+
+					</p:row>
+
+
+				</p:panelGrid>
+				<p:panelGrid style="margin-top:10px"
+					rendered="#{fileUpload.hasMessages()}">
+					<p:row>
+						<p:column>
+							<div class="roundCell">
+								<p:dataList value="#{fileUpload.messages}"
+									styleClass="#{fileUpload.loaded ? 'true':'false'}" var="nes"
+									type="ordered">
+         
+        #{nes}
+    </p:dataList>
+							</div>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+
+			</p:panel>
+
+			<p class="clear" />
+
+			<!-- 		<p:panelGrid style="margin:0 auto;margin-top:-10px;"> -->
+			<!-- 				<p:row> -->
+			<!-- 					<p:column> -->
+
+
+
+			<!-- 						<p:fileUpload styleClass="devButton iconLess"  -->
+			<!-- 							mode="simple" label="#{msg.loadAccountsFromExcel}"  value="#{fileUpload.uploadFile}" process="@this" -->
+			<!-- 							  id="uploadButtonAccount" immediate="true" -->
+			<!-- 							allowTypes="/(\.|\/)(xls|xlsx)$/" /> -->
+			<!-- 					</p:column> -->
+			<!-- 					<p:column> -->
+			<!-- 						<p:fileUpload styleClass="devButton iconLess" auto="true"  -->
+			<!-- 							mode="advanced" label="#{msg.loadTradesFromExcel}" value="#{fileUpload.uploadFile}" -->
+			<!-- 							fileUploadListener="#{fileUpload.handleTradesUpload()}" id="uploadButtonTrades" -->
+			<!-- 							allowTypes="/(\.|\/)(xls|xlsx)$/" /> -->
+			<!-- 					</p:column> -->
+			<!-- 					<p:column> -->
+			<!-- 						<p:fileUpload styleClass="devButton iconLess" auto="true"  value="#{fileUpload.uploadFile}" -->
+			<!-- 							mode="advanced" label="#{msg.loadPositionsFromPositions}" -->
+			<!-- 							fileUploadListener="#{fileUpload.handlePositionsUpload()}" -->
+			<!-- 							id="uploadButtonPositions" allowTypes="/(\.|\/)(xls|xlsx)$/" /> -->
+			<!-- 					</p:column> -->
+			<!-- 				</p:row> -->
+			<!-- 			</p:panelGrid> -->
+			<br />
+
+		</h:form>
+
+
+		<h:form id="exportForm" enctype="multipart/form-data">
+
+			<p:accordionPanel
+				style="width: 753px;margin: 0 auto;margin-bottom: 20px;">
+				<p:tab title="Export Accounts">
+					<p:panel styleClass="centerPanelUpload">
+						<p:panelGrid styleClass="roundGrid newprof">
+
+							<p:column colspan="2" styleClass="positionOfComponent">
+ 
+								<p:outputLabel for="popup5" value="#{msg.from}:" />
+								<p:calendar id="popup5" value="#{trades.fechDate}" style="margin-left: 6px;" 
+									pattern="dd/MM/yyyy HH:mm:ss" yearRange="1900:2030" >
+								<f:converter converterId="dateConverter" />	
+									<p:ajax event="dateSelect" process="@this"
+											update="@none" />
+									</p:calendar>
+								<br />
+								<br />
+								<p:outputLabel for="popup6" value="#{msg.to}:"  />
+								<p:calendar   id="popup6" value="#{trades.fechDate1}" style="margin-left: 25px;"
+									pattern="dd/MM/yyyy HH:mm:ss" yearRange="1900:2030" >
+								<f:converter converterId="dateConverter" />	
+									<p:ajax event="dateSelect" process="@this"
+											update="@none" />
+									</p:calendar>
+									 
+								<p:commandButton value="#{msg.exportAccountData}" ajax="false"  
+									onclick="PrimeFaces.monitorDownload(start, stop);"
+									styleClass="buttonConfirm">
+									<p:fileDownload value="#{trades.exportAccountSpecialDate}" />
+
+								</p:commandButton>
+							</p:column>
+
+						</p:panelGrid>
+					</p:panel>
+				</p:tab>
+				<p:tab title="Export Trades">
+					<p:panel styleClass="centerPanelUpload">
+						<p:panelGrid styleClass="roundGrid newprof">
+
+							<p:column colspan="2" styleClass="positionOfComponent">
+						
+								<p:outputLabel for="popup" value="#{msg.from}:" />
+								<p:calendar id="popup" value="#{trades.fechDate2}"  style="margin-left: 6px;" 
+									pattern="dd/MM/yyyy HH:mm:ss" yearRange="1900:2030" >
+								<f:converter converterId="dateConverter" />	
+									</p:calendar>
+								<br />
+								<br />
+								<p:outputLabel for="popup2" value="#{msg.to}:" />
+								<p:calendar id="popup2" value="#{trades.fechDate3}" style="margin-left: 25px;"
+									pattern="dd/MM/yyyy HH:mm:ss" yearRange="1900:2030" >
+								<f:converter converterId="dateConverter" />	
+									</p:calendar>
+								<p:commandButton value="#{msg.exportTradesData}" ajax="false"
+									onclick="PrimeFaces.monitorDownload(start, stop);"
+									styleClass="buttonConfirm">
+									<p:fileDownload value="#{trades.exportAccountTrades}" />
+
+								</p:commandButton>
+							</p:column>
+
+						</p:panelGrid>
+					</p:panel>
+				</p:tab>
+				<p:tab title="Export Positions">
+					<p:panel styleClass="centerPanelUpload">
+						<p:panelGrid styleClass="roundGrid newprof">
+
+							<p:column colspan="2" styleClass="positionOfComponent">
+
+								<p:outputLabel for="popup3" value="#{msg.from}:" />
+								<p:calendar id="popup3" value="#{position.fechDate4}"  style="margin-left: 6px;" 
+									pattern="dd/MM/yyyy HH:mm:ss" yearRange="1900:2030" >
+								<f:converter converterId="dateConverter" />	
+									</p:calendar>
+								<br />
+								<br />
+								<p:outputLabel for="popup4" value="#{msg.to}:" />
+								<p:calendar id="popup4" value="#{position.fechDate5}" style="margin-left: 25px;"
+									pattern="dd/MM/yyyy HH:mm:ss" yearRange="1900:2030" >
+								<f:converter converterId="dateConverter" />	
+									</p:calendar>
+								<p:commandButton value="#{msg.exportPositionsData}" ajax="false"
+									onclick="PrimeFaces.monitorDownload(start, stop);"
+									styleClass="buttonConfirm">
+									<p:fileDownload value="#{position.exportAccountPosition}" />
+
+								</p:commandButton>
+							</p:column>
+
+						</p:panelGrid>
+					</p:panel>
+				</p:tab>
+			</p:accordionPanel>
+		</h:form>
+
+
+		<h:form>
+			<p:panel styleClass="centerPanelUpload">
+				<p:panelGrid styleClass="roundGrid newprof">
+					<p:column colspan="2" styleClass="positionOfComponent">
+						<h:outputText styleClass="leftPart textAlign"
+							value="#{msg.getDataFromBlockchain}"></h:outputText>
+						<p:commandButton
+							actionListener="#{blockchainController.runDataProviderOnDemand()}"
+							styleClass="buttonConfirm" value="#{msg.fetchData}">
+						</p:commandButton>
+
+					</p:column>
+				</p:panelGrid>
+			</p:panel>
+		</h:form>
+		<p class="clear" />
+		<!-- 				<p:panel styleClass="innerPanel paddingToChart ui-paneltitle" > -->
+		<!-- 		 TODO  Toljic if fileUpload.loaded make the panel green else make it pink -->
+		<!-- 				</p:panel> -->
+
+
+
+	</ui:define>
+
+
+</ui:composition>

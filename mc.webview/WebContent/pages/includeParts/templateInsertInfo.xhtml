@@ -1,0 +1,63 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+ 
+<!-- map: transferObject (templateDefinition)-->
+ 
+
+	<p:panelGrid styleClass="roundGrid newprof" style="width:420px">
+						<p:row>
+							<p:column>
+								<div class="roundCell">
+									<h:outputLabel for="templateName" value="#{msg.name}:*"
+										styleClass="leftPart" />
+									<p:inputText id="templateName" styleClass="normalRight"
+										value="#{transferObject.TEMPLATE_NAME}" required="true" requiredMessage="#{msg.requiredName}">
+										<f:attribute name="templateID" value="#{transferObject.QUIZ_TEMPLATE_ID}" /> 										 
+										<f:validator validatorId="templateNameValidator" disabled="#{disableNameValidator}"/>
+										</p:inputText>
+
+									<p class="clear" />
+								</div>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<div class="roundCell">
+									<h:outputLabel for="templateDesc" value="#{msg.description}:" 
+										styleClass="leftPart" />
+									<p:inputText id="templateDesc"
+										styleClass="normalRight"
+										value="#{transferObject.TEMPLATE_DESCRIPTION}" />
+									<p class="clear" />
+								</div>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+						<div class="roundCell">
+								<h:outputLabel for="templatePrivacy" value="#{msg.privacy}:*"
+									styleClass="leftPart" />
+
+								<div class="normalRight">
+									<p:selectOneRadio id="templatePrivacy" required="true" requiredMessage="#{msg.requiredPrivacy}"
+										value="#{transferObject.TEMPLATE_PUBLIC_IND}" disabled="#{!user.hasPermission(translate.utp.quizzesGroup.permSetQuizTemplateToPublic)}"
+										>
+										<f:selectItem itemLabel="#{msg.publicWord}"
+											itemValue="#{translate.uct.publicIndicator.codes.YES}" />
+										<f:selectItem itemLabel="#{msg.privateWord}"
+											itemValue="#{translate.uct.publicIndicator.codes.NO}" />
+									</p:selectOneRadio>
+								</div>
+ 
+								<p class="clear" />
+							</div>
+							</p:column>
+							</p:row>
+					</p:panelGrid>
+
+
+</ui:composition>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<project basedir="." default="build" name="mc.model">
+   <property environment="env"/>
+   <property name="mc.logic.location" value="../mc.logic"/>
+   <property name="mc.webview.location" value="../mc.webview"/>
+   <property name="debuglevel" value="source,lines,vars"/>
+   <property name="target" value="1.7"/>
+   <property name="source" value="1.7"/>
+   <property name="source" value="1.7"/>
+   <property name="build_dir" value="bin"/>
+
+   <path id="mc.model.classpath">
+      <pathelement location="${build_dir}"/>
+      <pathelement location="lib/commons-codec-1.9.jar"/>
+      <pathelement location="lib/commons-collections-3.2.1.jar"/>
+      <pathelement location="lib/commons-configuration-1.7.jar"/>
+      <pathelement location="lib/commons-fileupload-1.2.2.jar"/>
+      <pathelement location="lib/commons-io-2.1.jar"/>
+      <pathelement location="lib/commons-lang-2.6.jar"/>
+      <pathelement location="lib/commons-lang3-3.1.jar"/>
+      <pathelement location="lib/commons-logging-1.1.3.jar"/>
+      <pathelement location="lib/gdao.jar"/>
+      <pathelement location="lib/jxl.jar"/>
+      <pathelement location="lib/log4j-1.2.14.jar"/>
+      <pathelement location="lib/jackson-annotations-2.6.0.jar"/>
+	  <pathelement location="lib/gson-2.2.4-sources.jar"/>
+	  <pathelement location="lib/gson-2.2.4.jar"/>
+	  <pathelement location="lib/httpclient-4.2.jar"/>
+	  <pathelement location="lib/httpcore-4.2.1.jar"/>
+	  <pathelement location="lib/poi-3.11-beta2-20140822.jar"/>
+	  <pathelement location="lib/poi-examples-3.11-beta2-20140822.jar"/>
+	  <pathelement location="lib/poi-excelant-3.11-beta2-20140822.jar"/>
+	  <pathelement location="lib/poi-ooxml-3.11-beta2-20140822.jar"/>
+	  <pathelement location="lib/poi-ooxml-schemas-3.11-beta2-20140822.jar"/>
+	  <pathelement location="lib/poi-scratchpad-3.11-beta2-20140822.jar"/>
+	  <pathelement location="lib/json-simple-1.1.1.jar"/>
+
+   </path>
+   
+   <target name="init" depends="clean">
+      <mkdir dir="${build_dir}"/> 
+      
+      <copy includeemptydirs="false" todir="${build_dir}">
+         <fileset dir="generated">
+            <exclude name="**/*.launch"/>
+            <exclude name="**/*.java"/>
+            <exclude name="samples/*"/>
+         </fileset>
+      </copy>
+      <copy includeemptydirs="false" todir="${build_dir}">
+         <fileset dir="src">
+            <exclude name="**/*.launch"/>
+            <exclude name="**/*.java"/>
+         </fileset>
+      </copy>
+      
+   </target>
+   
+   <target name="clean">
+      <delete dir="${build_dir}"/>
+   </target>
+   
+   <target depends="clean" name="cleanall"/>
+   
+   <target depends="build-subprojects,build-project" name="build"/>
+   
+   <target name="build-subprojects"/>
+
+   <target depends="init" name="build-project">
+      <echo message="${ant.project.name}: ${ant.file}"/>
+      <javac debug="true" debuglevel="${debuglevel}" destdir="${build_dir}" 
+         includeantruntime="false" source="${source}" target="${target}">
+         
+         <src path="generated"/>
+         <src path="src"/>
+         <exclude name="com/mallocinc/ytm/database/generated/samples/**"/> 
+        
+         <classpath refid="mc.model.classpath"/>
+         <compilerarg value="-Xlint"/> 
+      </javac>
+   </target>
+
+   <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects">
+      <ant antfile="build.xml" dir="${mc.logic.location}" inheritAll="false" target="clean"/>
+      <ant antfile="build.xml" dir="${mc.logic.location}" inheritAll="false" target="build">
+         <propertyset>
+            <propertyref name="build.compiler"/>
+         </propertyset>
+      </ant>
+      <ant antfile="build.xml" dir="${mc.webview.location}" inheritAll="false" target="clean"/>
+      <ant antfile="build.xml" dir="${mc.webview.location}" inheritAll="false" target="build">
+         <propertyset>
+            <propertyref name="build.compiler"/>
+         </propertyset>
+      </ant>
+   </target>
+
+</project>

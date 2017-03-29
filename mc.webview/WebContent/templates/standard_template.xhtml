@@ -1,0 +1,644 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>#{msg.lexExplorer}</title>
+<!-- 	<link -->
+<!-- 		href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700,800' -->
+<!-- 		rel='stylesheet' type='text/css' /> -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link
+		href="#{request.contextPath}/resources/jquery.mCustomScrollbar.min.css"
+		type="text/css" rel="stylesheet" />
+	<link href="#{request.contextPath}/styles/css/style.css"
+		type="text/css" rel="stylesheet" />
+<!-- 	<link href="#{request.contextPath}/styles/css/new_styles.css" -->
+<!-- 		type="text/css" rel="stylesheet" /> -->
+<!-- 	<link href="#{request.contextPath}/styles/css/sprites.css" -->
+<!-- 		type="text/css" rel="stylesheet" /> -->
+	<link rel="icon" type="image/png"
+		href="#{request.contextPath}/images/favicon.ico?v=2" />
+	<h:outputScript library="primefaces" name="jquery/jquery.js" />
+	<h:outputScript library="js" name="locales.js" />
+	<h:outputScript library="js" name="buttons-carousel.js" />
+	<h:outputScript library="js" name="aa.js" />
+	<h:outputScript library="js" name="nprogress.js" />
+	<h:outputScript library="js"
+		name="jquery.mCustomScrollbar.concat.min.js" />
+
+<!-- 	<script type="text/x-mathjax-config"> -->
+<!--        MathJax.Hub.Config({ -->
+<!-- 			showMathMenu:false, -->
+<!-- 			imageFont:null,  -->
+<!--   		}); -->
+<!-- 	</script> -->
+<!-- 	<script type="text/javascript" -->
+<!-- 		src="#{request.contextPath}/MathJax/MathJax.js?config=TeX-AMS_HTML"></script> -->
+	<script type="text/javascript">
+		function inplaceCss() {
+			$('.ui-inplace-display').css("display", "block");
+			$('.ui-inplace-content').css("display", "none");
+			$('.ui-inplace:has(.ui-state-error) .ui-inplace-display').css(
+					"display", "none");
+			$('.ui-inplace:has(.ui-state-error) .ui-inplace-content').css(
+					"display", "block");
+
+		}
+
+		function initializeActiveMenu() {
+			var path = window.location.pathname;
+			if (path.indexOf("home.xhtml") != -1) {
+				$('#home').addClass('active');
+			} else if (path.indexOf("import.xhtml") != -1) {
+				$('#import').addClass('active');
+			} else if (path.indexOf("export.xhtml") != -1) {
+				$('#export').addClass('active');
+			} else if (path.indexOf("pools.xhtml") != -1) {
+				$('#pools').addClass('active');
+			} else if (path.indexOf("reports.xhtml") != -1) {
+				$('#reports').addClass('active');
+			} else if (path.indexOf("grading.xhtml") != -1) {
+				$('#grading').addClass('active');
+			} else if (path.indexOf("quiz_wizard.xhtml") != -1) {
+				$('#quizzes').addClass('active');
+			} else if (path.indexOf("quiz_collection.xhtml") != -1) {
+				$('#quizzes').addClass('active');
+			}
+		}
+
+		function hasNavigation() {
+			var path = window.location.pathname;
+			return path.indexOf("courseclass.xhtml") != -1
+					|| path.indexOf("pools.xhtml") != -1
+					|| path.indexOf("quizzes.xhtml") != -1
+					|| path.indexOf("reports.xhtml") != -1
+					|| path.indexOf("profile.xhtml") != -1;
+		}
+
+		function initializeNavigation() {
+
+			if (hasNavigation()) {
+				$('#navig_label').css("display", "block");
+				setNavigation();
+			} else {
+				$('#navig_label').css("display", "none");
+				$('#notif_label').css("width", "100%");
+				setNotifications();
+			}
+			$('#navig_label').click(setNavigation);
+			$('#notif_label').click(setNotifications);
+		}
+		function setNavigation() {
+			$('#navig_label').removeClass('inActiveLabel');
+			$('#notif_label').addClass('inActiveLabel');
+			$('#notif_block').css("display", "none");
+			$('#navig_block').css("display", "block");
+		}
+		function setNotifications() {
+			$('#notif_label').removeClass('inActiveLabel');
+			$('#navig_label').addClass('inActiveLabel');
+			$('#notif_block').css("display", "block");
+			$('#navig_block').css("display", "none");
+			updateNotif();
+		}
+		function updateNotif() {
+			// poziva update samo ako su renderovane notifikacije
+			if ($('#notifForm').length > 0) {
+				updateNotifFormAndLabel();
+			}			
+		}
+		function numNotificationsColor() {
+
+			if ($('#notif_size_label').text().indexOf("(0)") != -1) {
+
+				$('#notif_size_label').css("color", "#333");
+			}
+
+		}
+
+		function scaleAverageTextFont() {
+			var span = $('.averageScoreText');
+			var maxWidth = 160;
+			var fontSize1 = 80;
+			do {
+				span.css('font-size', (fontSize1--) + "pt");
+			} while (span.width() > maxWidth);
+			var span2 = $('.achivedGradeText');
+			var fontSize2 = 16;
+			do {
+				span2.css('font-size', (fontSize2--) + "pt");
+				span2.css('line-height', (fontSize2--) + "px");
+			} while (span2.width() > maxWidth);
+		}
+
+		function checkWindowWidth() {
+			var selectWidth = $("#header").width() - $("#leftSideHeader").width() - $("#rightSideHeader").width() - 10;
+			$("#headMenu").css("width", selectWidth + "px");
+			
+			if (selectWidth >= 630) {
+				$("#navigationSelectMenu").css("display", "none");
+				$("#mainMenu").css("display", "block");
+			} else {
+				$("#navigationSelectMenu").css("display", "block");
+				$("#mainMenu").css("display", "none");
+			}
+			
+			$('#navigationSelectMenu_panel')
+					.css("display", "none");
+		}
+		
+		function organizePanels() {
+// 			var path = window.location.pathname;
+// 			if (path.indexOf("personal_report.xhtml") != -1) {
+// 				$("#templateCenter .centerPanel.ui-panel").addClass("centered");
+// 				return;
+// 			}
+			
+// 			if ($("#templateCenter .centerPanel.ui-panel:not(.wideCenterPanel)").length == 1) {
+// 				$("#templateCenter .centerPanel.ui-panel:not(.wideCenterPanel)").css("width", "inherit");
+// 			} else {
+// 				$("#templateCenter .centerPanel.ui-panel:not(.wideCenterPanel)").css("width", "");
+// 			}
+// 			$("#templateCenter .centerPanel.ui-panel:not(.wideCenterPanel)").each(function(index) {
+// 				if (index % 2 == 1) {
+// 					$(this).css("float", "right");
+// 				} else {
+// 					$(this).css("float", "left");
+// 					if ($(this).position().left > 600) {
+// 						$(this).css("float", "right");
+// 					}
+// 				}
+// 			});
+		}
+		
+		 
+		function barChartExtender() {
+			this.cfg.grid = {
+		        drawGridLines: true,  
+		        gridLineColor: '#33AFDE',
+		        background: '#FFF',   
+		        borderColor: '#fff',  
+		        borderWidth: 1,
+		        shadow: false,           
+		        renderer: $.jqplot.CanvasGridRenderer,  
+		        rendererOptions: {}         
+			};
+			this.cfg.axesDefaults = {
+				tickOptions: {
+					showMark: false
+				}
+			}
+			this.cfg.seriesDefaults.shadow = false;
+			this.cfg.seriesDefaults.rendererOptions.barPadding = 3;
+		}
+		function showNavigation(){
+			if($(".sideButton").length > 0) {
+				$(".navigationButtons").css('display', 'block');
+			}
+			else {
+				$(".navigationButtons").css('display', 'none');
+			}
+		}
+		function initBackToTheTop() {
+			var btnTop = $('#backToTheTop'); // back to the top selector
+			var mainContent = $('#templateCenter > .ui-layout-unit > .ui-layout-unit-content');
+
+			mainContent.scroll(function(){
+				if ( $(this).scrollTop() > 300 ) {
+					btnTop.fadeIn(500);
+				} else {
+					btnTop.fadeOut(500);
+				}
+			});
+			
+			btnTop.hover(function(){
+			    $(this).animate({"opacity": 1}, 500);
+			},function(){
+			    $(this).animate({"opacity": 0.5}, 500);
+			});
+			
+			btnTop.on('click', function(){
+				mainContent.animate({
+					scrollTop: 0 ,
+				 	}, 700
+				);
+			});
+		}
+		  function start() {
+              
+          	$(".ui-diagram-element").toggleClass('inActiveLabel',true);
+      }
+			function progressStart() {
+				NProgress.start();
+				NProgress.configure({ showSpinner: false });
+			}
+			function progressEnd() {
+				NProgress.done();
+			}
+		$(document).ready(
+				function() {
+					inplaceCss();
+					initializeActiveMenu();
+					initializeNavigation();
+					scaleAverageTextFont();
+					document.title = $('.pageTitle').length !== 0 ? $(
+							'.pageTitle').first().text() : "Lex Explorer";
+					organizePanels();
+					googleClick();
+					initBackToTheTop();
+					showNavigation();
+// 					tableScrolls();
+				});
+		 (function($){
+		        $(window).on("load",function(){
+		            $("#templateCenter > .ui-layout-unit > .ui-layout-unit-content").mCustomScrollbar({
+		                theme:"minimal-dark",
+		                autoHideScrollbar: true,
+		                scrollInertia: 0,
+		                mouseWheelPixels: 100,
+			    		 advanced:{ 
+			    			    autoScrollOnFocus: false 
+			    			}
+		            });
+		       	 
+		    		 $(".ui-datatable-scrollable-body").mCustomScrollbar({
+		    			 scrollInertia: 100,
+			    		 theme:"minimal-dark",
+			    		 advanced:{ 
+			    			    autoScrollOnFocus: false 
+			    			}
+		         });
+		        });
+		    })(jQuery);
+		 function tableScrolls() {
+	    	 $(".ui-datatable-scrollable-body").mCustomScrollbar({
+	    		 scrollInertia: 100,
+	    		 theme:"minimal-dark",
+	    		 advanced:{ 
+	    			    autoScrollOnFocus: false 
+	    			}
+         });
+	    }
+	</script>
+	<script type="text/javascript">
+// 		function refreshMathJaxQueue() {
+// 			console.log('refreshing');
+// 			MathJax.Hub.Queue([ "Typeset", MathJax.Hub ]);
+// 			setTimeout(refreshMathJaxQueue, 2000);
+// 		}
+
+// 		$(document).ready(function() {
+// 			setTimeout(refreshMathJaxQueue, 2000);
+
+			//$(document).on("change", null, function() {
+			//    console.log("refresh");
+			//    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+			//});
+// 		});
+	</script>
+	<script type="text/javascript">
+		function scrollPage(location) {
+			organizePanels();
+			location = location.replace(/:/g, "\\:");
+			if ($("#"+location).length > 0) {
+				$("#templateCenter > .ui-layout-center > .ui-layout-unit-content").animate({
+			        scrollTop: $("#"+location)[0].offsetTop
+			    }, 1000);
+			}
+		}
+		function scrollPageQuiz(location) {
+			location = location.replace(/:/g, "\\:");
+			if ($("#"+location).length > 0) {
+				var selector = $("#templateCenter > .ui-layout-center > .ui-layout-unit-content");
+				var currentScroll = selector.scrollTop();
+				selector.animate({
+			        scrollTop: currentScroll + $("#"+location).position().top
+			    }, 1000);
+			}
+		}
+	</script>
+
+	<script type="text/javascript">
+		function setFocus(location) {
+			var fokus = document.getElementById(location);
+			if (fokus != null)
+				fokus.focus();
+
+		}
+	</script>
+	<script>
+		function sliceFirstАddQuotes(word) {
+			var singleQuote = "'";
+			var res1 = singleQuote.concat(word.slice(1)).concat(singleQuote);
+			return word.slice(1);
+		}
+	</script>
+	<script>
+	function repositionHints() {
+		//vec  je postavljeno da se na body click vrsi pozicioniranje pa je ovo dovoljno da se pozove za sve hintove
+		$('body').click();
+	}
+	function focusSearch() {
+		$('#searchMenu input').focus();
+	}
+</script>
+</h:head>
+<f:event listener="#{navigator.init}" type="preRenderView" />
+<h:body>
+
+	<f:view locale="#{language.localeCode}">
+		<ui:insert name="metadata" />
+		<p:layout fullPage="true"
+			onToggle="updateNotif(); organizePanels(); initializeCarousel();">
+
+			<p:layoutUnit id="header" position="north" size="50" gutter="-1"
+				collapseSize="0" resizable="true" closable="true" collapsible="true">
+				<!-- 				<div id="leftSideHeader" style="float: left"> -->
+
+				<!-- 					<div class="leftLogo" style="float: left;"> -->
+				<!-- 						<a href="#{request.contextPath}/pages/index.xhtml" -->
+				<!-- 							style="height: 100%; width: 100%; display: block;background:#262F38 !important" /> -->
+				<!-- 					</div>  -->
+
+
+				<h:form id="globalSrcForm"
+					style="float: left; margin-top: 4px; margin-left: 12px;display:none">
+					<p:autoComplete id="acDelay"
+						queryDelay="#{user.globalSearch.queryDelay}"
+						minQueryLength="#{user.globalSearch.minQueryLength}"
+						value="#{user.globalSearch.curSearch}"
+						placeholder="#{msg.searchUsers}" onchange="updateMenuPicture2()"
+						completeMethod="#{user.globalSearch.completeUsers}" effect="blind"
+						itemLabel="#{us.FIRST_NAME}" itemValue="#{us}"
+						converter="usersSearchConverter" forceSelection="true"
+						emptyMessage="#{msg.search}" alt="sae" var="us">
+						<p:column style="padding:5px 5px 10px 13px;width:55px">
+
+							<p:graphicImage value="#{mediaDisplay.streamProfilePicSession}"
+								style="max-width: 100%;width:55px;height:55px">
+								<f:param name="addressId" value="#{us.ACCOUNT_ID}" />
+							</p:graphicImage>
+
+							<!-- 										 <p:graphicImage value="#{mediaDisplay.streamProfilePic}" style="max-width: 100%" > -->
+							<!-- 										<f:param name="id" value="#{us.ACCOUNT_ID}" /> -->
+							<!-- 									</p:graphicImage> -->
+						</p:column>
+						<p:column style="padding: 5px 0 10px 5px">
+							<h:outputText style="float:left;color:#262626;font-size:14px"
+								value=" #{us.FIRST_NAME}" />
+							<p class="clear" />
+							<h:outputText value="#{us.LAST_NAME}"
+								style="float:left;color:#3A89D8;font-size:14px" />
+							<p class="clear" />
+							<h:outputText value="#{us.SIN == null ? '' : 'SIN:'} #{us.SIN}"
+								style="float:left;color:#727272;font-size:14px" />
+							<p class="clear" />
+						</p:column>
+						<p:ajax event="itemSelect" update="@none"
+							listener="#{user.onItemSelect}" immediate="true" />
+					</p:autoComplete>
+				</h:form>
+				<!-- :blockListForm :txListForm :addressForm :nodesForm :familyForm :tradesForm :curUserForm :treeForm :menuForm -->
+
+				<!--  HEAD MENU DOESN'T EXIST ANYMORE
+	 <h:form id="treeForm" styleClass="notificationForm">
+		 
+					
+			<p:selectOneButton value="#{user.oneButtonSwitchValue}">
+
+				<f:selectItem itemLabel="#{msg.households}" itemValue="#{user.VIEW_FAMILY}" itemDisabled="#{user.curUser==null}"/>	
+				<f:selectItem itemLabel="#{msg.trades}" itemValue="#{user.VIEW_TRADES}" itemDisabled="#{user.curUser==null}"/>	
+				<f:selectItem itemLabel="#{msg.network}" itemValue="#{user.VIEW_NODES}" />		
+				 		
+				<p:ajax event="change" onstart="progressStart()" oncomplete="start();googleClick();progressEnd();"  listener="#{user.clearFilters()}"
+					update=":blockListForm :txListForm :addressForm :nodesForm :familyForm :tradesForm :curUserForm " />
+					 
+			</p:selectOneButton>
+		</h:form>
+		 -->
+				<!-- 				<f:selectItem itemLabel="#{msg.accounts}" itemValue="#{user.VIEW_USERS}" /> -->
+				<!-- 				<f:selectItem itemLabel="#{msg.providedTxs}" itemValue="#{user.VIEW_TXS}" /> -->
+				<!-- 				<f:selectItem itemLabel="#{msg.providedBlocks}" itemValue="#{user.VIEW_BLOCKS}" /> -->
+				<!-- 				 <h:outputLabel value="#{user.curUser.to.FIRST_NAME}"></h:outputLabel>	 -->
+				<div id="rightSideHeader" style="float: right; margin-top: -6px;">
+					<h:form id="menuForm" styleClass="menuForm" style="float: right;">
+						<h:panelGroup style="display:block" id="userLink2"
+							rendered="#{user.curUser!=null}">
+							<div id="userLink">
+								<h:link disabled="true" title="#{user.curUser.user.USER_NAME} ">
+									<span class="userLinkLabel" style="color: white">
+										#{user.curUser.user.USER_NAME} </span>
+
+									<span
+										style="padding-left: 5px; float: right; padding-right: 5px">
+
+<!-- 										<p:graphicImage value="#{mediaDisplay.streamProfilePic}" -->
+<!-- 											id="thumbPic" width="35" height="35"> -->
+<!-- 											<f:param name="id" value="#{user.curUser.user.BANK_ID}" /> -->
+<!-- 										</p:graphicImage> -->
+
+									</span>
+
+									<f:param name="userId" value="#{user.user.USER_ID}" />
+
+								</h:link>
+
+							</div>
+						</h:panelGroup>
+					</h:form>
+				</div>
+				<div id="headMenu" style="margin-top: -5px;position: absolute; width: 100%">
+					<h:panelGroup>
+						<ul id="mainMenu" class="dropdown">
+
+							<li><h:panelGroup>
+									<a id="home" href="#{request.contextPath}/pages/home.xhtml">
+										<span class="linkWrapper lastChild">#{msg.monitoredAccounts}</span>
+									</a>
+								</h:panelGroup></li>
+							<!-- 							</ul></li> -->
+							<li><h:panelGroup>
+									<a id="import" href="#{request.contextPath}/pages/import.xhtml">
+										<span class="linkWrapper"> <span
+											class="headMenuIcon icon-pools-orange" style="float: left;" />#{msg.importData}/#{msg.exportData}
+									</span>
+									</a>
+								</h:panelGroup></li>
+<!-- 							<li><h:panelGroup> -->
+<!-- 									<a id="export" href="#{request.contextPath}/pages/export.xhtml"> -->
+<!-- 										<span class="linkWrapper"> <span -->
+<!-- 											class="headMenuIcon icon-pools-orange" style="float: left;" />#{msg.exportData} -->
+<!-- 									</span> -->
+<!-- 									</a> -->
+<!-- 								</h:panelGroup></li> -->
+
+						</ul>
+					</h:panelGroup>
+				</div>
+				<h:form>
+				<p:commandButton action="#{user.logout}"
+					style="float: right;margin: 0;" value="#{msg.signOut}" />
+				</h:form>
+				<!-- 				</div> -->
+				<!-- 				<div id="headMenu" style="float: left; margin-top: -5px;"> -->
+
+				<!-- 				</div> -->
+				<!-- 				<div id="rightSideHeader" style="float: right; margin-top: -6px;"> -->
+
+				<!-- 				</div> -->
+			</p:layoutUnit>
+
+			<p:layoutUnit id="footer" position="south" gutter="-1"
+				collapseSize="0" resizable="false" closable="false"
+				collapsible="true">
+				<div style="margin-top: -3px">
+					<!-- 					<a href="#{request.contextPath}/pages/testFunc.xhtml" -->
+					<!-- 						target="_blank" -->
+					<!-- 						style="float: left; padding-left: 10px; font-weight: 700;">Test -->
+					<!-- 						functionalities</a> -->
+					<h:outputText id="footerText"
+						value="#{msg.copyright} 2016. Lexington Inc." />
+				</div>
+			</p:layoutUnit>
+
+
+			<p:layoutUnit id="left" position="west" size="300" resizable="true"
+				closable="false" header="." collapsible="true" minSize="200"
+				maxSize="300"
+				styleClass="#{request.requestURL.indexOf('quizzes.xhtml')==-1 ? '' : 'notifAccord'}"
+				rendered="false">
+				<!-- 				<div id="navig_label"> -->
+				<!-- 					<div class="mediumIcon #{request.requestURL.indexOf('profile.xhtml')==-1 ? 'navigTreeIcon' : 'navigCertificates'}" style="margin: 5px; display: inline-block;"/> -->
+				<!-- 				</div> -->
+				<!-- 				<div id="notif_label"> -->
+				<!-- 					<div class="mediumIcon bellIcon" style="margin: 5px; display: inline-block; vertical-align: middle"/> -->
+				<!-- 					<h:form id="notifSizeForm"> -->
+
+
+				<!-- 				 </h:form> -->
+				<!-- 				</div> -->
+
+
+
+
+				<!-- 				<div id="notif_block"> -->
+
+				<!-- 				</div> -->
+
+
+
+
+				<ui:insert name="westContent">
+
+				</ui:insert>
+			</p:layoutUnit>
+
+			<p:layoutUnit id="templateCenter" position="center">
+				<p:layout>
+					<!-- <p:layoutUnit position="north" size="130" resizable="false"
+						closable="false" collapsible="false" style="text-align:center"
+						styleClass="topButtonsUnit"
+						rendered="#{request.requestURL.indexOf('index.xhtml')==-1 and request.requestURL.indexOf('take_quiz.xhtml')==-1
+						 and request.requestURL.indexOf('personal_report.xhtml')==-1 and request.requestURL.indexOf('lesson.xhtml')==-1
+						 and request.requestURL.indexOf('quiz_wizard.xhtml')==-1}">
+					</p:layoutUnit> -->
+					<p:layoutUnit position="center">
+						<ui:insert name="titleContent"></ui:insert>
+						<h:panelGroup
+							rendered="#{request.requestURL.indexOf('index.xhtml')==-1 and request.requestURL.indexOf('take_quiz.xhtml')==-1
+						 and request.requestURL.indexOf('personal_report.xhtml')==-1 and request.requestURL.indexOf('lesson.xhtml')==-1
+						 and request.requestURL.indexOf('quiz_wizard.xhtml')==-1}">
+							<div class="navigationButtons">
+<!-- 								<div id="leftArrow" class="carouselArrow disabledArrow">&lt;</div> -->
+								<div id="butWrap">
+									<ui:insert name="eastContent">
+									</ui:insert>
+								</div>
+<!-- 								<div id="rightArrow" class="carouselArrow">&gt;</div> -->
+								<p class="clear"></p>
+							</div>
+						</h:panelGroup>
+						<ui:insert name="centerContent">Center active content</ui:insert>
+						<div id="backToTheTop">
+							<span class="topIcon" />
+						</div>
+					</p:layoutUnit>
+				</p:layout>
+
+			</p:layoutUnit>
+
+		</p:layout>
+
+		<ui:insert name="dialogs"></ui:insert>
+
+
+
+		<h:form id="confirmDialog">
+			<p:remoteCommand name="updateMenuPicture"
+				 immediate="true"
+				ignoreAutoUpdate="false" />
+			<p:remoteCommand name="updateMenuPicture2"
+				 immediate="false"
+				process="@this" ignoreAutoUpdate="true" />
+			<p:confirmDialog global="true" styleClass="confirmDialog">
+
+				<p:commandButton value="#{msg.yes}" type="button" id="yesBtn"
+					styleClass="ui-confirmdialog-yes green" icon="icon-correct-green" />
+				<p:commandButton value="#{msg.no}" type="button" id="noBtn"
+					styleClass="ui-confirmdialog-no red" icon="icon-wrong-red" />
+			</p:confirmDialog>
+		</h:form>
+
+		<!-- <h:form id="msgForm"> -->
+		<p:growl id="messages" showDetail="true" autoUpdate="true" life="5000"
+			severity="info" closable="true" />
+
+		<p:growl id="messages2" showDetail="true" autoUpdate="true"
+			severity="error" sticky="true" closable="true" />
+
+		<p:growl id="messages3" showDetail="true" autoUpdate="true"
+			severity="warn" sticky="true" closable="true" />
+
+
+		<!-- not modal status indicator -->
+		<p:ajaxStatus
+			style="position:fixed;right:10px;bottom:30px; z-index: 3"
+			oncomplete="tableScrolls()">
+			<f:facet name="start">
+				<p:graphicImage value="../images/ajax-loader.gif" />
+			</f:facet>
+			<f:facet name="complete">
+				<h:outputText value="" />
+			</f:facet>
+		</p:ajaxStatus>
+
+		<!-- modal status indicator
+		<p:ajaxStatus onstart="PF('statusDialog').show()"
+			onsuccess="PF('statusDialog').hide()" />
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+			closable="false" resizable="false" showHeader="false">
+			<p:graphicImage name="/images/ajax-loader.gif" />
+		</p:dialog>
+
+ -->
+
+		<p:dialog widgetVar="pleaseWaitDlg" id="pleaseWait" modal="true"
+			draggable="false" resizable="false" position="center"
+			closable="false" header="#{msg.quizSending}" showHeader="false">
+
+			<p:outputLabel value="#{msg.pleaseWait}"
+				style="font-weight: 400 !important;" />
+		</p:dialog>
+		<!-- <ui:include src="/pages/help/helpComponents/helpFirstUsePanels.xhtml" /> -->
+		<!-- </h:form> -->
+	</f:view>
+
+
+</h:body>
+
+</html>

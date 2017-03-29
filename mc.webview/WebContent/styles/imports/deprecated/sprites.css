@@ -1,0 +1,1138 @@
+/* side(top) buttons icons */
+.ui-button.sideButton .ui-icon, .mediumIcon {
+	width: 25px;
+	height: 25px;
+	background-image: url(../../images/SpritesBig25.png);
+	background-repeat:no-repeat;
+}
+.infoBigPrimeBlue {
+	background-position: -0px  -0px;
+}
+.infoBigWhite {
+	background-position: -25px  -0px;
+}
+.infoBigGreen {
+	background-position: -75px  -0px;
+}
+.infoBigBlue, .sideButton:hover .infoBigGray {
+	background-position: -0px  -0px;
+}
+.infoBigRed {
+	background-position: -125px  -0px;
+}
+.infoBigGray {
+	background-position: -150px  -0px;
+}
+.mailGray{
+	background-position: -75px -1100px;	
+}
+.mailBlue, .sideButton:hover .mailGray{
+	background-position: -25px -1100px;	
+}
+.systemUpdateGray {
+	background-position: -75px -1925px;
+}
+.systemUpdateGray {
+	background-position: -125px -1925px;
+}
+.systemUpdateBlue, .sideButton:hover .systemUpdateGray {
+	background-position: -100px -1925px;
+}
+.systemReportGray {
+	background-position: -150px -498px;	
+}
+.systemReportBlue, .sideButton:hover .systemReportGray {
+	background-position: 0px -498px;	
+}
+.subscriberGray {
+	background-position: -150px -1425px;
+}
+.subscriberBlue, .sideButton:hover .subscriberGray {
+	background-position: -0px -1425px;
+}
+.wizardButton .helpIconGray {
+	background-position: -204px -68px;
+}
+.wizardButton .helpIconBlue, .wizardButton:hover .helpIconGray {
+	background-position: -0px -68px;
+}
+.newCategoryGray, .newCategoryButton:active .newCategoryGray {
+	background-position: -150px  -25px;
+}
+.newCategoryWhite {
+	background-position: -25px  -25px;
+}
+.newCategoryDarkBlue {
+	background-position: -50px  -25px;
+}
+
+.newClassGray {
+	background-position: -150px  -75px;
+}
+.newClassWhite {
+	background-position: -25px  -75px;
+}
+.newClassOrange {
+	background-position: -100px  -75px;
+}
+.newClassRed, .newClassButton:active .newClassGray, .newClassButton:hover .newClassGray {
+	background-position: -0px  -75px;
+}
+
+.newSubClassGray {
+	background-position: -150px  -375px;
+}
+.newSubClassWhite {
+	background-position: -25px  -375px;
+}
+.newSubClassOrange {
+	background-position: -100px  -375px;
+}
+.newSubClassRed, .newSubClassButton:active .newSubClassGray, .sideButton:hover .newSubClassGray {
+	background-position: -0px  -375px;
+}
+
+.newSubCourseGray {
+	background-position: -150px  -150px;
+}
+.newSubCoursePurple, .newSubCourseButton:active .newSubCourseGray, .sideButton:hover .newSubCourseGray {
+	background-position: -0px  -150px;
+}
+.newSubCourseWhite {
+	background-position: -25px  -150px;
+}
+
+.subpoolPurple, .subpoolButton:active .subpoolGray, .sideButton:hover .subpoolGray {
+	background-position: -175px  -325px;
+}
+.subpoolWhite {
+	background-position: -25px  -325px;
+}
+.subpoolDarkBlue {
+	background-position: -50px  -325px;
+}
+.subpoolGray {
+	background-position: -150px  -325px;
+}
+
+.removeIconWhite, .removeButton:active .removeIconDarkBlue {
+	background-position: -25px  -1075px;
+}
+.removeIconDarkBlue {
+	background-position: -50px  -1075px;
+}
+
+.timeIconBlue {
+	background-position: -100px  -1100px;
+}
+.timeIconRed {
+	background-position: -125px  -1100px;
+}
+
+.exportIconGreen, .exportButton:active .exportIconGray, .sideButton:hover .exportIconGray {
+	background-position: -75px  -1225px;
+}
+.exportIconDarkBlue {
+	background-position: -50px  -1225px;
+}
+.exportIconGray {
+	background-position: -150px  -1225px;
+}
+.quizUploadButton {
+	
+}
+.dialogFileImportIconBlue {
+    background-position: -34px -2681px;
+}
+.classCoursesWhite {
+	background-position: -25px  -125px;
+}
+.classCoursesGray {
+	background-position: -150px  -125px;
+}
+.classCoursesDarkBlue {
+	background-position: -50px  -125px;
+}
+.classCoursesPurple{
+	background-position: -175px  -125px;
+}
+.classCoursesBlue, .sideButton:hover .classCoursesGray{
+	background-position: -0px  -125px;	
+}
+.courseClassesGray {
+	background-position: -25px  -1825px;
+}
+.courseClassesIcon, .sideButton:hover .courseClassesGray {
+	background-position: -0px  -1825px;
+}
+
+.rolesGray {
+	background-position: -150px  -100px;
+}
+.rolesWhite {
+	background-position: -25px  -100px;
+}
+.rolesRed {
+	background-position: -125px  -100px;
+}
+.rolesBlue, .sideButton:hover .rolesGray {
+	background-position: -0px  -100px;
+}
+
+.membersGray {
+	background-position: -150px  -1575px;
+}
+.membersWhite {
+	background-position: -25px  -1575px;
+}
+.membersRed {
+	background-position: -125px  -1575px;
+}
+.membersBlue,
+.sideButton:hover .membersGray {
+	background-position: -0px  -1575px;
+}
+.membersBlue {
+    background-position: -0px  -1575px;
+}
+.statsGray {
+	background-position: -150px  -2400px;
+}
+.statsIcon, .sideButton:hover .statsGray {
+	background-position: -0px  -2400px;
+}
+
+.lessonsWhite {
+	background-position: -25px  -1725px;
+}
+.lessonsGray {
+	background-position: -150px  -2425px;
+}
+.lessonsBlue, .sideButton:hover .lessonsGray {
+	background-position: -0px  -2425px;
+}
+
+.attachWhite {
+	background-position: -25px  -1650px;
+}
+.attachGray{
+	background-position: -150px -1649px;
+}
+.attachBlue, .sideButton:hover .attachGray {
+	background-position: -0px  -1649px;
+}
+
+.studentsWhite {
+	background-position: -25px  -450px;
+}
+.studentsDarkBlue {
+	background-position: -50px  -450px;
+}
+
+.questionWhite {
+	background-position: -25px  -1750px;
+}
+.questionDarkBlue {
+	background-position:  -50px  -1750px;
+}
+.questionBlue, .sideButton:hover .questionGray {
+	background-position:  -0px  -1749px;
+}
+.questionGray {
+	background-position:  -150px  -1749px;
+}
+.helpGradingIconBlue {
+    background-position: -2px -2921px;
+}
+.helpCollectionIconBlue{
+    background-position: -2px -1630px;
+}
+.loadQuestionsButton, .loadQuestionsButton:active .loadQuestionsIcon,
+.sideButton:hover .loadQuestionsIcon {
+	background-position:  -175px  -2100px;
+}
+.loadQuestionsIcon {
+	background-position:  -150px  -2100px;
+}
+
+.quizzesBigDarkBlue {
+	background-position: -50px  -25px;
+}
+
+.usersIconDarkBlue {
+	background-position: -50px  -350px;
+}
+.usersIconWhite {
+	background-position: -25px  -350px;
+}
+.usersIconBlue, .sideButton:hover .usersIconGray {
+	background-position: -0px  -350px;
+}
+.usersIconGray {
+	background-position: -150px  -350px;
+}
+
+.newUserIconDarkBlue {
+	background-position: -50px  -400px;
+}
+.newUserIconWhite {
+	background-position: -25px  -400px;
+}
+.newUserIconBlue, .sideButton:hover .newUserIconGray {
+	background-position: -0px  -400px;
+}
+.newUserIconGray {
+	background-position: -150px  -400px;
+}
+
+.requestsIconDarkBlue {
+	background-position: -50px  -425px;
+}
+.requestsIconWhite {
+	background-position: -25px  -425px;
+}
+.requestsIconBlue, .sideButton:hover .requestsIconGray {
+	background-position: -0px  -425px;
+}
+.requestsIconGray {
+	background-position: -150px  -425px;
+}
+
+.fileImportButton:active .fileImportIcon, .wizardButton:hover .fileImportIcon, .fileImportIconGreen {
+	background-position: -0px  -2790px;
+}
+.fileImportIcon {
+	background-position: -204px  -2790px;
+}
+.fileImportIconBlue{
+	background-position: -0px  -450px;
+} 
+.subscribeIconGray {
+	background-position: -150px  -1950px;
+}
+.subscribeIconBlue, .sideButton:hover .subscribeIconGray {
+	background-position: -0px  -1950px;
+}
+.courseClassIconDarkBlue {
+	background-position: -50px  -975px;
+}
+.loadQuestionIconWhite {
+    background-position: -35px -2851px;
+}
+.courseClassIconWhite {
+	background-position: -25px  -975px;
+}
+
+.courseClassIconBlue, .sideButton:hover .courseClassIconGray {
+	background-position: -0px  -975px;
+}
+.courseClassIconGray {
+	background-position: -150px  -975px;
+}
+
+.poolsIconDarkBlue {
+	background-position: -50px  -950px;
+}
+.poolsIconWhite {
+	background-position: -25px  -950px;
+}
+.poolsIconBlue, .sideButton:hover .poolsIconGray {
+	background-position: -0px  -950px;
+}
+.poolsIconGray {
+	background-position: -150px  -950px;
+}
+
+.passIconDarkBlue, .sideButton:hover .passIconGray {
+	background-position: -50px  -850px;
+}
+.passIconWhite {
+	background-position: -25px  -850px;
+}
+.passIconGray {
+	background-position: -150px  -850px;
+}
+
+.gradingIconDarkBlue {
+	background-position: -50px  -2125px;
+}
+.gradingIconWhite {
+	background-position: -25px  -2125px;
+}
+.gradingIconRed, .sideButton:hover .gradingIconGray {
+	background-position: -125px  -2125px;
+}
+.gradingIconGray {
+	background-position: -150px  -2125px;
+}
+.helpSubpoolBlue {
+    background-position: -270px -1288px;
+}
+
+.collectionIconDarkBlue {
+	background-position: -50px  -1200px;
+}
+.collectionIconWhite {
+    background-position: -35px -1629px;
+}
+.collectionIconBlue, .sideButton:hover .collectionIconGray {
+	background-position: -0px  -1200px;
+}
+.collectionIconGray {
+	background-position: -150px  -1200px;
+}
+
+.newGradingIconBlue, .sideButton:hover .newGradingIconGray {
+	background-position: -0px  -2149px;
+}
+.cerificateIconBlue, .sideButton:hover .certificateIconGray {
+	background-position: -0px  -2498px;
+}
+.newGradingIconGray {
+	background-position: -150px  -2149px;
+}
+.certificateIconGray {
+	background-position: -150px  -2498px;
+}
+.newGradingIconWhite {
+    background-position: -36px -2921px;
+}
+.createdQuizzesIconDarkBlue {
+	background-position: -50px  -525px;
+}
+.createdQuizzesIconWhite {
+	background-position: -25px  -525px;
+}
+.createdQuizzesIconBlue, .sideButton:hover .createdQuizzesIconGray {
+	background-position: -0px  -524px;
+}
+.createdQuizzesIconGray {
+	background-position: -150px  -524px;
+}
+
+.appointedQuizzesIconDarkBlue {
+	background-position: -50px  -550px;
+}
+.appointedQuizzesIconWhite {
+	background-position: -25px  -550px;
+}
+.appointedQuizzesIconBlue, .sideButton:hover .appointedQuizzesIconGray {
+	background-position: -0px  -549px;
+}
+.appointedQuizzesIconGray {
+	background-position: -150px  -549px;
+}
+
+.activeQuizzesIconDarkBlue {
+	background-position: -50px  -575px;
+}
+.activeQuizzesIconWhite {
+	background-position: -25px  -575px;
+}
+.activeQuizzesIconGray {
+	background-position: -150px  -574px;
+}
+.activeQuizzesIconBlue, .sideButton:hover .activeQuizzesIconGray {
+	background-position: -0px  -574px;
+}
+
+.finishedQuizzesIconDarkBlue {
+	background-position: -50px  -600px;
+}
+.finishedQuizzesIconWhite {
+	background-position: -25px  -600px;
+}
+.finishedQuizzesIconBlue, .sideButton:hover .finishedQuizzesIconGray {
+	background-position: -0px  -599px;
+}
+.finishedQuizzesIconGray {
+	background-position: -150px  -599px;
+}
+
+.quizTemplatesIconDarkBlue {
+	background-position: -50px  -625px;
+}
+.quizTemplatesIconGray {
+	background-position: -150px  -624px;
+}
+.quizTemplatesIconBlue, .sideButton:hover .quizTemplatesIconGray {
+	background-position: -0px  -624px;
+}
+
+.templatesIconGray, .templatesButton:active .templatesIconGray {
+	background-position: -150px  -2175px;
+}
+
+.copyIconDarkBlue {
+	background-position: -50px  -1150px;
+}
+.copyIconGray {
+	background-position: -150px  -1150px;
+}
+.copyIconWhite {
+	background-position: -25px  -1150px;
+}
+.copyIconBlue, .copyButton:active .copyIconGray, .sideButton:hover .copyIconGray {
+	background-position: -0px  -1150px;
+}
+
+.helpIconBlue {
+	background-position: -0px  -50px;
+}
+.helpIconWhite, .helpButton:active .helpIconBlue {
+	background-position: -25px  -50px;
+}
+.helpIconOrange, .sideButton:hover .helpIconGray {
+	background-position: -0px  -50px;
+}
+.helpIconGray {
+	background-position: -150px  -50px;
+}
+
+.newQuizDarkBlue {
+	background-position: -50px  -1300px;
+}
+.newQuizGray {
+	background-position: -150px  -1300px;
+}
+.newQuizWhite {
+	background-position: -25px  -1300px;
+}
+.newQuizBlue, .newQuizButton:active .newQuizGray,
+.sideButton:hover .newQuizGray {
+	background-position: -0px  -1300px;
+}
+.resultsIconBlue, .sideButton:hover .resultsIconGray {
+	background-position: -0px  -699px;
+}
+.resultsIconGray {
+	background-position: -150px  -699px;
+}
+.questionReportIconBlue, .sideButton:hover .questionReportIconGray {
+	background-position: -0px  -674px;
+}
+.questionReportIconGray {
+	background-position: -150px  -674px;
+}
+
+.navigTreeIcon {
+	background-position: -0px  -1875px;
+	margin-top: 10px !important;
+}
+.navigCertificates {
+	background-position: -0px -2500px;
+	margin-top: 10px !important;
+}
+.inActiveLabel .navigCertificates {
+	background-position: -150px -2500px;
+}
+.inActiveLabel .navigTreeIcon {
+	background-position: -150px  -1875px;
+}
+
+.bellIcon {
+	background-position: -125px  -1900px;
+}
+.inActiveLabel .bellIcon {
+	background-position: -150px  -1900px;
+} 
+/* help icons */
+.helpUsersIconBlue {
+    background-position: -0px -475px;
+}
+.helpQuestionBlue {
+    background-position: -2px -2378px;
+}
+.helpResultsIconBlue {
+    background-position: 4px -406px;
+}
+.helpQuestionReportIconBlue {
+    background-position: -0px -917px;
+}
+.helpRequestsIconBlue {
+    background-position: -0px -575px;
+}
+.helpNewUserIconBlue{
+	background-position: -0px -542px;
+}
+.helpRolesIconBlue {
+    background-position: -0px -135px;
+}
+.helpFileImportIconBlue{
+    background-position: -0px -6041px;
+}
+.helpSubscribeIconBlue {
+    background-position: -0px -2651px;
+}
+.helpPoolsIconBlue {
+    background-position: -0px -1290px;
+}
+.helpCourseClassIconBlue {
+	background-position: -0px -1324px;
+}
+.helpNewSubCourseBlue {
+	background-position: -0px -2208px;
+}
+.helpNewClassBlue {
+    background-position: -0px -2074px;
+}
+.helpNewSubClassBlue {
+	background-position: -0px -100px;
+}
+.helpCreatedQuizzesIconBlue {
+	background-position: -0px -710px;
+}
+.helpActiveQuizzesIconBlue {
+    background-position: -0px -779px;
+}
+.helpAppointedQuizzesIconBlue {
+	background-position: -0px -746px;
+}
+.helpFinishedQuizzesIconBlue {
+    background-position: -0px -813px;
+}
+.helpQuizTemplatesIconBlue {
+    background-position: -0px -848px;
+}
+.helpNewCategoryBlue {
+    background-position: -0px -34px
+}
+.helpRemoveIconBlue {
+    background-position: -0px -1460px;
+}
+.helpMembersBlue {
+    background-position: -0px -2143px;
+}
+.helpQuizTemplatesIconBlue {
+    background-position: -0px -848px;
+}
+.helpExportIconBlue {
+    background-position: -0px -1664px;
+}
+.helpLessonsBlue {
+    background-position: -0px -3297px;
+}
+.helpStatsIconBlue {
+    background-position: -0px -678px;
+}
+.helpCourseClassesIconBlue {
+    background-position: -0px -2482px;
+}
+.helpClassCoursesBlue {
+    background-position: -0px -1327px;
+}
+.helpAttachBlue{
+	background-position: -0px -2242px;
+}
+/* header icons */
+.headerIcon {
+	height: 40px;
+	width: 40px;
+	float: left;
+	margin-left: 13px;
+	background-image: url(../../images/SpritesBig40.png);
+	background-repeat: no-repeat;
+}
+.innerPanel .headerIcon, .ui-datatable-header .headerIcon,
+.headerBox .headerIcon, .helpTdLeft div,
+.ui-button.wizardButton .ui-icon, .big-action-icon {
+	height: 34px;
+	width: 34px;
+	background-image: url(../../images/SpritesBig.png);
+}
+.headerBox .headerIcon {
+	float: none;
+	margin: 0px;
+	display: inline-block;
+}
+.headerBox {
+	position:relative;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+	width: 65px;
+	height: 65px;
+/* 	border-top-left-radius: 5px; */
+	margin-right: 10px;
+	background:#29aae1 !important;
+}
+.ui-dialog-titlebar .headerBox{
+	position:absolute;
+	left:0px;
+	top:0px;
+}
+.ui-dialog-titlebar .headerBox .headerIcon{
+	margin-top:13px;
+}
+.ui-dialog-titlebar .subHeader{
+    padding-left: 60px;
+}
+/* .orangeBox { */
+/* 	background: url(../../images/box-gradient.png), #f1b01e; */
+/* 	background: url(../../images/box-gradient.png), -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f1b01e), to(#f79321)); */
+/* 	background: url(../../images/box-gradient.png), -webkit-linear-gradient(top, #f1b01e, #f79321); */
+/* 	background: url(../../images/box-gradient.png), -moz-linear-gradient(top, #f1b01e, #f79321); */
+/* 	background: url(../../images/box-gradient.png), -ms-linear-gradient(top, #f1b01e, #f79321); */
+/* 	background: url(../../images/box-gradient.png), -o-linear-gradient(top, #f1b01e, #f79321); */
+/* } */
+/* .blueBox { */
+/* 	background: url(../../images/box-gradient.png), #50b7d7; */
+/* 	background: url(../../images/box-gradient.png), -webkit-gradient(linear, 0% 0%, 0% 100%, from(#50b7d7), to(#07809f)); */
+/* 	background: url(../../images/box-gradient.png), -webkit-linear-gradient(top, #50b7d7, #07809f); */
+/* 	background: url(../../images/box-gradient.png), -moz-linear-gradient(top, #50b7d7, #07809f); */
+/* 	background: url(../../images/box-gradient.png), -ms-linear-gradient(top, #50b7d7, #07809f); */
+/* 	background: url(../../images/box-gradient.png), -o-linear-gradient(top, #50b7d7, #07809f); */
+/* } */
+/* .turquoiseBox { */
+/* 	background: url(../../images/box-gradient.png), #00a89b; */
+/* 	background: url(../../images/box-gradient.png), -webkit-linear-gradient(top, #00a89b, #2f796f); */
+/* 	background: url(../../images/box-gradient.png), -webkit-gradient(linear, 0% 0%, 0% 100%, from(#00a89b), to(#2f796f)); */
+/* 	background: url(../../images/box-gradient.png), -webkit-linear-gradient(top, #00a89b, #2f796f); */
+/* 	background: url(../../images/box-gradient.png), -moz-linear-gradient(top, #00a89b, #2f796f); */
+/* 	background: url(../../images/box-gradient.png), -ms-linear-gradient(top, #00a89b, #2f796f); */
+/* 	background: url(../../images/box-gradient.png), -o-linear-gradient(top, #00a89b, #2f796f); */
+/* } */
+/* .greenBox { */
+/* 	background: url(../../images/box-gradient.png), #91ca7e; */
+/* 	background: url(../../images/box-gradient.png), -webkit-linear-gradient(top, #91ca7e, #589a63); */
+/* 	background: url(../../images/box-gradient.png), -webkit-gradient(linear, 0% 0%, 0% 100%, from(#91ca7e), to(#589a63)); */
+/* 	background: url(../../images/box-gradient.png), -webkit-linear-gradient(top, #91ca7e, #589a63); */
+/* 	background: url(../../images/box-gradient.png), -moz-linear-gradient(top, #91ca7e, #589a63); */
+/* 	background: url(../../images/box-gradient.png), -ms-linear-gradient(top, #91ca7e, #589a63); */
+/* 	background: url(../../images/box-gradient.png), -o-linear-gradient(top, #91ca7e, #589a63); */
+/* } */
+/* .redBox { */
+/* 	background: url(../../images/box-gradient.png), #d0525f; */
+/* 	background: url(../../images/box-gradient.png), -webkit-linear-gradient(top, #d0525f, #b04154); */
+/* 	background: url(../../images/box-gradient.png), -webkit-gradient(linear, 0% 0%, 0% 100%, from(#d0525f), to(#b04154)); */
+/* 	background: url(../../images/box-gradient.png), -webkit-linear-gradient(top, #d0525f, #b04154); */
+/* 	background: url(../../images/box-gradient.png), -moz-linear-gradient(top, #d0525f, #b04154); */
+/* 	background: url(../../images/box-gradient.png), -ms-linear-gradient(top, #d0525f, #b04154); */
+/* 	background: url(../../images/box-gradient.png), -o-linear-gradient(top, #d0525f, #b04154); */
+/* } */
+/* .grayBox { */
+/* 	background: url(../../images/box-gradient.png), #626363; */
+/* 	background: url(../../images/box-gradient.png), -webkit-linear-gradient(top, #626363, #525454); */
+/* 	background: url(../../images/box-gradient.png), -webkit-gradient(linear, 0% 0%, 0% 100%, from(#626363), to(#525454)); */
+/* 	background: url(../../images/box-gradient.png), -webkit-linear-gradient(top, #626363, #525454); */
+/* 	background: url(../../images/box-gradient.png), -moz-linear-gradient(top, #626363, #525454); */
+/* 	background: url(../../images/box-gradient.png), -ms-linear-gradient(top, #626363, #525454); */
+/* 	background: url(../../images/box-gradient.png), -o-linear-gradient(top, #626363, #525454); */
+/* } */
+/* .purpleBox { */
+/* 	background: url(../../images/box-gradient.png), #a04e83; */
+/* 	background: url(../../images/box-gradient.png), -webkit-linear-gradient(top, #a04e83, #642b45); */
+/* 	background: url(../../images/box-gradient.png), -webkit-gradient(linear, 0% 0%, 0% 100%, from(#a04e83), to(#642b45)); */
+/* 	background: url(../../images/box-gradient.png), -webkit-linear-gradient(top, #a04e83, #642b45); */
+/* 	background: url(../../images/box-gradient.png), -moz-linear-gradient(top, #a04e83, #642b45); */
+/* 	background: url(../../images/box-gradient.png), -ms-linear-gradient(top, #a04e83, #642b45); */
+/* 	background: url(../../images/box-gradient.png), -o-linear-gradient(top, #a04e83, #642b45); */
+/* } */
+.centerPanel > .ui-panel-titlebar > .ui-panel-title,
+.wideCenterPanel > .ui-panel-titlebar > .ui-panel-title {
+	margin: 0px;
+}
+.headerIcon.reportsIconPurple {
+	background-position: -280px -480px;
+}
+.innerPanel .headerIcon.reportsIconPurple {
+	background-position: -238px -408px;
+}
+.headerIcon.reportsIconWhite{
+	background-position: -35px -405px;
+}
+.headerIcon.photoIconWhite{
+	background-position: -33px -1220px;
+}
+.headerIcon.gradeIconTurquoise {
+	background-position: -80px -1040px;
+}
+.innerPanel .headerIcon.gradeIconTurquoise {
+	background-position: -72px -884px;
+}
+
+.headerIcon.timeIconRed {
+	background-position: -200px -1760px;
+}
+.innerPanel .headerIcon.timeIconRed {
+	background-position: -170px -1496px;
+}
+
+.headerIcon.timeIconGray {
+	background-position: -240px -1760px;
+}
+.innerPanel .headerIcon.timeIconGray {
+	background-position: -204px -1496px;
+}
+.headerIcon.createdQuizzesIconGreen {
+	background-position: -120px -839px;
+}
+.headerIcon.createdQuizzesIconWhite {
+    background-position: -34px -711px;
+}
+.headerIcon.activeQuizzesIconWhite {
+    background-position: -34px -778px;
+} 
+.headerIcon.appointedQuizzesIconWhite {
+    background-position: -33px -745px;
+}
+.headerIcon.finishedQuizzesIconWhite {
+    background-position: -34px -813px;
+}
+.headerIcon.quizTemplatesIconWhite {
+    background-position: -34px -848px;
+}
+.headerIcon.newCategoryGray {
+	background-position: -240px -40px;
+}
+.headerIcon.newCategoryWhite {
+	background-position: -34px -29px;	
+}
+.headerIcon.gradingIconRed {
+	background-position: -200px -3400px;
+}
+.headerIcon.gradingIconWhite {
+	background-position: -36px -2921px;	
+}
+.headerIcon.subpoolPurple {
+	background-position: -280px -520px;
+}
+.headerIcon.resultsIconWhite {
+	background-position: -35px -1119px;
+}
+.headerIcon.icon-arrowdown-white {
+	background-position: -35px -2682px;
+}
+.headerIcon.gradesIconWhite {
+    background-position: -35px -405px;
+}
+.headerIcon.fileImportIconWhite {
+    background-position: -35px -2784px;
+}
+.headerIcon.exportArrowWhite {
+    background-position: -35px -3189px;
+}
+.headerIcon.questionReportIconWhite {
+    background-position: -35px -915px;
+}
+.headerIcon.collectionIconBlue {
+	background-position: -0px -1920px;
+}
+.headerIcon.newGradingIconBlue {
+	background-position: -0px -3439px;
+}
+.headerIcon.arrowdownIconGreen {
+	background-position: -120px -3160px;
+}
+.headerIcon.editqPlusWhite{
+	background-position: -68px -2614px;
+}
+.headerIcon.arrowdownIconGray {
+	background-position: -240px -3160px;
+}
+.headerIcon.arrowdownIconWhite{
+	background-position: -35px -2682px;
+}
+.headerIcon.questionIconOrange {
+	background-position: -160px -2800px;
+}
+.headerIcon.usersIconGreen {
+    background-position: -120px -560px;
+}
+.headerIcon.usersIconWhite{
+	background-position: -33px -474px;
+}
+.headerIcon.plusWhite {
+    background-position: -35px -2444px;
+}
+.headerIcon.editWhite {
+    background-position: -35px -1697px;
+}
+.headerIcon.requestsIconRed {
+	background-position: -200px -3080px;
+}
+.headerIcon.requestsIconWhite {
+	background-position: -34px -576px;	
+}
+.headerIcon.loadQuestionsIcon {
+	background-position: -280px -3360px;
+}
+.headerIcon.newUserIconOrange {
+	background-position: -160px -640px;
+}
+.headerIcon.newUserIconWhite{
+	background-position: -35px -542px;
+}
+.headerIcon.rolesPurple {
+	background-position: -280px -160px;
+}
+.headerIcon.rolesWhite{
+	background-position: -35px -134px;
+}
+.headerIcon.fileImportIconGreen {
+	background-position: -120px -720px;
+}
+.headerIcon.subscribeIconGray {
+	background-position: -240px -3120px;
+}
+.headerIcon.subscribeIconWhite {
+	background-position: -32px -2650px;	
+}
+.headerIcon.poolsIconPurple {
+	background-position: -280px -1520px;
+}
+.headerIcon.poolsIconWhite {
+    background-position: -35px -1288px;
+}
+.headerIcon.passIconWhite {
+	background-position: -34px -1152px;
+}
+.headerIcon.courseClassIconRed {
+	background-position: -200px -1560px;
+}
+.headerIcon.courseClassIconWhite {
+    background-position: -34px -1324px;
+}
+.innerPanel .headerIcon.questionIconOrange {
+	background-position: -136px -2380px;
+}
+.headerIcon.classCoursesPurple {
+	background-position: -280px -200px;
+}
+.headerIcon.questionsImportWhite {
+	background-position: -34px -2853px;
+}
+.headerIcon.classCoursesPurple {
+	background-position: -280px -200px;
+}
+.headerIcon.classCoursesPurple {
+	background-position: -280px -200px;
+}
+.headerIcon.certificateWhite {
+	background-position: -36px -3397px;
+}
+.headerIcon.classIconWhite {
+	background-position: -34px -166px;
+}
+.headerIcon.courseIconWhite {
+	background-position: -34px -2207px;
+}
+.headerIcon.lessonIconBlue {
+	background-position: -0px -2760px;
+}
+.innerPanel .headerIcon.lessonIconBlue, .ui-datatable-header .headerIcon.lessonIconBlue {
+	background-position: -0px -2346px;
+}
+.headerIcon.starIconOrange {
+	background-position: -160px -2720px;
+}
+.innerPanel .headerIcon.starIconOrange {
+	background-position: -136px -2312px;
+}
+
+.headerIcon.attachIconGray {
+	background-position: -240px -2639px;
+}
+.innerPanel .headerIcon.attachIconGray, .ui-datatable-header .headerIcon.attachIconGray {
+	background-position: -204px -2244px;
+}
+
+.headerIcon.poolIconOrange {
+	background-position: -160px -2400px;
+}
+.innerPanel .headerIcon.poolIconOrange, .ui-datatable-header .headerIcon.poolIconOrange {
+	background-position: -136px -2040px;
+}
+
+.headerIcon.timelineIcon {
+	background-position: -135px -1731px;
+}
+.innerPanel .headerIcon.timelineIcon {
+	background-position: -136px -1734px;
+}
+
+.headerIcon.courseIconOrange {
+	background-position: -160px -2360px;
+}
+.innerPanel .headerIcon.courseIconOrange {
+	background-position: -136px -2006px;
+}
+
+.headerIcon.infoIconBlue {
+	background-position: -0px -0px;
+}
+.headerIcon.infoIconWhite {
+	background-position: -35px 2px;
+}
+.innerPanel .headerIcon.infoIconOrange {
+	background-position: -136px -0px;
+}
+
+.headerIcon.helpIconOrange {
+	background-position: -160px -80px;
+}
+.headerIcon.helpIconWhite {
+	background-position: -40px -80px;
+}
+.innerPanel .headerIcon.helpIconOrange {
+	background-position: -136px -68px;
+}
+.headerBox .headerIcon.helpIconWhite {
+	background-position: -33px -66px;
+}
+
+.headerIcon.membersIconBlue {
+	background-position: -0px -2520px;
+}
+.headerIcon.membersIconWhite {
+	background-position: -34px -2139px;
+}
+
+.innerPanel .headerIcon.membersIconGreen {
+	background-position: -102px -2142px;
+}
+
+.headerIcon.courseClassesIcon {
+	background-position: -0px -2920px;
+}
+.headerIcon.courseClassesIconWhite {
+	background-position: -103px -2479px;
+}
+.innerPanel .headerIcon.courseClassesIcon {
+	background-position: -0px -2482px;
+}
+
+.headerIcon.statsIcon {
+	background-position: -80px -2917px;
+}
+.headerIcon.statsIconWhite {
+	background-position: -35px -3261px;
+}
+.headerIcon.questionIconWhite {
+    background-position: -35px -2377px;
+}
+.innerPanel .headerIcon.statsIcon {
+	background-position: -68px -2482px;
+}
+
+.headerIcon.lessonsBlue {
+	background-position: -0px -2760px;
+}
+.headerIcon.lessonsWhite {
+	background-position: -35px -3295px;
+}
+.headerIcon.searchWhite{
+	background-position: -35px -1355px;
+}
+.headerIcon.lessonWhite{
+	background-position: -34px -2343px;
+}
+.innerPanel .headerIcon.lessonsBlue {
+	background-position: -0px -2346px;
+}
+.headerIcon.lessonItemIcon {
+	background-position: -0px -3520px;
+}
+.headerIcon.lessonItemWhite {
+	background-position: -35px -2989px;
+}
+.headerIcon.attachGray {
+	background-position: -240px -2639px;
+}
+.headerIcon.attachWhite {
+	background-position: -34px -2240px;
+}
+.innerPanel .headerIcon.attachGray {
+	background-position: -204px -2244px;
+}
+
+.headerIcon.plusBlue {
+	background-position: -0px -2880px;
+}
+.innerPanel .headerIcon.plusBlue {
+	background-position: -0px -2448px;
+}
+.headerIcon.newSubCoursePurple {
+	background-position: -280px -240px;
+}
+.headerIcon.newSubCourseWhite {
+	background-position: -35px -199px;
+}
+.innerPanel .headerIcon.newSubCoursePurple {
+	background-position: -238px -204px;
+}
+.headerIcon.newClassRed {
+	background-position: -200px -120px;
+}
+.headerIcon.newClassWhite {
+	background-position: -33px -98px;
+}
+.innerPanel .headerIcon.newClassRed {
+	background-position: -170px -102px;
+}
+.headerIcon.poolsPurple {
+	background-position: -280px -1520px;
+}
+.innerPanel .headerIcon.poolsPurple {
+	background-position: -238px -1292px;
+}
+.headerIcon.questionIconPurple {
+	background-position:  -280px -2799px;
+}
+.innerPanel .headerIcon.questionIconPurple {
+	background-position:  -238px -2380px;
+}
+.headerIcon.quizIconBlue {
+	background-position:  -0px -2000px;
+}
+.headerIcon.quizIconWhite{
+	background-position: -33px -1697px;
+}
+.headerIcon.quizTemplateWhite {
+	background-position: -35px -2987px;
+}
+.innerPanel .headerIcon.quizIconBlue {
+	background-position: -204px -1700px;
+}
+.headerIcon.collectionIconBlue {
+	background-position: -0px -1920px;
+}
+.innerPanel .headerIcon.collectionIconBlue {
+	background-position: -0px -1632px;
+}
+.headerIcon.mailIconWhite {
+	background-position: -68px -1494px;
+}
+.headerIcon.systemUpdateWhite {
+	background-position: -102px -2615px;
+}
+.headerIcon.systemReportWhite {
+	background-position: -34px -675px;
+}
+.headerIcon.subscriberIconWhite {
+	background-position: -35px -1936px;
+}
+.headerIcon.singleChoiceWhite {
+	background-position: -102px -3364px;
+}
+.headerIcon.essayWhite {
+	background-position: 2px -3364px;
+}
+.headerIcon.fillTheBlanksWhite {
+	background-position: -34px -3364px;
+}
+.headerIcon.multipleChoiceWhite {
+	background-position: -68px -3364px;
+}
+.headerIcon.trueFalseWhite {
+	background-position: -136px -3364px;
+}
+.headerIcon.orderingWhite {
+	background-position: -170px -3364px;
+}
+.headerIcon.matchingWhite {
+	background-position: -204px -3364px;
+}
+.headerIcon.openQuestionWhite {
+	background-position: -238px -3364px;
+}

@@ -1,0 +1,99 @@
+//mixins **************************************************************************************************************************************
+//mixin for calculating across browsers e.g @include calc(width,'100% - 40px',true(optional if you want calc to be !important));
+@mixin calc($property, $expression , $isImportant: false) {
+	$string: null;
+	@if $isImportant == true {
+	$string: !important;
+	}
+	@else {
+		$string: null;
+		}
+  #{$property}: -moz-calc(#{$expression}) $string;
+  #{$property}: -webkit-calc(#{$expression}) $string;
+  #{$property}: calc(#{$expression}) $string;
+}
+//remove select icon( not working on IE 10 and less)
+@mixin remove_select($selector) {
+	.#{$selector}{
+	   -webkit-appearance: none;
+   		-moz-appearance: none;
+   		appearance: none;	
+	}
+	.#{$selector}::-ms-expand {
+		display: none;
+	}
+}
+
+@mixin display_flex {
+  	-ms-box-orient: horizontal;
+  	display: -webkit-box;
+  	display: -moz-box;
+  	display: -ms-flexbox;
+  	display: -moz-flex;
+  	display: -webkit-flex;
+  	display: flex;
+}
+// text align in select(not dropdown) not supported on IE 10 and less
+@mixin text-align-last($property) {
+    -moz-text-align-last: $property;
+	text-align-last: $property;
+}
+//not allowing user to select text in browser
+@mixin user-select($property) {
+    -webkit-touch-callout: $property;
+    -webkit-user-select: $property;
+    -khtml-user-select: $property;
+    -moz-user-select: $property;
+    -ms-user-select: $property;
+    user-select: $property;
+}
+//button-bg(button-background,button-active-background,button-hover-focus-background,border-color,font-color,boolean for default settings)
+@mixin button-bg($bg_color,$bg_color_active,$bg_color_hover_focus,$border_color: $bg_color_active,$font_color:null,$isDefault: false) {
+	@if $isDefault == true {
+		@include transition(background-color .4s ease, box-shadow .4s ease);
+		outline: none !important;
+		@include box-shadow(none !important);
+		&.ui-state-focus {
+	  		@include box-shadow(0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12) !important);	
+	  	}
+	}
+	background: $bg_color;
+	@if $border_color == null {
+		border: 0 !important;
+	}
+	@else{
+		border-color: $border_color !important;
+	}	
+	@if $bg_color != white {
+	  	&.ui-state-hover,&.ui-state-focus {
+	  		 background-color: $bg_color_hover_focus; 
+	  	}
+  	}
+  	&.ui-state-active,&:active {
+  		background-color: $bg_color_active;	
+  	}
+  	@if $font_color != null {
+		.ui-button-text {
+			color: $font_color;  	
+		}
+	}
+}
+
+//functions  ******************************************************************************************************************************************
+
+//function to check items in list and return true if there is any unit e.g px,em
+@function contains-number($list) {
+    $contains: false;
+    @each $item in $list { @if unitless($item) { $contains: true; } }
+    @return $contains;
+}
+//function to change current background-position to desired one according to your desired width and height e.g change-backround-position(44,34,-1731 - 2(if you want to change a bit the result))
+@function change-backround-position($desired-width,$current-width,$current-y-axis){
+	$list: $desired-width,$current-width,$current-y-axis;
+	@if contains-number($list) {
+		@return unquote(round($desired-width / $current-width * $current-y-axis) + 'px');
+	} @else {
+		@warn "I recommend that you use only numbers in this function";
+		@return round($desired-width / $current-width * $current-y-axis);
+	}
+}

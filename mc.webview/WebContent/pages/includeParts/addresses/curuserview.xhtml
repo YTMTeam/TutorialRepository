@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+
+
+
+	<p:panelGrid style="border-bottom:1px solid #E0E0E0"
+		styleClass="roundGrid newprof lexRoundGrid marginToChart">
+		<p:row>
+			<p:column colspan="2">
+<!-- 				<p:graphicImage value="#{mediaDisplay.streamProfilePicSession}" -->
+<!-- 					style="width:69px;height:69px;border:1px solid #CCCCCC;float:left;margin-right:24px"> -->
+<!-- 					<f:param name="id" value="#{curAccount.account.ACCOUNT_ID}" /> -->
+<!-- 				</p:graphicImage> -->
+				<!-- 				</p:column> -->
+				<!-- 				<p:column > -->
+				<div class="roundCell">
+					<h:outputLabel value="#{curAccount.account.FIRST_NAME}"
+						style="font-size:19px;color:#262626 !important" 
+						styleClass="leftPart"></h:outputLabel>
+					<p:outputLabel value="#{curAccount.account.BROKER_CODE}" style="float:right;" styleClass="ui-output-rounded"/>
+					<p:outputLabel value="#{msg.brokerCode}" style="float:right;"/>
+						 
+					
+						 <!-- rendered="#{curUser.account.bankUser}" -->
+				</div>
+				
+				<div class="roundCell">
+					<h:outputLabel value="#{curAccount.account.LAST_NAME}"
+						style="color:#3A89D8 !important;font-size:19px;font-weight: 500;"
+						styleClass="leftPart"></h:outputLabel>
+					
+				</div>
+				
+				<div class="roundCell">
+					<h:outputLabel value="#{curAccount.account.BANK_NAME}"
+						rendered="#{curUser.bankUser}"
+						style="color:#727272 !important;font-size:15px;font-weight: 500;"
+						styleClass="leftPart"></h:outputLabel>
+				</div>
+			 <p class="clear"/>
+				<h:panelGroup rendered="#{account.curBankMonitoringInfo != null}" layout="block" style="margin-top:-20px">
+				<h:outputLabel style="margin-left: 10px;" value="Monitored by #{account.curBankMonitoringInfo.entityBank.bank.BANK_NAME} from #{account.curBankMonitoringInfo.monitor.AS_OF_DATE} #{account.curBankMonitoringInfo.monitor.END_DATE!=null? ' to ': ''}  #{account.curBankMonitoringInfo.monitor.END_DATE!=null?account.curBankMonitoringInfo.monitor.END_DATE:''}"/>
+			</h:panelGroup>
+			
+			</p:column>
+			
+			
+			
+		</p:row>
+<!-- <p:row> -->
+ 
+<!-- <p:column colspan="2"> -->
+			
+<!-- 			</p:column> -->
+ 
+<!-- </p:row> -->
+
+
+	</p:panelGrid>
+<!-- 	<p:panelGrid columns="3" -->
+<!-- 		rendered="#{account.curAccount.account.BANK_ID eq user.curUser.user.BANK_ID}"> -->
+<!-- 		<h:outputText style="font-size: 13px" value="#{msg.monitoredBy}: " /> -->
+<!-- 		<p:selectManyCheckbox id="monitors" layout="grid" columns="3" -->
+<!-- 			value="#{account.selectedMonitors}"> -->
+<!-- 			<f:selectItems value="#{account.bankHashMap}" /> -->
+
+<!-- 		</p:selectManyCheckbox> -->
+<!-- 		<p:commandButton value="#{msg.confirm}" process="@form" -->
+<!-- 			update=":#{outerForm}:monitors" style="background: #039BE5;" -->
+<!-- 			actionListener="#{account.updateMonitors()}" /> -->
+<!-- 	</p:panelGrid> -->
+</ui:composition>

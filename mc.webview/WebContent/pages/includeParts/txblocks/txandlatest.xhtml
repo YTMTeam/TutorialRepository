@@ -1,0 +1,138 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<p:panel style="float:left;width:100%" >
+			<p:remoteCommand name="onFilterTxs" 	 
+				update=":#{outerForm}:txList:itemNum" />
+			<p:dataTable id="txList" var="tx" widgetVar="showTxsTable"
+				style="width:100%;"
+				filteredValue="#{txControl.lazyTxBlocksModel.filteredItems}"
+				value="#{txControl.lazyTxBlocksModel}" scrollRows="20"
+				selection="#{txControl.lazyTxBlocksModel.selectedItems}"
+				emptyMessage="#{msg.noData}" scrollable="true"
+				resizableColumns="true"
+			 
+				scrollHeight="#{txControl.lazyTxBlocksModel.tableHeight}"
+				lazy="true" rows="10" paginator="true" pageLinks="5"
+				paginatorPosition="bottom"
+				paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+				rowsPerPageTemplate="10,50,100">
+
+				<p:ajax event="filter" oncomplete="onFilterTxs()" />
+				<f:facet name="header">
+						#{msg.transactions}
+				    </f:facet>
+
+
+				<p:column headerText="#{msg.transactionHash}"
+					sortBy="#{tx.to.TRANSACTION_HASH}"
+					filterBy="#{tx.to.TRANSACTION_HASH}" filterMatchMode="contains">
+
+					<h:outputText value="#{tx.to.TRANSACTION_HASH}" />
+				</p:column>
+
+
+				<p:column style="width:100px;text-align:center" headerText="#{msg.height}" sortBy="#{tx.to.HEIGHT}" 
+					filterBy="#{tx.to.HEIGHT}" filterMatchMode="contains">
+
+					<h:outputText value="#{tx.to.HEIGHT}" />
+				</p:column>
+
+				<p:column style="width:200px;text-align:center" headerText="#{msg.createTimestamp}" filterMatchMode="contains" filterBy="#{tx.to.CREATE_TIMESTAMP}"
+					sortBy="#{tx.to.CREATE_TIMESTAMP}"
+					 >
+
+					<h:outputText value="#{tx.to.CREATE_TIMESTAMP}" />
+				</p:column>
+
+				<f:facet name="footer">
+<!-- 					<div class="clearButton"></div> -->
+<!-- 					<div class="rightFooterTable"> -->
+<!-- 						<h:outputLabel value="#{msg.tableHeight}: " /> -->
+<!-- 						<p:spinner min="0" max="700" stepFactor="50" id="spinnerBasic" -->
+<!-- 							converterMessage="#{msg.spinnerError}" -->
+<!-- 							value="#{txControl.lazyTxBlocksModel.tableHeight}"> -->
+<!-- 							<p:ajax process="@this" update=":#{outerForm}:txList" /> -->
+<!-- 						</p:spinner> -->
+<!-- 					</div> -->
+<span class="rowCount" >
+					<h:outputLabel id="itemNum" style="color:#222;font-weight:bold;float:right;margin-right: 35px;"
+						value=" #{txControl.lazyTxBlocksModel.rowCount}" />
+					<h:outputLabel value="#{msg.numberOfRows}" style="text-transform:uppercase;font-weight:bold;float:right;color:#7F7F7F;margin-right:10px" ></h:outputLabel>
+					</span>
+					<p class="clear" />
+				</f:facet>
+			</p:dataTable>
+</p:panel>
+
+			<p:poll interval="8" process="@this" update="@form"
+				listener="#{txControl.updateLastTxs}" 
+				oncomplete="txPanel.close(),txPanel.show()"></p:poll>
+			<p:panel widgetVar="txPanel" styleClass="pollingTables"
+				 
+				closable="true" style="width:100%; float:right;">
+				<p:dataTable id="txLiveTable" var="tx" widgetVar="txLiveVar"
+					value="#{txControl.lastTxs}" scrollRows="8"
+					emptyMessage="#{msg.noData}" scrollable="true"
+					resizableColumns="true" scrollHeight="138" rows="3">
+					<f:facet name="header">
+						#{msg.latestTransactions}
+				   </f:facet>
+
+					<p:column headerText="#{msg.transactionHash}">
+
+						<h:outputText value="#{tx.to.TRANSACTION_HASH}" />
+					</p:column>
+
+
+					<p:column style="width:80px;text-align:center" headerText="#{msg.height}" styleClass="typeWidth">
+
+						<h:outputText value="#{tx.to.HEIGHT}" />
+					</p:column>
+
+					<p:column style="width:200px;text-align:center" headerText="#{msg.createTimestamp}">
+
+						<h:outputText value="#{tx.to.CREATE_TIMESTAMP}" />
+					</p:column>
+
+
+
+				</p:dataTable>
+				<p:dataTable id="txLiveBlocks" var="block" widgetVar="txLiveVar"
+					value="#{txControl.lastBlocks}" scrollRows="8"
+					emptyMessage="#{msg.noData}"
+					 
+					scrollable="true" resizableColumns="true" scrollHeight="138"
+					rows="3">
+					<f:facet name="header">
+						#{msg.latestBlocks}
+				   </f:facet>
+
+					<p:column headerText="#{msg.blockHash}">
+
+						<h:outputText value="#{block.to.BLOCK_HASH}" />
+					</p:column>
+
+
+					<p:column style="width:80px;text-align:center" headerText="#{msg.height}" styleClass="typeWidth">
+
+						<h:outputText value="#{block.to.HEIGHT}" />
+					</p:column>
+
+					<p:column style="width:200px;text-align:center" headerText="#{msg.createTimestamp}">
+
+						<h:outputText value="#{block.to.CREATE_TIMESTAMP}" />
+					</p:column>
+
+
+
+				</p:dataTable>
+			</p:panel>
+			<p class="clear" />
+	 
+
+</ui:composition>

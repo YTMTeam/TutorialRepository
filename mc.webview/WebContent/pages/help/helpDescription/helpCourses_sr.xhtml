@@ -1,0 +1,136 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:pe="http://primefaces.org/ui/extensions">
+
+Ova stranica sadrži sve informacije o kursevima i grupama. Kursevi i grupe se koriste za grupisanje korisnika. Mogu se koristiti za filtritanje korisnika prilikom povezivanja sa testovima ili skupovima. Kursevi mogu sadržati lekcije i multimedijalnu literaturu. <br/> <br/> 
+
+<div class="tdHeadline">Kurs</div> 
+Kursevi su organizovani hijerarhijski. <br/>
+Kurs može imati jedan ili nijedan nadređeni kurs i neograničen broj pridruženih podkurseva, grupa, lekcija i literature. <br/>
+Kurs može biti 'aktivan' ili 'neaktivan'. Samo 'aktivni' kursevi mogu biti korišćeni za filtriranje korisnika pri povezivanju sa testovima ili skupovima. <br/>
+Ako je kurs 'neaktivan' onda će svi pripadajući podkursevi automatski biti podešeni kao neaktivni. <br/>
+Članovi kursa su ujedno i članovi nadređenog roditeljskog kursa. <br/>
+Članovi kursa mogu imati jedan od dva ranga na kursu: 'korisnik' ili 'menadžer'. <br/>
+Ako je korisnik ujedno i menadžer kursa, onda će automatski biti menadžer svih podkurseva ali ne i menadžer povezanih grupa. <br/>
+Korisnik sa dovoljno privilegija može da gradi sopstveno stablo kurseva i grupa, a visoko privilegovani korisnici mogu upravljati svim kursevima i grupama u sistemu.<br/>
+ <br/> 
+
+<div class="tdHeadline">Grupa</div>
+Grupa može biti povezana sa više kurseva.
+Članovi grupe mogu imati jedan od dva ranga u grupi: 'korisnik' ili 'menadžer'. <br/>
+Članovi se mogu dodavati i brisati iz grupa nezavisno od toga za koji kurs je grupa vezana, ali se može koristiti pridruženi kurs radi sistematičnijeg dodavanja članova u grupe. <br/>
+Samo 'aktivne' grupe mogu biti korišćene za filtriranje korisnika pri povezivanju sa testovima ili skupovima.  
+<br/><br/>
+
+
+<div class="tdHeadline">Navigacioni bočni meni</div>
+Korisnik može da vidi kurseve i grupe koji su organizovani u obliku stabla. <br/>
+Korisnik može koristiti polje za pretragu da bi otišao direktno na određeni kurs ili grupu u stablu. <br/>
+Korisnik može da izabere između 'lično' ili 'vidi sve' modela prikaza. 'Lični' mod prikazuje samo kurseve i grupe gde je korisnik član. 'Vidi sve' mod prikazuje sve postojeće kurseve i grupe. <br/>
+Prikaz može biti filtriran kombinacijom statusa kurseva i grupa. Na primer, ako korisnik izabere 'Aktivan' status za kurs i 'neaktivan' za grupu, klikom na ikonu 'stablo' prikazaće se sve aktivne i neaktivne grupe vezane za taj kurs. Ako postoje neaktivne grupe koje nisu pridružene nekom kursu, one neće biti prikazane. <br/>
+Ukoliko korisnik želi da vidi sve grupe (i one koje nisu pridružene kursevima), onda je potrebno da odabere samo statuse grupa, a statuse kurseva ostavi bez odabira. <br/><br/>
+
+<div class="tdHeadline">Opcije u gornjem delu ekrana</div> 
+1. Promena statusa - Korisnik sa menadžerskom privilegijom na izabranom kursu može aktivirati, deaktivirati ili izbrisati kurs. Ukoliko aktivira kurs, biće aktivirani i svi roditeljski kursevi. Ukoliko deaktivira ili briše kurs, ista akcija će biti izvršena nad svim kursevima potomcima.<br/>
+Korisnik sa menadžerskom privilegijom na izabranoj grupi može izbrisati grupu. <br/> 
+2. Nov kurs - Korisnik može da kreira novi podkurs u kursu u kom ima menadžersku privilegiju i ima privilegiju da kreira kurseve ili da kreira koreni kurs koji će imati najviši nivo u hijerarhiji. Svi menadžeri roditeljskih kurseva (ako roditeljski kurs postoji) biće automatski podešeni kao menadžeri novokreiranih podkurseva.<br/> 
+3. Nova grupa - Korisnik može kreirati novu grupu i izabrati više kurseva kojima će novokreirana grupa biti pridodata u okviru kurseva gde ima menadžerske privilegije. Ukoliko korisnik ima menadžerske privilegije na svim kursevima i mod hijerarhije je podešen na 'vidi sve', onda će svi kursevi biti ponuđeni. 
+Korisnik će automatski biti postavljen kao menadžer grupe koju je dodao.<br /><br />
+
+ <table class="helpTable">
+		 
+
+		
+		<tr>
+			<td class="helpTdLeft">
+				<div class="courseClassesIcon" />
+			</td>
+			<td class="helpTdRight"><div class="tdHeadline">Grupe povezane sa izabranim kursom</div>Korisnik koji je menadžer na kursu može da vidi listu povezanih dostupnih grupa. Na svim grupama koje može da vidi ima menadžerski rang. <br/> Može dodeliti i ukloniti grupe iz kurseva koristeći grupne akcije.  <br/> Ukoliko korisnik ima menadžerske privilegije na svim grupama i mod hijerarhije je podešen na 'vidi sve', onda može videti i upravljati svim grupama na izabranom kursu. <br/><br /></td>
+		</tr>
+
+<tr>
+			<td class="helpTdLeft">
+				<div class="classCoursesPurple" />
+			</td>
+			<td class="helpTdRight"><div class="tdHeadline">Kursevi povezani sa izabranim grupama</div>Lista svih kurseva biće prikazana korisniku sa menadžerskim rangom. <br /> Oni koji su već povezani sa kursom biće markirani. Može da izabere opciju 'markiraj' ili 'odmarkiraj' a zatim da pritisne neku od opcija za grupnu potvrdu. <br/> Ukoliko korisnik ima menadžerske privilegije na svim kursevima i mod hijerarhije je podešen na 'vidi sve', onda će biti prikazani svi kursevi iz sistema. <br /> <br /></td>
+		</tr>
+
+<tr>
+			<td class="helpTdLeft">
+				<div class="membersGreen" />
+			</td>
+			<td class="helpTdRight"><div class="tdHeadline">Članovi</div> Odeljak 'članovi' prikazuje korisniku koji cu članovi u odabranom kursu/grupi i dozvoljava menadžeru da doda ili izbriše članove iz kursa/grupe kao i da menja privilegije korisnika.<br />
+            Članovi mogu videti druge članove grupe/kursa gde pripadaju i mogu upravljati članovima tamo gde imaju menadžerski rang.<br />
+			Korisnici sa višim privilegijama mogu da vide i upravljaju članovima iz bilo kog kursa ili grupe.<br/>
+			Pri upravljanju članovima kursa dostupni članovi biće samo oni koji su članovi u roditeljskom kursu, ili ako je to najviši novo kursa, onda će im biti dostupni svi članovi.<br/>
+			Pri upravljanju članovima grupa dostupni članovi su svi članovi, takodje, korisnik može filtrirati članove kroz kurseve u kojima ima menadžerske privilegije.<br/>
+			 <br /></td>
+		</tr>
+		
+<tr>
+			<td class="helpTdLeft">
+				<div class="statsIcon" />
+			</td>
+			<td class="helpTdRight"><div class="tdHeadline">Statistika</div> Menadžer kursa ima mogućnost praćenja detaljne statistike na testovima unutar kursa. Testovi se mogu dodavati pojedinačno ili unutar određenog vremenskog razdoblja. Testovi obuhvaćeni u statistici mogu biti svi iz podstabla datog kursa, uključujući i sam kurs. <br />
+			Subjekti se mogu prikazati u formi linijskog ili lestvičastog grafikona. <br/>
+			Statistika se može izvesti u PDF dokument, na nivou trenutnog meseca ili odabranog vremenskog razdoblja. Testovi uključeni u statistiku će biti oni sa početkom raspoloživosti unutar datog perioda.			
+			<br/>Tipovi subjekata koji se mogu međusobno porediti unutar grafikona na datim testovima su: <br />
+			1. Srednja vrednost uspeha na nivou svih korisnika odabranog kursa na izabranim testovima. Rezultati obuhvaćeni u analizu biće i iz podkurseva datog kursa. <br />
+			2. Srednja vrednost uspeha na nivou korisnika korisnika kursa unutar grupe kursa. Rezultati obuhvaćeni u analizu biće samo oni sa direktnim poreklom iz odabranog kursa i grupe. <br />
+			3. Uspeh pojedinačnih korsinika odabranog kursa (i podkurseva). Ukoliko je korisnik više puta polagao test unutar podstabla datog kursa, računaće se srednja vrednost. <br />
+			4. Prosek članova sa različitim nivoom veštine - osnovni, srednji i napredni. Korisnici obuhvaćeni u ovoj analizi su oni sa željenim nivoom veštine u odabranom kursu, što znači da ukoliko su testove polagali u nekom od podkurseva gde imaju drugi nivo veštine, ti rezultati će takođe biti uključeni. <br /><br />
+			
+			
+			
+			</td>
+		</tr>		
+		
+		
+		<tr>
+			<td class="helpTdLeft">
+				<div class="lessonsBlue" />
+			</td>
+			<td class="helpTdRight"><div class="tdHeadline">Lekcije</div> Lekcije se dodaju u kurs od strane menadžera. Lekcije se mogu organizovati po redosledu u kursu. Lekciju čini niz poglavlja, za koje mogu biti vezani testovi u kojima je korisnik menadžer i literatura iz datog kursa. Poglavlje lekcije se mogu organizovati po redosledu.  <br />
+			 Menadžer kursa može kontrolisati dostupnost lekcije i poglavlji unutar nje. Ukoliko se promene dešavaju u toku pohađanja same lekcije od strane polaznika, obaveštenja će direktno biti vidljiva na ekranu za pohađanje lekcije. <br />
+			 Dostupnost poglavlja lekcije se može ograničiti samo na određene grupe unutar kursa - mogućnost različitih testova za različite grupe.<br />
+			 Test unutar lekcije je dostupan samo ukoliko je kurs aktivan, lekcija objavljena i poglavlje omogućeno. Ta informacija je dostupna i na globalnim obaveštenjima. <br />
+			 Pri konfiguraciji testova moguće je uključiti i sledeće parametre: <br />
+			 1. Nivo veštine korisnika u kursu (samo kod testova za vežbu) - test će biti krojen prema nivou veštine, i svaki korisnik će dobiti verzije zadataka koje najbolje odgovaraju njegovom trenutnom nivou.<br />
+			 2. Omogućavanje ponovnog započinjanja testa - test se može uraditi ponovo i novi rezultat smenjuje prethodni.<br />
+			 3. Uključivanje menadžera u test - i menadžeri testa dobijaju zahtev za izradu testa.
+			  <br /><br />
+			
+			
+			
+			</td>
+		</tr>		
+		
+		<tr>
+			<td class="helpTdLeft">
+				<div class="attachGray" />
+			</td>
+			<td class="helpTdRight"><div class="tdHeadline">Literatura</div> Literatura se dodaje u kurs od strane menadžera. Literatura se može vezivati za lekcije ili koristiti kao resurs pri kreiranju pitanja. <br />
+			Vidljiva je samo menadžerima kursa, dok ostali korisnici mogu videti literaturu samo unutar lekcija. <br/>
+			Tip literature može biti jedan od sledećih:
+			 1. Video (.MP4) - maksimalne veličine do 100 MB<br />
+			 2. Audio (.MP3) - maksimalne veličine do 100 MB<br />
+			 3. PDF dokument (.PDF) - maksimalne veličine do 100 MB<br />
+			 4. Google dokument - dovoljno je prekopirati link za deljenje bilo kog Google dokumenta <br />
+			 5. Arhiva (.ZIP)- maksimalne veličine do 100 MB<br />
+			 6. YouTube video - dovoljno je prekopirati link bilo kog YouTube videa <br/>
+			 7. Link - bilo koji link na internetu  <br/>
+			 8. Problem procesor (.JAR) - koji se može iskoristiti za kreiranje pitanja koje podržavaju ovu opciju <br/>
+			 9. Slika (.PNG | .JPG | .JPEG | .GIF)- maksimalne veličine do 100 MB <br/>
+			  <br /><br />
+			
+			
+			
+			</td>
+		</tr>	
+		
+
+	</table>
+ 
+ 
+ 
+</ui:composition>

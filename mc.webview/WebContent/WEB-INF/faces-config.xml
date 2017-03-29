@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
+    version="2.1">
+     
+     <application>
+     	   <locale-config>
+     	        <default-locale>en</default-locale>
+     	   </locale-config>
+	   <resource-bundle>
+		<base-name>com.lexington.mc.model.properties.messages</base-name>
+		<var>msg</var>
+	   </resource-bundle>
+	   <resource-bundle>
+		<base-name>com.lexington.mc.model.properties.hints.hints_desc</base-name>
+		<var>hints_desc</var>
+	   </resource-bundle>
+	   <resource-bundle>
+		<base-name>com.lexington.mc.model.properties.hints.hints_name</base-name>
+		<var>hints_name</var>
+	   </resource-bundle>
+	  <!-- System configuration file -->
+		<resource-bundle>
+			<base-name>com.lexington.mc.model.properties.system</base-name>
+			<var>sys_msg</var>
+		</resource-bundle>
+     </application>
+ 
+
+<lifecycle>
+      <phase-listener>com.lexington.mc.webview.filters.AuthorizationListener</phase-listener>
+   </lifecycle>
+   
+   <navigation-rule>
+   <from-view-id>*</from-view-id>
+   <navigation-case>
+	<from-outcome>loginPage</from-outcome>
+	<to-view-id>/login.xhtml</to-view-id>
+   </navigation-case>
+</navigation-rule>
+
+
+
+
+
+</faces-config>

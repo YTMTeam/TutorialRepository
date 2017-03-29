@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<h:form id="helpForm">
+		<p:panel id="helpPanel" styleClass="centerPanel wideCenterPanel"
+			toggleable="true" closable="true" widgetVar="showHelpPanel"
+			rendered="#{bean.viewHelp}">
+			<p:ajax event="close" listener="#{bean.setViewHelp(false)}"
+				update=":helpForm :butForm" />
+
+			<f:facet name="header">
+				<div class="headerBox orangeBox">
+					<div class="headerIcon helpIconWhite" />
+				</div>
+				<div class="subHeader firstLeft">#{msg.help}</div>
+			</f:facet>
+
+			<ui:include src="#{desc}" />
+			
+		</p:panel>
+	</h:form>
+</ui:composition>

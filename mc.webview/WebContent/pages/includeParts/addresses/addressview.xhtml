@@ -1,0 +1,242 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+
+
+	
+	<p:panel style="width:70%;float:left; border:0"  rendered="#{addrControl.curAddress!=null}"
+				styleClass="innerPanel paddingToChart">
+				<f:facet name="header">
+					<div class="subHeader firstLeft">#{msg.accountInfo}</div>
+				</f:facet>
+				<p:panelGrid
+					styleClass="roundGrid newprof lexRoundGrid marginToChart textWrapper">
+					<p:row>
+						<p:column style="padding:1px">
+							<br></br>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<div class="roundCell">
+								<h:outputLabel value="#{msg.accountName}:"
+									styleClass="normalRight"></h:outputLabel>
+							</div>
+						</p:column>
+						<p:column colspan="2">
+							<div class="roundCell">
+								<h:outputText title="#{addrControl.curAddress.to.ACCOUNT_NAME}" value="#{addrControl.curAddress.to.ACCOUNT_NAME}" styleClass="leftPart"></h:outputText>
+							</div>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<div class="roundCell">
+								<h:outputLabel value="#{msg.addressName}:"
+									styleClass="normalRight"></h:outputLabel>
+							</div>
+						</p:column>
+						<p:column colspan="2">
+							<div class="roundCell">
+								<h:outputText title="#{addrControl.curAddress.to.ADDRESS_NAME}" value="#{addrControl.curAddress.to.ADDRESS_NAME}" styleClass="leftPart"></h:outputText>
+							</div>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<div class="roundCell">
+								<h:outputLabel value="#{msg.publicKey}:" styleClass="normalRight"></h:outputLabel>
+							</div>
+						</p:column>
+						<p:column  colspan="2">
+							<div class="roundCell">
+								<h:outputText title="#{addrControl.curAddress.to.PUBKEY}" value="#{addrControl.curAddress.to.PUBKEY}" styleClass="leftPart"></h:outputText>
+							</div>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<div class="roundCell">
+								<h:outputLabel value="#{msg.type}:" styleClass="normalRight"></h:outputLabel>
+							</div>
+						</p:column>
+						<p:column  colspan="2">
+							<div class="roundCell">
+								<h:outputText   value="#{translate.uct.userType.getCodeDesc(language.localeCode, addrControl.curAddress.to.TYPE)}" styleClass="leftPart"></h:outputText>
+							</div>
+						</p:column>
+					</p:row>					 
+					<p:row>
+						<p:column style="padding:5px">
+							<br></br>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</p:panel>
+	<p class="clear" />
+	<p:remoteCommand name="onFilterAddress"
+				update=":#{outerForm}:addrTable:itemNum" />
+				<h:panelGroup style="width:18%;margin-right:25px;padding:0;margin-left:20px;margin-top:82px;" styleClass="addressTableFixed" >
+		<p:dataTable  id="addrTable" var="adr" widgetVar="addrVar" 
+			value="#{addrControl.lazyAddressesModel}" styleClass=""
+			emptyMessage="#{msg.noData}"  
+			style="width:100%;margin:0;padding:0" selectionMode="single"
+			filteredValue="#{addrControl.lazyAddressesModel.filteredItems}"
+			scrollRows="20" scrollable="true" resizableColumns="true"
+			scrollHeight="300"
+			lazy="true" rows="10" paginator="true" pageLinks="5" 
+			paginatorPosition="bottom" selection="#{addrControl.curAddress}"
+			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+			rowsPerPageTemplate="10,50,100">
+			<f:facet name="header">
+<!-- 						#{msg.accounts} -->
+				   </f:facet>
+ 			<p:ajax event="rowSelect" listener="#{addrControl.handleAddressSelect()}" update=":#{outerForm} " oncomplete="if(#{addrControl.showAddressBalances})latestPayVar.clearFilters()" />
+			<p:ajax event="filter" oncomplete="onFilterAddress()" />
+<p:column headerText="#{msg.selectAccount}" style="text-align:center" filterBy="#{adr.to.ACCOUNT_NAME}"   filterMatchMode="contains" styleClass="#{adr.to.TYPE == 'WADRTPBANK'? 'yellow-row' :''}" >				<h:outputText value="#{adr.to.ACCOUNT_NAME}" /> 
+<!-- <h:outputText style="font-weight:700" value=" (#{msg.bank})" rendered="#{adr.to.TYPE == 'WADRTPBANK'}" /> -->
+			</p:column>
+			
+
+
+
+<f:facet name="footer">
+<!-- 			<div class="clearButton"></div> -->
+<!-- 			<div class="rightFooterTable"> -->
+<!-- 				<h:outputLabel value="#{msg.tableHeight}: " /> -->
+<!-- 				<p:spinner min="0" max="700" stepFactor="50" id="spinnerBasic" -->
+<!-- 					converterMessage="#{msg.spinnerError}" -->
+<!-- 					value="#{addrControl.lazyAddressesModel.tableHeight}"> -->
+<!-- 					<p:ajax process="@this" update=":#{outerForm}" /> -->
+<!-- 				</p:spinner> -->
+<!-- 			</div> -->
+<!-- 			<h:outputLabel id="itemNum" styleClass="rowCount" -->
+<!-- 				value="#{msg.numberOfRows}: #{addrControl.lazyAddressesModel.rowCount}" /> -->
+<!-- 			<p class="clear" /> -->
+<span class="rowCount" >
+					<h:outputLabel id="itemNum" style="color:#222;font-weight:bold;float:right;margin-right: 35px;"
+						value=" #{addrControl.lazyAddressesModel.rowCount}" />
+					<h:outputLabel value="#{msg.numberOfRows}" style="text-transform:uppercase;font-weight:bold;float:right;color:#7F7F7F;margin-right:10px" ></h:outputLabel>
+					</span>
+			</f:facet>
+
+		</p:dataTable>
+
+
+	 </h:panelGroup>
+	 
+	
+	 
+	 <p:remoteCommand name="onFilterPayments"
+				update=":#{outerForm}:payTable:itemNum" />
+	 <p:panel style="width:70%;" rendered="#{addrControl.showAddressBalances}">
+	 	<p:barChart id="barC" value="#{addrControl.allBalances}"  animate="true"
+		seriesColors="51C1B1"  barPadding="50" datatipFormat="#{addrControl.addressAssetCon.datatipFormatBarChart}"
+		style="height:300px" styleClass="barChart" orientation="horizontal"
+		title="#{msg.balances}" stacked="false"  xaxisAngle="45" shadow="false"
+		xaxisLabel="#{msg.quantity}" yaxisLabel="#{msg.currencies}"
+		  />
+		  <p:panelGrid columns="1" style="width:100%;margin-left:11px" >
+<!-- 		  <p:row> -->
+		  <p:panelGrid style="margin-top:50px;margin-left:auto;margin-right:auto" >
+		  	<p:row>
+		  		<p:column style="padding:0;padding-left:11px" >
+		  	<p:selectOneButton styleClass="paymentButtons" value="#{addrControl.selectedBalanceId}" rendered="#{addrControl.showAddressBalances}">
+				<f:selectItems value="#{addrControl.balancesMap}"/>
+				 
+				<p:ajax event="change" process="@this" listener="#{addrControl.handleCurrencyChange()}"
+					update=":addressForm:payTable :addressForm:linear" />
+			</p:selectOneButton>
+			</p:column>
+			</p:row>
+			</p:panelGrid>
+			</p:panelGrid>
+<!-- 			<br/> -->
+	 	<p:dataTable id="payTable" var="adr" widgetVar="latestPayVar"  styleClass="table-swap"
+			value="#{addrControl.addressAssetCon.lazyAddressAssetPayments}"  
+			emptyMessage="#{msg.noData}" 
+			style="width:100%; float:left;"  
+			filteredValue="#{addrControl.addressAssetCon.lazyAddressAssetPayments.filteredItems}"
+			scrollRows="20" scrollable="true" resizableColumns="true"
+			scrollHeight="#{addrControl.addressAssetCon.lazyAddressAssetPayments.tableHeight}"
+			lazy="true" rows="10" paginator="true" pageLinks="5" 
+			paginatorPosition="bottom"  
+			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+			rowsPerPageTemplate="10,50,100">
+			<f:facet name="header">
+						<h:outputText style="color:#868586 " value="#{msg.payments}" />
+						<h:outputText style="color:#222 " value="(#{addrControl.addressAssetCon.curAddressBalance.to.ASSET_NAME})" />
+				   </f:facet>
+<!--  			<p:ajax event="rowSelect" listener="#{addrControl.handleAddressSelect()}" update=":#{outerForm} " /> -->
+				<p:ajax event="filter" oncomplete="onFilterPayments()" />
+			<p:column headerText="#{msg.sender}" filterBy="#{adr.to.SENDER_ACCOUNT_NAME}" sortBy="#{adr.to.SENDER_ACCOUNT_NAME}" filterMatchMode="contains" >
+				<h:outputText value="#{adr.to.SENDER_ACCOUNT_NAME}" style="color: #{addrControl.isCurAddress(adr.to.SENDER_ADDRESS_NAME) ? 'red':''}"/>
+			</p:column>
+			<p:column headerText="#{msg.receiver}" filterBy="#{adr.to.RECEIVER_ACCOUNT_NAME}" filterMatchMode="contains"  sortBy="#{adr.to.RECEIVER_ACCOUNT_NAME}" >
+				<h:outputText value="#{adr.to.RECEIVER_ACCOUNT_NAME}" style="color: #{addrControl.isCurAddress(adr.to.RECEIVER_ADDRESS_NAME) ? 'green':''}"/>
+			</p:column>
+			<p:column headerText="#{msg.quantity}" style="width:100px;text-align:center" sortBy="#{adr.to.QUANTITY}" filterBy="#{adr.to.QUANTITY}" filterMatchMode="contains" >
+				<h:outputText value="#{adr.to.QUANTITY}" />
+			</p:column>
+
+<p:column headerText="#{msg.createTimestamp}" filterMatchMode="contains" style="text-align:center;width:160px" filterBy="#{adr.to.CREATE_TIMESTAMP}" sortBy="#{adr.to.CREATE_TIMESTAMP}"  >
+				<h:outputText value="#{adr.to.CREATE_TIMESTAMP}" />
+			</p:column>
+
+
+<f:facet name="footer">
+<!-- 			<div class="clearButton"></div> -->
+<!-- 			<div class="rightFooterTable"> -->
+<!-- 				<h:outputLabel value="#{msg.tableHeight}: " /> -->
+<!-- 				<p:spinner min="0" max="700" stepFactor="50" id="spinnerBasic" -->
+<!-- 					converterMessage="#{msg.spinnerError}" -->
+<!-- 					value="#{addrControl.addressAssetCon.lazyAddressAssetPayments.tableHeight}"> -->
+<!-- 					<p:ajax process="@this" update="@form" /> -->
+<!-- 				</p:spinner> -->
+<!-- 			</div> -->
+<!-- 			<h:outputLabel id="itemNum" styleClass="rowCount" -->
+<!-- 				value="#{msg.numberOfRows}: #{addrControl.addressAssetCon.lazyAddressAssetPayments.rowCount}" /> -->
+<!-- 			<p class="clear" /> -->
+
+
+<span class="rowCount" >
+					<h:outputLabel id="itemNum" style="color:#222;font-weight:bold;float:right;margin-right: 35px;"
+						value=" #{addrControl.addressAssetCon.lazyAddressAssetPayments.rowCount}" />
+					<h:outputLabel value="#{msg.numberOfRows}" style="text-transform:uppercase;font-weight:bold;float:right;color:#7F7F7F;margin-right:10px" ></h:outputLabel>
+					</span>
+			</f:facet>
+
+		</p:dataTable>
+		<p class="clear"/>
+
+	</p:panel>
+	
+	
+
+	
+
+	 <p:panel style="width:70%;">
+	<p:lineChart id="linear" value="#{addrControl.addressAssetCon.latestBalances}"  rendered="#{addrControl.showAddressBalances}"
+									 	styleClass="lineChart"	title="#{msg.balanceChanges}" showDatatip="true" xaxisAngle="45"
+											datatipFormat="#{addrControl.addressAssetCon.datatipFormat}"
+											showMarkers="false" animate="true" seriesColors="51C1B1,F2433B"
+											  style="height:400px;width:100%;float:left" />
+	</p:panel>
+ 
+	
+	
+	
+	
+
+	
+	
+	
+ 
+
+
+
+</ui:composition>

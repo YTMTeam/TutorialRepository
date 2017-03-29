@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/templates/standard_template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<h:head>
+		<title>#{msg.lexExplorer}</title>
+		<link
+			href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700,800'
+			rel='stylesheet' type='text/css' />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="refresh" content="300" />
+		<!-- 		<meta http-equiv="refresh" content="0; url=login.xhtml" /> -->
+		<link href="styles/css/style.css" type="text/css" rel="stylesheet" />
+		<link href="styles/css/new_styles.css" type="text/css"
+			rel="stylesheet" />
+		<link href="styles/css/sprites.css" type="text/css" rel="stylesheet" />
+		<link href="styles/css/flags.css" type="text/css" rel="stylesheet" />
+		<link rel="icon" type="image/png" href="images/favicon.ico?v=2" />
+		<h:outputScript library="primefaces" name="jquery/jquery.js" />
+
+	</h:head>
+	<ui:define name="westContent">
+
+	</ui:define>
+	<ui:define name="centerContent">
+
+
+
+		<!-- File upload components first button -->
+		<h:form enctype="multipart/form-data">
+			<p:panelGrid style="margin:0 auto;margin-top:0px;">
+				<p:row>
+					<p:column colspan="5">
+						<p:graphicImage style="margin-left: 20px;"
+							url="http://sunflowerglobalmarket.com/wp-content/uploads/2014/08/ScotiabankGBM-Block.png" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel styleClass="outPutlable" style="color: #262626;font-size:16px;"
+							value="Number of accounts: 3025"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:outputLabel />
+					</p:column>
+					<p:column colspan="4">
+						<p:outputLabel styleClass="outPutlable" style="color: #262626;font-size:16px;margin-right: 22px;"
+							value="Last update: 17.01.2017"></p:outputLabel>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<p class="clear" />
+			<p:panelGrid style="margin:0 auto;margin-top:-10px;">
+				<p:row>
+					<p:column>
+						<p:fileUpload styleClass="devButton iconLess" auto="true"
+							mode="advanced" label="#{msg.loadAccountsFromExcel}"
+							value="#{bank.handleUsersDataUpload()}" id="uploadButtonAccount"
+							allowTypes="/(\.|\/)(xls|xlsx)$/" />
+					</p:column>
+					<p:column>
+						<p:fileUpload styleClass="devButton iconLess" auto="true"
+							mode="advanced" label="#{msg.loadTradesFromExcel}"
+							value="#{bank.handleUsersDataUpload()}" id="uploadButtonTrades"
+							allowTypes="/(\.|\/)(xls|xlsx)$/" />
+					</p:column>
+					<p:column>
+						<p:fileUpload styleClass="devButton iconLess" auto="true"
+							mode="advanced" label="#{msg.loadPositionsFromPositions}"
+							value="#{bank.handleUsersDataUpload()}"
+							id="uploadButtonPositions" allowTypes="/(\.|\/)(xls|xlsx)$/" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</h:form>
+
+
+
+		<p:panelGrid columns="2" styleClass="centarStyle">
+			<p:dataTable styleClass="tableSize" lazy="true" rows="10"
+				paginator="true" paginatorPosition="bottom" scrollable="true"
+				resizableColumns="true" selectionMode="single" scrollRows="20"
+				pageLinks="5" style="float:left;width:400px;" var="car"
+				paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+				rowsPerPageTemplate="10,50,100" scrollHeight="412"
+				value="#{dtBasicView.cars}">
+				<p:column headerText="Year">
+					<h:outputText value="#{car.year}" />
+				</p:column>
+
+				<p:column headerText="Brand">
+					<h:outputText value="#{car.brand}" />
+				</p:column>
+
+			</p:dataTable>
+
+			<p:dataTable lazy="true" rows="10" paginator="true"
+				paginatorPosition="bottom" scrollable="true" resizableColumns="true"
+				selectionMode="single" scrollRows="20" pageLinks="5"
+				style="float:left;width:400px;" var="car"
+				paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+				rowsPerPageTemplate="10,50,100" scrollHeight="412"
+				styleClass="tableSize" value="#{dtBasicView.cars}">
+
+
+				<p:column headerText="Year">
+					<h:outputText value="#{car.year}" />
+				</p:column>
+
+				<p:column headerText="Brand">
+					<h:outputText value="#{car.brand}" />
+				</p:column>
+
+			</p:dataTable>
+		</p:panelGrid>
+
+
+
+	</ui:define>
+
+
+</ui:composition>

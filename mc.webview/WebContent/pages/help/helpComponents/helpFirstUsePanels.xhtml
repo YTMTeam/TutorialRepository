@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	<script>
+		function pauseAnimation() {
+			$('.firstUseHelpButton').addClass('pausedAnimation');
+		}
+		
+		function unpauseAnimation() {
+			$('.firstUseHelpButton').removeClass('pausedAnimation');
+		}
+		
+		$(document).ready(function(){
+			$("body").click();
+		});
+	</script>
+
+	<c:forEach var="userHint" items="#{user.userHints}">
+		<ui:include src="/pages/help/helpComponents/helpOverlayPanel.xhtml">
+			<ui:param name="firstUseHelpId" value="#{userHint.HINT_CODE}" />
+		</ui:include>
+	</c:forEach>
+
+</ui:composition>

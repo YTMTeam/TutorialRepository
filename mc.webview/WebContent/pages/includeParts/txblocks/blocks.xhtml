@@ -1,0 +1,112 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	
+		 
+			<p:remoteCommand name="onFilterBlocks"
+				update=":#{outerForm}:blockList:itemNum" />
+			<p:dataTable id="blockList" var="block" widgetVar="showBlocksTable"
+				filteredValue="#{blockControl.lazyBlocksModel.filteredItems}"
+				value="#{blockControl.lazyBlocksModel}" scrollRows="20"
+				selection="#{blockControl.lazyBlocksModel.selectedItems}"
+				emptyMessage="#{msg.noData}" scrollable="true"
+				resizableColumns="true" 
+				
+				scrollHeight="#{blockControl.lazyBlocksModel.tableHeight}"
+				lazy="true" rows="10" paginator="true" pageLinks="5"
+				paginatorPosition="bottom"
+				paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+				rowsPerPageTemplate="10,50,100">
+
+				<p:ajax event="filter" oncomplete="onFilterBlocks()" />
+				<f:facet name="header">
+						#{msg.blocks}
+				    </f:facet>
+
+
+				<p:column headerText="#{msg.miner}" sortBy="#{block.to.MINER}"
+					filterBy="#{block.to.MINER}" filterMatchMode="contains">
+
+					<h:outputText value="#{block.to.MINER}" />
+				</p:column>
+
+				<!-- <p:column headerText="Nonce" sortBy="#{block.to.NONCE}"   -->
+				<!-- 						filterBy="#{block.to.NONCE}" filterMatchMode="contains"> -->
+
+				<!-- 						<h:outputText value="#{block.to.NONCE}" /> -->
+				<!-- 					</p:column> -->
+
+				<p:column headerText="#{msg.blockHash}" sortBy="#{block.to.BLOCK_HASH}"
+					filterBy="#{block.to.BLOCK_HASH}" filterMatchMode="contains">
+
+					<h:outputText value="#{block.to.BLOCK_HASH}" />
+				</p:column>
+
+				<p:column headerText="#{msg.previousBlockHash}"
+					sortBy="#{block.to.PREVIOUS_BLOCK_HASH}"
+					filterBy="#{block.to.PREVIOUS_BLOCK_HASH}"
+					filterMatchMode="contains">
+
+					<h:outputText value="#{block.to.PREVIOUS_BLOCK_HASH}" />
+				</p:column>
+
+				<p:column headerText="#{msg.nextBlockHash}"
+					sortBy="#{block.to.NEXT_BLOCK_HASH}"
+					filterBy="#{block.to.NEXT_BLOCK_HASH}" filterMatchMode="contains">
+
+					<h:outputText value="#{block.to.NEXT_BLOCK_HASH}" />
+				</p:column>
+
+
+				<p:column headerText="#{msg.time}" style="width:70px;text-align:center" sortBy="#{block.to.TIME}" filterBy="#{block.to.TIME}"
+					 >
+
+					<h:outputText value="#{timeUtil.getHrsMinSecFromMili(block.to.TIME)}" />
+				</p:column>
+
+
+				<p:column headerText="#{msg.height}" style="width:100px;text-align:center" sortBy="#{block.to.HEIGHT}"
+					filterBy="#{block.to.HEIGHT}" filterMatchMode="contains">
+
+					<h:outputText value="#{block.to.HEIGHT}" />
+				</p:column>
+
+				<p:column headerText="#{msg.blockSize}" style="width:100px;text-align:center" sortBy="#{block.to.BLOCK_SIZE}"
+					filterBy="#{block.to.BLOCK_SIZE}" filterMatchMode="contains">
+
+					<h:outputText value="#{block.to.BLOCK_SIZE}" />
+				</p:column>
+
+
+				<p:column headerText="#{msg.createTimestamp}"
+					sortBy="#{block.to.CREATE_TIMESTAMP}"
+					filterBy="#{block.to.CREATE_TIMESTAMP}" filterMatchMode="contains">
+
+					<h:outputText value="#{block.to.CREATE_TIMESTAMP}" />
+				</p:column>
+
+				<f:facet name="footer">
+<!-- 					<div class="clearButton"></div> -->
+<!-- 					<div class="rightFooterTable"> -->
+<!-- 						<h:outputLabel value="#{msg.tableHeight}: " /> -->
+<!-- 						<p:spinner min="0" max="700" stepFactor="50" id="spinnerBasic" -->
+<!-- 							converterMessage="#{msg.spinnerError}" -->
+<!-- 							value="#{blockControl.lazyBlocksModel.tableHeight}"> -->
+<!-- 							<p:ajax process="@this" update=":#{outerForm}:blockList" /> -->
+<!-- 						</p:spinner> -->
+<!-- 					</div> -->
+<span class="rowCount" >
+					<h:outputLabel id="itemNum" style="color:#222;font-weight:bold;float:right;margin-right: 35px;"
+						value=" #{blockControl.lazyBlocksModel.rowCount}" />
+					<h:outputLabel value="#{msg.numberOfRows}" style="text-transform:uppercase;font-weight:bold;float:right;color:#7F7F7F;margin-right:10px" ></h:outputLabel>
+					</span>
+					
+					<p class="clear" />
+				</f:facet>
+			</p:dataTable>
+
+ 
+</ui:composition>

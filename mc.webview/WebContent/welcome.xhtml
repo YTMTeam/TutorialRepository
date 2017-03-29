@@ -1,0 +1,196 @@
+<html>
+    
+<head>
+       
+<meta http-equiv="Refresh" content= "0; URL=login.xhtml"/>
+       
+  
+<title>Login</title>
+    
+</head>
+    
+  
+ 
+<body>
+       
+	
+<h:form id="assetListForm">
+
+<p:remoteCommand name="onFilterAssets"  update=":assetListForm:assetsTable:itemNum" />
+				<p:dataTable id="assetsTable" var="asset" widgetVar="showUsersTable"
+					filteredValue="#{assetControl.lazyAssetsModel.filteredItems}"
+					value="#{assetControl.lazyAssetsModel}" scrollRows="20"   
+					selection="#{assetControl.lazyAssetsModel.selectedItems}" emptyMessage="#{msg.noData}"
+					scrollable="true" resizableColumns="true"
+					scrollHeight="#{assetControl.lazyAssetsModel.tableHeight}"
+					lazy="true" rows="10" paginator="true" pageLinks="5" paginatorPosition="bottom"
+	                paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+	                rowsPerPageTemplate="10,50,100" >
+	                
+ 					<p:ajax event="filter" oncomplete="onFilterAssets()" />  
+					<f:facet name="header">
+						Assets
+				    </f:facet>
+ 
+
+					<p:column headerText="Asset Name" sortBy="#{asset.to.ASSET_NAME}"  
+						filterBy="#{asset.to.ASSET_NAME}" filterMatchMode="contains">
+
+						<h:outputText value="#{asset.to.ASSET_NAME}" />
+					</p:column>
+					
+					<p:column headerText="Issue Transaction Id" sortBy="#{asset.to.ISSUE_TRANSACTION_ID}"  
+						filterBy="#{asset.to.ISSUE_TRANSACTION_ID}" filterMatchMode="contains">
+
+						<h:outputText value="#{asset.to.ISSUE_TRANSACTION_ID}" />
+					</p:column>
+					
+					<p:column headerText="Multiple" sortBy="#{asset.to.MULTIPLE}"  
+						filterBy="#{asset.to.MULTIPLE}" filterMatchMode="contains">
+
+						<h:outputText value="#{asset.to.MULTIPLE}" />
+					</p:column>
+					
+						<p:column headerText="Asset Reference" sortBy="#{asset.to.ASSET_REFERENCE}"  
+						filterBy="#{asset.to.ASSET_REFERENCE}" filterMatchMode="contains">
+
+						<h:outputText value="#{asset.to.ASSET_REFERENCE}" />
+					</p:column>
+					
+					<p:column headerText="Units Quantity" sortBy="#{asset.to.UNITS_QUANTITY}"  
+						filterBy="#{asset.to.UNITS_QUANTITY}" filterMatchMode="contains">
+
+						<h:outputText value="#{asset.to.UNITS_QUANTITY}" />
+					</p:column>
+					
+					<p:column headerText="Open Flag" sortBy="#{asset.to.OPEN_FLAG}"  
+						filterBy="#{asset.to.OPEN_FLAG}" filterMatchMode="contains">
+
+						<h:outputText value="#{asset.to.OPEN_FLAG}" />
+					</p:column>
+					
+				<!-- <p:column headerText="Security type" sortBy="#{asset.to.SECURITY_TYPE}"  
+						filterBy="#{asset.to.SECURITY_TYPE}" filterMatchMode="contains">
+
+						<h:outputText value="#{asset.to.SECURITY_TYPE}" />
+					</p:column>
+					
+					<p:column headerText="Last quantity" sortBy="#{asset.to.LAST_QUANTITY}"  
+						filterBy="#{asset.to.LAST_QUANTITY}" filterMatchMode="contains">
+
+						<h:outputText value="#{asset.to.LAST_QUANTITY}" />
+					</p:column>
+					
+					<p:column headerText="Trade date" sortBy="#{asset.to.LAST_DATE}"  
+						filterBy="#{asset.to.LAST_DATE}" filterMatchMode="contains">
+
+						<h:outputText value="#{asset.to.LAST_DATE}" />
+					</p:column>
+					
+					<p:column headerText="Business date" sortBy="#{asset.to.BUSINESS_DATE}"  
+						filterBy="#{asset.to.BUSINESS_DATE}" filterMatchMode="contains">
+
+						<h:outputText value="#{asset.to.BUSINESS_DATE}" />
+					</p:column>
+					 -->
+
+					 <p:column headerText="Issue Quantity" sortBy="#{asset.to.ISSUE_QUANTITY}"  
+						filterBy="#{asset.to.ISSUE_QUANTITY}" filterMatchMode="contains">
+						<h:outputText value="#{asset.to.ISSUE_QUANTITY}" />
+					</p:column>
+					
+					
+					<p:column headerText="Addresses" sortBy="#{asset.to.ADDRESS_COUNT}"  
+						filterBy="#{asset.to.ADDRESS_COUNT}" filterMatchMode="contains">
+						
+						<p:commandLink value="#{asset.to.ADDRESS_COUNT}"></p:commandLink>
+						 
+					</p:column>
+					
+					
+					 
+					<f:facet name="footer">
+					<div class="clearButton">
+					</div>
+						<div class="rightFooterTable" >
+							<h:outputLabel value="#{msg.tableHeight}: "   />
+							<p:spinner  min="0" max="700" stepFactor="50" id="spinnerBasic" converterMessage="#{msg.spinnerError}"
+								value="#{assetControl.lazyAssetsModel.tableHeight}">
+								<p:ajax process="@this" update=":assetListForm:assetsTable" />
+							</p:spinner>
+						</div>
+						<h:outputLabel id="itemNum" styleClass="rowCount"  value="#{msg.numberOfRows}: #{assetControl.lazyAssetsModel.rowCount}" />
+						<p class="clear" />
+					</f:facet>
+				</p:dataTable>
+
+</h:form>
+<br/>
+
+<h:form id="assetsLiveForm">
+<p:poll interval="8" process="@this" update="@form" listener="#{assetControl.updateLastAssets()}"></p:poll>
+<p:dataTable id="assetsLiveTable" var="asset" widgetVar="assetsLiveVar"				 
+					value="#{assetControl.lastAssets}" scrollRows="20"   
+				 	emptyMessage="#{msg.noData}"
+					scrollable="true" resizableColumns="true"
+					scrollHeight="700"
+					  rows="20"    
+					   
+	                 >
+				<f:facet name="header">
+						Last block height read: #{assetControl.latestBlockInfo.to.LAST_BLOCK_HEIGHT_READ}, #{assetControl.latestBlockInfo.to.CREATE_TIMESTAMP}
+				   </f:facet>
+
+	<p:column headerText="Asset Name" sortBy="#{asset.to.ASSET_NAME}"  
+						filterBy="#{asset.to.ASSET_NAME}" filterMatchMode="contains">
+
+						<h:outputText value="#{asset.to.ASSET_NAME}" />
+					</p:column>
+					
+					<p:column headerText="Issue Transaction Id">
+
+						<h:outputText value="#{asset.to.ISSUE_TRANSACTION_ID}" />
+					</p:column>
+					
+					<p:column headerText="Multiple"  >
+
+						<h:outputText value="#{asset.to.MULTIPLE}" />
+					</p:column>
+					
+						<p:column headerText="Asset Reference"  >
+
+						<h:outputText value="#{asset.to.ASSET_REFERENCE}" />
+					</p:column>
+					
+					<p:column headerText="Units Quantity"  >
+
+						<h:outputText value="#{asset.to.UNITS_QUANTITY}" />
+					</p:column>
+					
+					<p:column headerText="Open Flag"  >
+
+						<h:outputText value="#{asset.to.OPEN_FLAG}" />
+					</p:column>
+					
+			 
+
+					 <p:column headerText="Issue Quantity"  >
+						<h:outputText value="#{asset.to.ISSUE_QUANTITY}" />
+					</p:column>
+					
+					
+					<p:column headerText="Timestamp"  >
+						
+						<p:commandLink value="#{asset.to.CREATE_TIMESTAMP}"></p:commandLink>
+						 
+					</p:column>
+
+
+
+</p:dataTable>
+</h:form>
+    
+</body>
+  
+ 
+</html>

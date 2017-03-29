@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>#{msg.login}</title>
+	<link
+		href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700,800'
+		rel='stylesheet' type='text/css' />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="refresh" content="300" />
+	<!-- 		<meta http-equiv="refresh" content="0; url=login.xhtml" /> -->
+	<link href="styles/css/style.css" type="text/css" rel="stylesheet" />
+	<link href="styles/css/new_styles.css" type="text/css" rel="stylesheet" />
+	<link href="styles/css/sprites.css" type="text/css" rel="stylesheet" />
+	<link href="styles/css/flags.css" type="text/css" rel="stylesheet" />
+	<link rel="icon" type="image/png" href="images/favicon.ico?v=2" />
+	<h:outputScript library="primefaces" name="jquery/jquery.js" />
+
+</h:head>
+<h:body>
+
+	<h:form id="loginForm">
+		<p class="clear"></p>
+		<div id="loginDiv" class="loginDiv ui-panel">
+
+			<h:graphicImage styleClass="logoLogin" style=""
+				value="images/Logo.png" />
+
+			<p class="clear"></p>
+			<h:outputText styleClass="logoText Bold" value="Lex"></h:outputText>
+			<h:outputText styleClass="logoText light" value="Explorer"></h:outputText>
+			<p class="clear" />
+			<p:panelGrid id="loginGrid" columns="2">
+
+				<p:inputText placeholder="#{msg.username}" id="username"
+					value="#{user.username}" required="true" maxlength="100"
+					requiredMessage="#{msg.requiredUsername}" label="#{msg.bankName}" />
+				<p class="clear" />
+
+				<p:row>
+					<p:password id="password" placeholder="#{msg.password}"
+						maxlength="80" value="#{user.privateKey}" required="true"
+						requiredMessage="#{msg.requiredPassword}"
+						label="#{msg.requiredPassword}">
+
+					</p:password>
+					<script type="text/javascript">
+function getVars() {
+	var offset = new Date().getTimezoneOffset();
+	document.getElementById("loginForm:timeZoneOffset").value = offset;
+}
+$(document).ready(function(){
+	$('#loginForm\\:username').focus();
+});</script>
+					<h:inputHidden id="timeZoneOffset" value="#{user.timeZoneOffset}" />
+				</p:row>
+				<f:facet name="footer">
+
+					<p:commandButton value="#{msg.signIn}" id="signInBtn"
+						onclick="getVars()" process=":loginForm:loginGrid"
+						update=":loginForm:loginGrid" action="#{user.loginWithEncryptionKey}" /><br/>
+
+<!--           <h:commandLink  action="/example.html" target="_blank">Register</h:commandLink> -->
+
+				</f:facet>
+
+			</p:panelGrid>
+		</div>
+
+
+
+	</h:form>
+
+	
+
+	<p:growl id="messages" showDetail="true" autoUpdate="true" life="5000"
+		severity="info" closable="true" />
+
+	<p:growl id="messages2" showDetail="true" autoUpdate="true"
+		severity="error" sticky="true" closable="true" />
+
+	<p:growl id="messages3" showDetail="true" autoUpdate="true"
+		severity="warn" sticky="true" closable="true" />
+</h:body>
+
+</html>

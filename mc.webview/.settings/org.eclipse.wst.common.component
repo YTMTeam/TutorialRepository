@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="mc.webview">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="mc.logic.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/mc.logic/mc.logic">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ucp.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.logic/lib/ucp.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-fileupload-1.2.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.model/lib/commons-fileupload-1.2.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-codec-1.9.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.model/lib/commons-codec-1.9.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jxl.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.model/lib/jxl.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="poi-3.11-beta2-20140822.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.logic/lib/poi-3.11-beta2-20140822.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="gdao.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.model/lib/gdao.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-lang-2.6.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.model/lib/commons-lang-2.6.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-lang3-3.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.model/lib/commons-lang3-3.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ojdbc7.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.logic/lib/ojdbc7.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="poi-ooxml-schemas-3.11-beta2-20140822.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.logic/lib/poi-ooxml-schemas-3.11-beta2-20140822.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jsoup-1.7.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.logic/lib/jsoup-1.7.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jackson-annotations-2.6.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.model/lib/jackson-annotations-2.6.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-configuration-1.7.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.model/lib/commons-configuration-1.7.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="poi-ooxml-3.11-beta2-20140822.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.logic/lib/poi-ooxml-3.11-beta2-20140822.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="stringtemplate.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.logic/lib/stringtemplate.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-logging-1.1.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.model/lib/commons-logging-1.1.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jasypt-1.9.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.logic/lib/jasypt-1.9.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="json-simple-1.1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.logic/lib/json-simple-1.1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="poi-scratchpad-3.11-beta2-20140822.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.logic/lib/poi-scratchpad-3.11-beta2-20140822.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-io-2.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.model/lib/commons-io-2.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="junit-4.11.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.logic/lib/junit-4.11.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="antlr-2.7.7.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.logic/lib/antlr-2.7.7.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="log4j-1.2.14.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.model/lib/log4j-1.2.14.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="poi-examples-3.11-beta2-20140822.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.logic/lib/poi-examples-3.11-beta2-20140822.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-collections-3.2.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.model/lib/commons-collections-3.2.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mail.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.logic/lib/mail.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="poi-excelant-3.11-beta2-20140822.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/mc.logic/lib/poi-excelant-3.11-beta2-20140822.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mc.model.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/mc.model/mc.model">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="java-output-path" value="/mc.webview/build/classes"/>
+        <property name="context-root" value="mc.webview"/>
+    </wb-module>
+</project-modules>

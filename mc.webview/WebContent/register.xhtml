@@ -1,0 +1,143 @@
+<ui:composition template="/templates/login_template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	>
+ 
+<ui:define name="metadata">
+		<f:metadata>
+			<f:event type="preRenderView" listener="#{user.init}" />
+		</f:metadata>
+	</ui:define>
+
+	<ui:define name="threeLinesContent">
+		<h:form id="menuForm" style="float: right; margin-top: -6px;">
+			<p:menuButton value=" " id="threeLine" styleClass="transparentMenuButton">
+<!-- 			<p:menuitem value="#{msg.FAQs}" action="faq?faces-redirect=true" /> -->
+				<p:menuitem value="#{msg.contact}" id="contactMenuItem"
+					actionListener="#{contactForm.initContact}"
+					onclick="dlgContact.show()" />
+				<p:menuitem value="#{msg.language}" onclick="dlgLang.show()" />
+				<p:separator id="separator" />
+				<p:menuitem value="#{msg.login}"
+					style="color:#04465D; font-weight:700;"
+					action="login?faces-redirect=true" />
+			</p:menuButton>
+		</h:form>
+	</ui:define>
+	<ui:define name="centerContent">
+
+
+
+		<h:form id="regForm" style="margin-top: 100px" onkeypress="return event.keyCode != 13;">
+			<div style="margin:0 auto; width: 680px">
+				<div class="loginDiv" style="float: left;">
+					<p:panelGrid id="regGrid" columns="2" styleClass="centerPos"
+						style="width: 430px;">
+						<h:outputLabel for="username" value="#{msg.username}*:" />
+						<p:inputText id="username" required="true" maxlength="100"
+							requiredMessage="#{msg.requiredUsername}"
+							value="#{reg.newUser.USERNAME}" label="#{msg.username}">
+							<f:validator validatorId="validatorUsername"/>
+							<p:ajax process="@this"/>
+							</p:inputText>
+						<h:outputLabel for="firstName" value="#{msg.firstName}*:" />
+						<p:inputText id="firstName" value="#{reg.newUser.FIRST_NAME}" maxlength="50" requiredMessage="#{msg.requiredFirstName}"
+							required="true" label="#{msg.firstName}" >
+							<f:validator validatorId="validatorForName"/>
+							<p:ajax process="@this"/>
+							</p:inputText>
+						<h:outputLabel for="lastName" value="#{msg.lastName}*:" />
+						<p:inputText id="lastName" value="#{reg.newUser.LAST_NAME}" maxlength="50" requiredMessage="#{msg.requiredLastName}"
+							required="true" label="#{msg.lastName}" >
+							<f:validator validatorId="validatorForName"/>
+							<p:ajax process="@this"/>
+							</p:inputText>
+	
+	
+						<h:outputLabel for="birth" value="#{msg.dateOfBirth}:" />
+						<p:calendar value="#{reg.newUser.DATE_OF_BIRTH}" 
+							  locale="#{language.localeCode}"
+							navigator="true" id="birth" converterMessage="#{msg.calendarError}"
+							pattern="dd/MM/yyyy" yearRange="1900:2030">
+							<f:converter converterId="dateConverterShort" />
+							<p:ajax event="blur"/>
+						</p:calendar>
+	
+	
+						<h:outputLabel for="roles" value="#{msg.desiredRole}*:" />
+						<p:selectOneMenu id="roles" layout="pageDirection"
+							value="#{reg.role}" required="true"
+							requiredMessage="#{msg.requiredRole}">
+							<f:selectItems value="#{translate.generateRoles()}" />
+						</p:selectOneMenu>
+	
+						<h:outputLabel for="email" value="#{msg.email}*:" />
+						<p:inputText id="email" value="#{reg.newUser.EMAIL}"
+							requiredMessage="#{msg.requiredEmail}" maxlength="100"
+							validatorMessage="#{msg.eEmail}" required="true">
+							<f:validateRegex
+								pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+								<p:ajax process="@this" />
+						</p:inputText>
+						
+						 
+<!--  <botDetect:jsfCaptcha id="exampleCaptcha"  -->
+<!--                   binding="#{reg.captcha}" />  -->
+<!--                    imageWidth="200" -->
+<!--                   codeLength="4" codeStyle="alpha" -->
+
+
+<p:inputText value="#{reg.captchaCode}" id="captchaCode" disabled="true" /> <p:commandButton value="refreshCaptcha" actionListener="#{reg.refreshCaptcha()}" process="@this" update=":regForm:captchaCode"/>
+							<h:outputLabel for="captchaCodeUser" value="#{msg.securityCode}:*" />
+                  			<p:inputText id="captchaCodeUser" value="#{reg.captchaUserInput}" maxlength="5" requiredMessage="#{msg.requiredCaptcha}"
+							required="true"  >
+							<f:attribute name="captchaCode"  value="#{reg.captchaCode}" /> 	
+							<f:validator validatorId="captchaValidator" >
+			
+							</f:validator>
+							</p:inputText>
+						
+						<f:facet name="footer">
+							<p:commandButton value="#{msg.register}" id="regBtn"
+								process=":regForm:regGrid" update=":regForm:regGrid"
+								actionListener="#{reg.register}" icon="arrowToRightBlue rotateIcon90deg"
+								style="float:right" />
+								
+								<p:commandButton value="#{msg.tryout}!" id="tryoutBtn"
+								process=":regForm:regGrid" update=":regForm:regGrid"
+								actionListener="#{reg.demoRegister}"  
+								style="float:right; margin-right: 5px" />
+						</f:facet>
+					</p:panelGrid>
+				</div>
+				<div style="float: right; padding-right: 10px;">
+					<h:graphicImage value="images/logoBig.png" />
+				</div>
+				<p class="clear"></p>
+			</div>
+
+		</h:form>
+
+
+
+	</ui:define>
+
+	<ui:define name="dialogs">
+
+		<h:form id="languageForm">
+		<ui:include src="/pages/includeParts/languageDialog.xhtml" />
+</h:form>
+
+
+
+
+
+
+	</ui:define>
+
+
+
+</ui:composition>
